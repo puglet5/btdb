@@ -16,5 +16,17 @@
 #
 FactoryBot.define do
   factory :user do
+    sequence(:id) { |n| n }
+    first_name { 'Test User' }
+    password { '123456' }
+    sequence(:email) { |n| "test#{n}@test.com" }
+
+    factory :default_user do
+      after(:create) { |user| user.add_role(:default) }
+    end
+
+    factory :admin_user do
+      after(:create) { |user| user.add_role(:admin) }
+    end
   end
 end
