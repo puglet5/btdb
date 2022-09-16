@@ -1,12 +1,11 @@
 <nav>
-  <ul>
-    <li><strong>BioTechDB</strong></li>
-  </ul>
+  <h3>
+    BioTechDB
+  </h3>
   <ul>
     <li>
       <%= link_to "Home", root_path %>
     </li>
-    |
     <% if current_user %>
       <li>
         <%= link_to t('auth.logout'), destroy_user_session_path, method: :delete, data: { turbo: false } %>
