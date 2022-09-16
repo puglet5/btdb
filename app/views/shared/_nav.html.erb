@@ -9,7 +9,7 @@
     |
     <% if current_user %>
       <li>
-        <%= link_to t('auth.logout'), destroy_user_session_path, data: { turbo_method: :delete } %>
+        <%= link_to t('auth.logout'), destroy_user_session_path, method: :delete, data: { turbo: false } %>
       </li>
     <% else %>
 

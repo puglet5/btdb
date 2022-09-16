@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :sign_up, keys: update_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: %i[login password]
   end
+
+  private
+
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(_resource_or_scope)
+    root_path
+  end
 end

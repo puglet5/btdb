@@ -20,6 +20,7 @@ gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.4'
 gem 'rails_semantic_logger', '~> 4.10'
 gem 'ransack', '~> 3.2.1' # object-based searching
+gem 'redis', '~> 5.0'
 gem 'rolify', '~> 6.0' # user roles
 gem 'simple_form', '~> 5.1' # form helpers
 gem 'stimulus-rails', '~> 1.1'
@@ -63,5 +64,3 @@ group :test do
   gem 'simplecov', '~> 0.21.2' # code coverage reports
   gem 'webdrivers'
 end
-
-gem "redis", "~> 5.0"
