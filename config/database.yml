@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: 5432
+
+development:
+  <<: *default
+  database: btdb_development
+  username: <%= ENV['PGUSER'] %>
+  password: <%= ENV['PGPASSWORD'] %>
+
+test:
+  <<: *default
+  database: btdb_test
+  username: <%= ENV['PGUSER'] %>
+  password: <%= ENV['PGPASSWORD'] %>
+
+production:
+  <<: *default
+  database: btdb_production
+  username: btdb
+  password: <%= ENV["BTDB_DATABASE_PASSWORD"] %>
