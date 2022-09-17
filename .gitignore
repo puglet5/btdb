@@ -46,7 +46,6 @@ mkmf.log
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-erd*
 .pnp.*
 .yarn/*
 !.yarn/patches
