@@ -1,0 +1,68 @@
+<%= tag.div data: { controller: "toggle" } do %>
+  <%= tag.div data: { action: "click->toggle#toggle" } do %>
+    <button type="button" class="flex items-center transition rounded-lg group shrink-0">
+
+      <img alt="Man" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" class="object-cover w-10 h-10 rounded-full">
+
+      <p class="hidden ml-2 text-xs text-left sm:block">
+        <strong class="block font-medium">
+          <%= current_user.name %>
+        </strong>
+
+        <span class="text-gray-500">
+          <%= current_user.email %>
+        </span>
+      </p>
+
+      <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5 ml-4 text-gray-500 transition sm:block group-hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+
+    </button>
+  <% end %>
+
+  <%= tag.div data: { toggle_target: "toggle" }, class: "absolute hidden" do %>
+    <div class="flex flex-col justify-between bg-white border h-max">
+      <div class="px-4 py-6">
+
+        <nav class="flex flex-col mt-6 space-y-1">
+          <details class="group">
+            <summary class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+
+              <span class="ml-3 text-sm font-medium"> Account </span>
+
+              <span class="ml-8 transition duration-300 shrink-0 group-open:-rotate-180">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </summary>
+
+            <div class="flex flex-col mt-1.5">
+
+              <%= link_to current_user, class: "flex items-center px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                </svg>
+
+                <span class="ml-3 text-sm font-medium"> Profile page </span>
+              <% end %>
+
+              <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: "flex items-center px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+
+                <span class="ml-3 text-sm font-medium"> Logout </span>
+              <% end %>
+            </div>
+          </details>
+        </nav>
+      </div>
+    </div>
+  <% end %>
+
+<% end %>
