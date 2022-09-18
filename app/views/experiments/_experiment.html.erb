@@ -1,19 +1,48 @@
 <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
 
-  <div class="w-full bg-white border rounded-lg shadow-md">
-    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50">
-      <li class="mr-2">
-        <button id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true" class="inline-block p-4 rounded-tl-lg text-lime-600 hover:bg-gray-100 bg-lime-300/25">Info</button>
-      </li>
-      <li class="mr-2">
-        <button id="objects-tab" type="button" role="tab" aria-controls="objects" aria-selected="false" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100">Objects (3)</button>
-      </li>
-      <li class="mr-2">
-        <button id="files-tab" type="button" role="tab" aria-controls="files" aria-selected="false" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100">Files (286)</button>
-      </li>
-    </ul>
-    <div id="defaultTabContent">
-      <div class="p-4 bg-white rounded-lg md:p-8 md:pt-4" id="info" role="tabpanel" aria-labelledby="info-tab">
+  <%= tag.div data: { controller: "tabs"} do %>
+    <div class="w-full bg-white border rounded-lg shadow-md">
+
+      <div class="flex justify-between text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50">
+        <ul class="flex flex-wrap text-sm font-medium text-center">
+          <li class="">
+            <%= tag.div data: { "tabs-target": "tab" }, id: "info-tab", class: "active-tab" do %>
+              <button type="button" role="tab" aria-controls="info" aria-selected="true" class="inline-block p-4 rounded-tl-lg" data-action="click->tabs#switch">Info</button>
+            <% end %>
+          </li>
+          <li class="">
+            <%= tag.div data: { "tabs-target": "tab" }, id: "objects-tab !hover:bg-gray-100", class: "hover:bg-gray-100"  do %>
+              <button type="button" role="tab" aria-controls="objects" aria-selected="false" class="inline-block p-4" data-action="click->tabs#switch">Objects (3)</button>
+            <% end %>
+          </li>
+          <li class="">
+            <%= tag.div data: { "tabs-target": "tab"}, id: "files-tab", class: "hover:bg-gray-100" do %>
+              <button type="button" role="tab" aria-controls="files" aria-selected="false" class="inline-block p-4" data-action="click->tabs#switch">Files (286)</button>
+            <% end %>
+          </li>
+        </ul>
+
+        <div class="flex my-auto mr-4 space-x-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 my-auto">
+            <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
+            <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+            <path d="M17 4.517v9.301L5.433 2.252a41.44 41.44 0 019.637.058C16.194 2.45 17 3.414 17 4.517zM3 17.25V6.182l10.654 10.654L10 15.082l-5.925 2.844A.75.75 0 013 17.25zM3.28 2.22a.75.75 0 00-1.06 1.06l14.5 14.5a.75.75 0 101.06-1.06L3.28 2.22z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+            <path fill-rule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clip-rule="evenodd" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+            <path d="M7 3.5A1.5 1.5 0 018.5 2h3.879a1.5 1.5 0 011.06.44l3.122 3.12A1.5 1.5 0 0117 6.622V12.5a1.5 1.5 0 01-1.5 1.5h-1v-3.379a3 3 0 00-.879-2.121L10.5 5.379A3 3 0 008.379 4.5H7v-1z" />
+            <path d="M4.5 6A1.5 1.5 0 003 7.5v9A1.5 1.5 0 004.5 18h7a1.5 1.5 0 001.5-1.5v-5.879a1.5 1.5 0 00-.44-1.06L9.44 6.439A1.5 1.5 0 008.378 6H4.5z" />
+          </svg>
+
+        </div>
+
+      </div>
+
+      <%= tag.div data: { "tabs-target": "panel" }, id: "info-panel", class: "p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
 
         <span class="mr-2 text-xs font-semibold rounded text-lime-800 bg-lime-100 px-2.5 py-0.5">
           <%= experiment.status %>
@@ -66,7 +95,69 @@
           <%= experiment.description.to_plain_text.truncate(250) %>
         </p>
 
-      </div>
+      <% end %>
+
+      <%= tag.div data: { "tabs-target": "panel" }, id: "objects-panel", class: "hidden p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
+
+        <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
+          <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
+            <svg class="w-12 h-12 text-gray-200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512"><path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"></path></svg>
+          </div>
+          <div class="w-full">
+            <div class="w-48 mb-4 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+          </div>
+          <span class="sr-only">Loading...</span>
+        </div>
+
+      <% end %>
+
+      <%= tag.div data: { "tabs-target": "panel" }, id: "files-panel", class: "hidden p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
+
+        <div role="status" class="max-w-md p-4 space-y-4 divide-y divide-gray-200 rounded animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+              <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+          </div>
+          <div class="flex items-center justify-between pt-4">
+            <div>
+              <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+              <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+          </div>
+          <div class="flex items-center justify-between pt-4">
+            <div>
+              <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+              <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+          </div>
+          <div class="flex items-center justify-between pt-4">
+            <div>
+              <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+              <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+          </div>
+          <div class="flex items-center justify-between pt-4">
+            <div>
+              <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+              <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+            </div>
+            <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+          </div>
+          <span class="sr-only">Loading...</span>
+        </div>
+
+      <% end %>
     </div>
-  </div>
+  <% end %>
 </div>
