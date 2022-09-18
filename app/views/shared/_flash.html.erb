@@ -1,5 +1,5 @@
 <div class="absolute self-end top-18 right-2">
   <% flash.each do |k, v| %>
-    <%= render FlashComponent.new(msg: v, type: k) %>
+    <%= render FlashComponent.new(msg: v, type: k, cls: "flash-alert") %>
   <% end %>
 </div>
