@@ -1,8 +1,72 @@
-<%= experiment.title %>
-<%= experiment.description %>
-<%= experiment.author %>
-<%= experiment.staff %>
-<%= experiment.category %>
-<%= experiment.status %>
-<%= experiment.open_date %>
-<%= experiment.close_date %>
+<div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
+
+  <div class="w-full bg-white border rounded-lg shadow-md">
+    <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50">
+      <li class="mr-2">
+        <button id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true" class="inline-block p-4 rounded-tl-lg text-lime-600 hover:bg-gray-100 bg-lime-300/25">Info</button>
+      </li>
+      <li class="mr-2">
+        <button id="objects-tab" type="button" role="tab" aria-controls="objects" aria-selected="false" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100">Objects (3)</button>
+      </li>
+      <li class="mr-2">
+        <button id="files-tab" type="button" role="tab" aria-controls="files" aria-selected="false" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100">Files (286)</button>
+      </li>
+    </ul>
+    <div id="defaultTabContent">
+      <div class="p-4 bg-white rounded-lg md:p-8 md:pt-4" id="info" role="tabpanel" aria-labelledby="info-tab">
+
+        <span class="mr-2 text-xs font-semibold rounded text-lime-800 bg-lime-100 px-2.5 py-0.5">
+          <%= experiment.status %>
+        </span>
+
+        <h2 class="mt-1 text-4xl font-bold text-gray-700 sm:truncate sm:text-2xl">
+          <%= link_to experiment do %>
+            <%= experiment.title %>
+          <% end %>
+        </h2>
+
+        <div class="flex flex-col mt-2 sm:flex-row sm:flex-wrap sm:space-x-6">
+
+          <div class="flex items-center ml-1 text-sm text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 mr-1.5">
+              <path fill-rule="evenodd" d="M5.5 3A2.5 2.5 0 003 5.5v2.879a2.5 2.5 0 00.732 1.767l6.5 6.5a2.5 2.5 0 003.536 0l2.878-2.878a2.5 2.5 0 000-3.536l-6.5-6.5A2.5 2.5 0 008.38 3H5.5zM6 7a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+            </svg>
+            <%= experiment.category %>
+          </div>
+
+          <div class="flex items-center text-sm text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 mr-1.5">
+              <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+            </svg>
+
+            <%= experiment.author %>
+          </div>
+
+          <div class="flex items-center text-sm text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 mr-1.5">
+              <path d="M11 5a3 3 0 11-6 0 3 3 0 016 0zM2.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 018 18a9.953 9.953 0 01-5.385-1.572zM16.25 5.75a.75.75 0 00-1.5 0v2h-2a.75.75 0 000 1.5h2v2a.75.75 0 001.5 0v-2h2a.75.75 0 000-1.5h-2v-2z" />
+            </svg>
+
+            <%= link_to experiment.user, class:"font-medium" do %>
+              <%= experiment.user.name %>
+            <% end %>
+          </div>
+
+          <div class="flex items-center text-sm text-gray-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 mr-1.5">
+              <path d="M5.25 12a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H6a.75.75 0 01-.75-.75V12zM6 13.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V14a.75.75 0 00-.75-.75H6zM7.25 12a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H8a.75.75 0 01-.75-.75V12zM8 13.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V14a.75.75 0 00-.75-.75H8zM9.25 10a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H10a.75.75 0 01-.75-.75V10zM10 11.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75H10zM9.25 14a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H10a.75.75 0 01-.75-.75V14zM12 9.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V10a.75.75 0 00-.75-.75H12zM11.25 12a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H12a.75.75 0 01-.75-.75V12zM12 13.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V14a.75.75 0 00-.75-.75H12zM13.25 10a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H14a.75.75 0 01-.75-.75V10zM14 11.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75H14z" />
+              <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+            </svg>
+
+            <%= experiment.created_at.to_formatted_s(:long) %>
+          </div>
+        </div>
+
+        <p class="my-3 text-gray-500 dark:text-gray-400">
+          <%= experiment.description.to_plain_text.truncate(250) %>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
