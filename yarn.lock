@@ -365,6 +365,7 @@ __metadata:
     postcss-nested: ^5.0.6
     tailwind-config-viewer: ^1.7.2
     tailwindcss: ^3.1.8
+    trix: ^2.0.0-beta.0
   languageName: unknown
   linkType: soft
 
@@ -3652,6 +3653,13 @@ __metadata:
   version: 1.0.1
   resolution: "toidentifier@npm:1.0.1"
   checksum: 952c29e2a85d7123239b5cfdd889a0dde47ab0497f0913d70588f19c53f7e0b5327c95f4651e413c74b785147f9637b17410ac8c846d5d4a20a5a33eb6dc3a45
+  languageName: node
+  linkType: hard
+
+"trix@npm:^2.0.0-beta.0":
+  version: 2.0.0-beta.0
+  resolution: "trix@npm:2.0.0-beta.0"
+  checksum: a10efdfb56548dee4892dba457b42472d080cb02904d8cc43475f68edc749f3ac3afe4f2820fe9e652ad00d8ce53448670f61f776f719c6b6d9d0828964351fe
   languageName: node
   linkType: hard
 

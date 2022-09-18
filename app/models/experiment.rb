@@ -21,6 +21,7 @@ class Experiment < ApplicationRecord
   validates :title, :author, presence: true
 
   enum status: { undef: 0, ongoing: 1, cancelled: 2, finished: 3 }
-
   enum category: { undef: 0 }, _suffix: :category
+
+  has_rich_text :description
 end
