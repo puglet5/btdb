@@ -10,13 +10,13 @@ class ExperimentsController < ApplicationController
   def show; end
 
   def new
-    @experiment = Experiment.new
+    @experiment = current_user.experiments.build
   end
 
   def edit; end
 
   def create
-    @experiment = Experiment.new(experiment_params)
+    @experiment = current_user.experiments.build(experiment_params)
 
     respond_to do |format|
       if @experiment.save
@@ -52,6 +52,6 @@ class ExperimentsController < ApplicationController
   end
 
   def experiment_params
-    params.require(:experiment).permit(:title, :author, :staff, :type, :status, :description)
+    params.require(:experiment).permit(:title, :author, :staff, :category, :status, :description, :open_date, :close_date)
   end
 end
