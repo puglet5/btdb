@@ -5,6 +5,8 @@ export default class extends Controller {
 
   toggle() {
     this.toggleTarget.classList.toggle("hidden")
-    this.svgTarget.classList.toggle("rotate-180")
+    if (this.svgTarget) {
+      this.svgTarget.classList.toggle("rotate-180")
+    }
   }
 }
