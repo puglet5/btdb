@@ -12,6 +12,7 @@
 
   <%= simple_form_for @experiment, validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" } do |f| %>
 
+    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
     <div class="grid grid-cols-2 space-x-8">
 
       <div class="mb-6 ml-8 ">
@@ -81,7 +82,7 @@
       </div>
     </div>
 
-    <div class="ml-8 form-actions">
+    <div class="ml-4 form-actions">
       <%= f.submit "Save Experiment", class: "inline-block px-5 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
       <%= link_to "Back to experiments", experiments_path, class: "text-sm text-gray-500 hover:text-gray-700" %>
     </div>
