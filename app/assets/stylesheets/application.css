@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  input {
+    @apply focus:ring-lime-600 focus:outline-none focus:border focus:ring-1 outline-none border
+  }
+}
