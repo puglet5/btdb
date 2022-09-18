@@ -26,6 +26,10 @@ gem 'simple_form', '~> 5.1' # form helpers
 gem 'stimulus-rails', '~> 1.1'
 gem 'turbo-rails', '~> 1.1'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'view_component', '~> 2.72'
+
+gem "client_side_validations", "~> 21.0"
+gem "client_side_validations-simple_form", "~> 15.0"
 
 group :development, :test do
   gem 'better_errors', '~> 2.9'
@@ -65,4 +69,4 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'view_component', '~> 2.72'
+
