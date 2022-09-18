@@ -57,7 +57,9 @@
         <% if current_user %>
           <%= render "shared/user_nav" %>
         <% else %>
-          <%= link_to "Login", new_session_path(:user), class: "mr-4 text-gray-500 transition hover:text-gray-700" %>
+          <% if !params[:controller] == "devise/sessions" %>
+            <%= link_to "Login", new_session_path(:user), class: "mr-4 text-gray-500 transition hover:text-gray-700" %>
+          <% end %>
         <% end %>
       </div>
 
