@@ -2,23 +2,31 @@
 
 require_relative 'boot'
 
-require 'rails/all'
+require 'rails'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# rubocop:disable Lint/SuppressedException
+%w[
+  active_record/railtie
+  active_storage/engine
+  action_controller/railtie
+  action_view/railtie
+  action_mailer/railtie
+  active_job/railtie
+  action_text/engine
+].each do |railtie|
+  require railtie
+rescue LoadError
+end
+# rubocop:enable Lint/SuppressedException
+
 Bundler.require(*Rails.groups)
 
 module Btdb
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.time_zone = 'Moscow'
+
+    config.middleware.use Rack::Deflater
   end
 end
