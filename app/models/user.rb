@@ -27,6 +27,7 @@ class User < ApplicationRecord
   validates :name, :email, presence: true
 
   has_many :experiments, dependent: :nullify
+  has_one_attached :avatar
 
   def author?(obj)
     obj.user == self

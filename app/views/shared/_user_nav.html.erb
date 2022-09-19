@@ -1,8 +1,10 @@
 <%= tag.div data: { controller: "toggle" }, class: "relative hidden lg:block" do %>
   <%= tag.div data: { action: "click->toggle#toggle" } do %>
     <button type="button" class="flex items-center transition rounded-lg group shrink-0">
-
-      <img alt="Man" src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" class="object-cover w-10 h-10 rounded-full">
+      <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar.variant(resize: '192x108^', crop: '192x108+0+0').processed, class: "object-cover w-10 h-10 rounded-full" %>
+      <% else %>
+      <% end %>
 
       <p class="hidden ml-2 text-xs text-left sm:block">
         <strong class="block font-medium">
