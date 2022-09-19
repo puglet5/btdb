@@ -3,7 +3,7 @@ import { createPopper } from "@popperjs/core"
 
 export default class extends Controller {
 
-  static targets = ["trigger", "tooltip"]
+  static targets = ["trigger", "tooltip", "arrow"]
 
   connect() {
   }
@@ -13,6 +13,14 @@ export default class extends Controller {
     this.tooltipTarget.classList.add("opacity-100")
     createPopper(this.triggerTarget, this.tooltipTarget, {
       placement: "top",
+      modifiers: [
+        {
+          name: "arrow",
+          options: {
+            element: this.arrowTarget,
+          },
+        },
+      ],
     })
   }
 
