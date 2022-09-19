@@ -7,7 +7,7 @@ module.exports = {
   plugins: [require('@tailwindcss/forms')],
   content: [
     './app/views/**/*.html.erb',
-    './app/components/**/*.html.erb',
+    './app/components/*',
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'

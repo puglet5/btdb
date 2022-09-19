@@ -63,9 +63,7 @@
 
       <%= tag.div data: { "tabs-target": "panel" }, id: "info-panel", class: "p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
 
-        <span class="mr-2 text-xs font-semibold rounded text-lime-800 bg-lime-100 px-2.5 py-0.5">
-          <%= experiment.status.humanize.downcase %>
-        </span>
+        <%= render ExperimentBadgeComponent.new(status: experiment.status).with_content(experiment.status.humanize.downcase) %>
 
         <h2 class="mt-1 text-2xl font-bold text-gray-700 truncate sm:text-3xl">
           <%= link_to experiment do %>
