@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'active_record_doctor', '~> 1.10'
   gem 'amazing_print', '~> 1.4'
   gem 'annotate', '~> 3.2' # db schema annotations for models and tests
   gem 'bullet', '~> 7.0', '>= 7.0.3' # detect ineffective db queries
