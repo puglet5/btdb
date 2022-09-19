@@ -16,24 +16,20 @@ class ExperimentsController < ApplicationController
   def edit; end
 
   def create
-    @experiment = current_user.experiments.build(experiment_params)
+    @experiment = current_user.experiments.build experiment_params
 
-    respond_to do |format|
-      if @experiment.save
-        format.html { redirect_to experiment_url(@experiment), notice: 'Experiment was successfully created.' }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @experiment.save
+      redirect_to experiment_url(@experiment), notice: 'Experiment was successfully created.'
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @experiment.update(experiment_params)
-        format.html { redirect_to experiment_url(@experiment), notice: 'Experiment was successfully updated.' }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @experiment.update experiment_params
+      redirect_to experiment_url(@experiment), notice: 'Experiment was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -50,6 +46,18 @@ class ExperimentsController < ApplicationController
   end
 
   def experiment_params
-    params.require(:experiment).permit(:title, :author, :staff, :category, :status, :description, :open_date, :close_date, :metadata)
+    params.require(:experiment).permit(
+      :title,
+      :author,
+      :staff,
+      :category,
+      :status,
+      :description,
+      :open_date,
+      :close_date,
+      :metadata,
+      images: [],
+      files: []
+    )
   end
 end
