@@ -19,7 +19,8 @@ class ExperimentsController < ApplicationController
     @experiment = current_user.experiments.build experiment_params
 
     if @experiment.save
-      redirect_to experiment_url(@experiment), notice: 'Experiment was successfully created.'
+      redirect_to experiment_url(@experiment)
+      flash[:success] = 'Experiment was successfully created'
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +28,8 @@ class ExperimentsController < ApplicationController
 
   def update
     if @experiment.update experiment_params
-      redirect_to experiment_url(@experiment), notice: 'Experiment was successfully updated.'
+      redirect_to experiment_url(@experiment)
+      flash[:success] = 'Experiment was successfully updated'
     else
       render :edit, status: :unprocessable_entity
     end
