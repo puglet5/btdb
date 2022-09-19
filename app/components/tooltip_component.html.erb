@@ -1,4 +1,4 @@
-<%= tag.div class: "block my-auto ml-2 text-xs text-gray-900 cursor-pointer tooltip p-1.5 #{@cls}", data: {controller: "popup", "popup-target": "trigger", action: "mouseover->popup#show mouseout->popup#hide click->modal#toggle"} do %>
+<%= tag.div class: "block my-auto text-xs text-gray-900 cursor-pointer tooltip p-1.5 #{@cls}", data: {controller: "popup", "popup-target": "trigger", action: "mouseover->popup#show mouseout->popup#hide click->modal#toggle"} do %>
   <%= content %>
   <%= tag.div class: "absolute z-10 invisible inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 rounded-lg shadow-sm opacity-0 bg-neutral-700 tooltip", data: {"popup-target": "tooltip"}, role: "tooltip" do %>
     <%= @tooltip %>

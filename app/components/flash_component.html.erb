@@ -1,5 +1,5 @@
-<div class="flex items-center justify-between p-4 border rounded text-amber-700 border-amber-900/10 bg-amber-50" role="alert" data-controller="flash" data-flash-target="flash">
-  <%= tag.strong @msg, class: "mr-4 text-sm font-medium", data: {controller: "flash", "flash-target": "flash"} %>
+<div class="flex items-center justify-between p-4 border rounded text-amber-700 border-amber-900/10 bg-amber-50 <%= @cls %>" role="alert" data-controller="flash" data-flash-target="flash">
+  <%= tag.strong @msg, class: "mr-4 text-sm font-medium" %>
   <button class="opacity-90" type="button" data-flash-target="close" aria-label="Close" data-action="click->flash#close">
     <span class="sr-only"> Close </span>
     <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
