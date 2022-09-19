@@ -1,4 +1,4 @@
-<div class='flex items-center justify-between p-4 border rounded-lg <%= "#{@cls} #{color}" %>' role="alert" data-controller="flash" data-flash-target="flash">
+<div class='flex items-center justify-between p-4 border rounded-lg <%= "#{@cls} #{color type}" %>' role="alert" data-controller="flash" data-flash-target="flash">
   <%= tag.strong @msg, class: "mr-4 text-sm font-medium" %>
   <button class="opacity-90" type="button" data-flash-target="close" aria-label="Close" data-action="click->flash#close">
     <span class="sr-only"> Close </span>
