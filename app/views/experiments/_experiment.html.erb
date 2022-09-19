@@ -5,24 +5,24 @@
 
       <div class="flex justify-between text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50">
         <ul class="flex flex-wrap text-sm font-medium text-center">
-          <li class="">
+          <li class="border-r">
             <%= tag.div data: { "tabs-target": "tab" }, id: "info-tab", class: "active-tab" do %>
               <button type="button" role="tab" aria-controls="info" aria-selected="true" class="inline-block p-4 rounded-tl-lg" data-action="click->tabs#switch">Info</button>
             <% end %>
           </li>
-          <li class="">
+          <li class="border-r">
             <%= tag.div data: { "tabs-target": "tab" }, id: "objects-tab !hover:bg-gray-100", class: "hover:bg-gray-100"  do %>
               <button type="button" role="tab" aria-controls="objects" aria-selected="false" class="inline-block p-4" data-action="click->tabs#switch">Objects (3)</button>
             <% end %>
           </li>
-          <li class="">
+          <li class="border-r">
             <%= tag.div data: { "tabs-target": "tab"}, id: "files-tab", class: "hover:bg-gray-100" do %>
               <button type="button" role="tab" aria-controls="files" aria-selected="false" class="inline-block p-4" data-action="click->tabs#switch">Files (286)</button>
             <% end %>
           </li>
         </ul>
 
-        <div class="flex my-auto mr-4 space-x-0">
+        <div class="flex flex-row items-center justify-center mx-1 space-x-0 border-l">
 
           <%= render TooltipComponent.new(tooltip: "Edit") do %>
             <%= link_to edit_experiment_path(experiment) do %>
@@ -56,6 +56,7 @@
               </svg>
             <% end %>
           <% end %>
+
         </div>
 
       </div>
@@ -63,10 +64,10 @@
       <%= tag.div data: { "tabs-target": "panel" }, id: "info-panel", class: "p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
 
         <span class="mr-2 text-xs font-semibold rounded text-lime-800 bg-lime-100 px-2.5 py-0.5">
-          <%= experiment.status %>
+          <%= experiment.status.humanize.downcase %>
         </span>
 
-        <h2 class="mt-1 text-4xl font-bold text-gray-700 sm:truncate sm:text-2xl">
+        <h2 class="mt-1 text-2xl font-bold text-gray-700 truncate sm:text-3xl">
           <%= link_to experiment do %>
             <%= experiment.title %>
           <% end %>
@@ -78,7 +79,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 mr-1.5">
               <path fill-rule="evenodd" d="M5.5 3A2.5 2.5 0 003 5.5v2.879a2.5 2.5 0 00.732 1.767l6.5 6.5a2.5 2.5 0 003.536 0l2.878-2.878a2.5 2.5 0 000-3.536l-6.5-6.5A2.5 2.5 0 008.38 3H5.5zM6 7a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
             </svg>
-            <%= experiment.category %>
+            <%= experiment.category.humanize %>
           </div>
 
           <div class="flex items-center text-sm text-gray-500">
