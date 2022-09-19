@@ -1,18 +1,50 @@
-<div class="max-w-screen-xl px-4 py-24 mx-auto sm:px-6 lg:px-8">
-  <div class="max-w-sm p-6 mx-auto bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-    <div role="status" class="animate-pulse">
-      <div class="mx-auto bg-gray-300 rounded-full h-2.5 dark:bg-gray-700 max-w-[640px] mb-2.5"></div>
-      <div class="mx-auto bg-gray-300 rounded-full h-2.5 dark:bg-gray-700 max-w-[540px]"></div>
-      <div class="flex items-center justify-center mt-4">
-        <svg class="w-10 h-10 mr-2 text-gray-200 dark:text-gray-700" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
-        <div class="">
-          <%= @user.name %>
+<div class="max-w-screen-xl px-4 py-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
+  <div class="container mx-auto">
+    <div class="p-4 bg-white border rounded-lg shadow-md sm:p-6">
+      <div class="grid grid-cols-12">
+        <div class="col-span-3">
+          <div class="flex flex-col justify-center">
+            <span class="relative flex w-20 h-20 m-auto rounded-full bg-primary-300 lg:w-40 lg:h-40">
+              <% if @user.avatar.present? %>
+                <%= image_tag @user.avatar, class: "object-cover w-20 h-20 rounded-full lg:w-40 lg:h-40" %>
+              <% end %>
+              <% if @user == current_user %>
+                <%= link_to edit_user_registration_path do %>
+                  <span class="absolute top-0 right-0 -mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                  </span>
+                <% end %>
+              <% end %>
+            </span>
+            <div class="text-center">
+              <h3 class="m-auto mt-2 text-xl font-medium">
+                <%= @user.name %>
+              </h3>
+              <p class="mx-auto overflow-hidden text-sm italic font-normal text-gray-500 text-ellipsis max-w-1/2 hover:overflow-visible hover:underline">
+                <a href="<%= "mailto:#{@user.email}" %>">
+                  <%= @user.email %>
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="mr-3">
-          <%= @user.email %>
+        <div class="col-span-6 border-l">
+          <h4 class="mb-4 ml-8 font-medium text-l">Settings</h4>
+
+        </div>
+
+        <div class="col-span-3 border-l">
+          <% if @user == current_user %>
+            <div class="mx-4">
+              <% if @user.has_role?(:admin) %>
+                <h4 class="mb-4 ml-4 font-medium text-l">Administration</h4>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
-      <span class="sr-only">Loading...</span>
     </div>
   </div>
 </div>

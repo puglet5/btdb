@@ -4,7 +4,7 @@ class ExperimentsController < ApplicationController
   before_action :set_experiment, only: %i[show edit update destroy]
 
   def index
-    @experiments = Experiment.all.includes(%i[user rich_text_description])
+    @experiments = Experiment.all.includes(%i[user rich_text_description]).order('created_at desc')
   end
 
   def show; end
