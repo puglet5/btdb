@@ -39,10 +39,8 @@ class ExperimentsController < ApplicationController
 
   def destroy
     @experiment.destroy
-
-    respond_to do |format|
-      format.html { redirect_to experiments_url, notice: 'Experiment was successfully destroyed.' }
-    end
+    flash[:success] = 'Experiment was successfully deleted'
+    redirect_to experiments_url, status: :see_other
   end
 
   private
