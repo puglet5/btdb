@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 // Entry point for the build script in your package.json
 import "@hotwired/turbo-rails"
 import "./controllers"
@@ -7,17 +9,26 @@ import "jquery"
 import "@client-side-validations/client-side-validations/src"
 import "@client-side-validations/simple-form/src"
 
-// eslint-disable-next-line no-undef
 Turbo.setConfirmMethod(() => {
   let modal = document.getElementById("confirm-modal")
   modal.showModal()
 
   console.log(modal)
 
-  // eslint-disable-next-line no-unused-vars
   return new Promise((resolve, reject) => {
     modal.addEventListener("close", () => {
       resolve(modal.returnValue == "confirm")
     }, { once: true })
   })
+})
+
+document.addEventListener("turbo:before-visit", e => {
+  window.MiniProfilerContainer = document.querySelector("body > .profiler-results")
+  if(!e.defaultPrevented) window.MiniProfiler.pageTransition()
+})
+
+document.addEventListener("turbo:load", e => {
+  if(window.MiniProfilerContainer) {
+    document.body.appendChild(window.MiniProfilerContainer)
+  }
 })
