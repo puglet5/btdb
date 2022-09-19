@@ -87,9 +87,24 @@
       </div>
     </div>
 
-    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Files") %>
-
     <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Metadata") %>
+    <div class="grid grid-cols-1 space-x-8">
+
+      <div class="mb-6 ml-8">
+        <%= render Forms::LabelComponent.new().with_content("Metadata") %>
+
+        <%= f.input :metadata, as: :text, label: false, hint: false, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600",data: { controller: "textarea", action: 'input->textarea#resize', 'textarea-target': 'input' } } %>
+
+        <%= render Forms::PHelperComponent.new(cls: "!ml-2") do %>
+          Enter metadata to store additional fields in JSON format. Learn
+          <a href="https://www.json.org/json-en.html" class="font-bold hover:underline">more</a>.
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Files") %>
 
     <div class="ml-4 form-actions">
       <%= f.submit "Create Experiment", class: "inline-block px-5 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>

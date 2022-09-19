@@ -52,6 +52,6 @@ class ExperimentsController < ApplicationController
   end
 
   def experiment_params
-    params.require(:experiment).permit(:title, :author, :staff, :category, :status, :description, :open_date, :close_date)
+    params.require(:experiment).permit(:title, :author, :staff, :category, :status, :description, :open_date, :close_date, :metadata)
   end
 end
