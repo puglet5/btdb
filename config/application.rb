@@ -28,6 +28,10 @@ module Btdb
     config.time_zone = 'Moscow'
 
     config.middleware.use Rack::Deflater
+
+    config.active_storage.variant_processor = :mini_magick
+    config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer
+    config.active_storage.analyzers.append ActiveStorage::Analyzer::ImageAnalyzer::Vips
   end
 end
 
