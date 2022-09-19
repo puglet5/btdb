@@ -1,6 +1,8 @@
 {
     "ignorePatterns": [
         "tailwind.config.js",
+        "tailwind-full.config.js",
+        "public/**/*.js",
         "app/assets/**/*js",
         "coverage/**/*js",
         "vendor/**/*js"
