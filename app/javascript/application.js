@@ -9,6 +9,9 @@ import "jquery"
 import "@client-side-validations/client-side-validations/src"
 import "@client-side-validations/simple-form/src"
 
+
+Turbo.setProgressBarDelay(10)
+
 Turbo.setConfirmMethod(() => {
   let modal = document.getElementById("confirm-modal")
   modal.showModal()
