@@ -17,6 +17,8 @@
 #  user_id    :bigint
 #
 class Experiment < ApplicationRecord
+  include ParseJson
+
   belongs_to :user
   validates :title, :author, presence: true
 
@@ -24,4 +26,6 @@ class Experiment < ApplicationRecord
   enum category: { undef: 0 }, _suffix: :category
 
   has_rich_text :description
+
+  after_commit :parse_json, on: %i[create update]
 end
