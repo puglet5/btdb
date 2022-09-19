@@ -32,6 +32,9 @@ module Btdb
     config.active_storage.variant_processor = :mini_magick
     config.active_storage.analyzers.delete ActiveStorage::Analyzer::ImageAnalyzer
     config.active_storage.analyzers.append ActiveStorage::Analyzer::ImageAnalyzer::Vips
+    config.active_storage.track_variants = true # used to eager load image variants
+
+    config.action_view.image_loading = 'lazy'
   end
 end
 
