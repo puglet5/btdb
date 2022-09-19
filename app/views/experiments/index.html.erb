@@ -1,7 +1,6 @@
 <div class="max-w-screen-xl px-4 py-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
 
-  <div class="flex items-center justify-between">
-
+  <div class="flex items-center justify-between mb-8">
     <div>
       <h1 class="my-auto text-2xl font-bold sm:text-3xl ">Recent experiments</h1>
     </div>
@@ -28,6 +27,7 @@
 
     </div>
   </div>
+
   <div id="experiments">
     <% @experiments.each do |experiment| %>
       <%= render experiment %>
