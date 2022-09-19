@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*!
  * Client Side Validations JS - v0.3.0 (https://github.com/DavyJonesLocker/client_side_validations)
  * Copyright (c) 2022 Geremia Taglialatela, Brian Cardarella

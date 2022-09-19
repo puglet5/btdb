@@ -45,7 +45,9 @@ group :development do
   gem 'active_record_doctor', '~> 1.10'
   gem 'amazing_print', '~> 1.4'
   gem 'annotate', '~> 3.2' # db schema annotations for models and tests
+  gem 'brakeman', '~> 5.3'
   gem 'bullet', '~> 7.0', '>= 7.0.3' # detect ineffective db queries
+  gem 'bundler-audit', '~> 0.9.1'
   gem 'foreman', '~> 0.87.2'
   gem 'guard-livereload' # reload browser on file changes
   gem 'htmlbeautifier' # erb formatter

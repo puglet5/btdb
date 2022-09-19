@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /*!
  * Client Side Validations Simple Form JS (Default) - v0.3.1 (https://github.com/DavyJonesLocker/client_side_validations-simple_form)
  * Copyright (c) 2022 Geremia Taglialatela, Brian Cardarella
