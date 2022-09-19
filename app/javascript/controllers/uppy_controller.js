@@ -5,7 +5,12 @@ import ActiveStorageUpload from "uppy-activestorage-upload"
 
 export default class extends Controller {
 
-  static targets = ["div", "trigger"]
+  static targets = ["div", "trigger", "text"]
+
+  static values = {
+    filetype: String,
+    allowedfiletypes: String
+  }
 
   connect() {
 
@@ -22,7 +27,7 @@ export default class extends Controller {
         allowMultipleUploads: true,
         allowMultipleUploadBatches: true,
         restrictions: {
-          allowedFileTypes: ["image/*"],
+          allowedFileTypes: this.allowedfiletypesValue ? [this.allowedfiletypesValue] : null,
         },
       })
 
@@ -48,8 +53,8 @@ export default class extends Controller {
 
       uppy.on("complete", (result) => {
         files_uploaded += result.successful.length
-        let txt = document.querySelector("#uppy-text")
-        txt.innerHTML = `Add ${files_uploaded} images`
+        let txt = this.textTarget
+        txt.innerHTML = `${files_uploaded} ${this.filetypeValue} uploaded`
         result.successful.forEach(file => {
           appendUploadedFile(element, file, field_name)
         })
