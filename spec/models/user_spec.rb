@@ -17,5 +17,25 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:user) { create(:user) }
+
+  describe 'ActiveStorage avatar attachment' do
+    it 'persists' do
+      user.avatar.attach(io: File.open(file_fixture('test.png')), filename: 'test.png', content_type: 'image/png')
+      user.save!
+      expect(user.errors.messages[:avatar]).to eq []
+      expect(user.avatar.persisted?).to eq(true)
+    end
+  end
+
+  describe 'Associations' do
+    it { should have_many(:experiments) }
+    it { should have_one_attached(:avatar) }
+  end
+
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:password) }
+  end
 end

@@ -84,14 +84,16 @@ RSpec.describe '/experiments', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          'title' => 'New Test Title'
+        }
       end
 
       it 'updates the requested experiment' do
         experiment = Experiment.create! valid_attributes
         patch experiment_url(experiment), params: { experiment: new_attributes }
         experiment.reload
-        skip('Add assertions for updated state')
+        expect(experiment.title).to eq(new_attributes['title'])
       end
 
       it 'redirects to the experiment' do
