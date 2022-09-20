@@ -1,6 +1,7 @@
 @import "trix";
 @import '@uppy/core/dist/style.css';
 @import '@uppy/dashboard/dist/style.css';
+@import './trix-custom.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,25 +29,6 @@ body {
   @apply bg-neutral-700 -z-10;
 }
 
-.trix-content .attachment-gallery > action-text-attachment,
-.trix-content .attachment-gallery > .attachment {
-  flex: 1 0 33%;
-  padding: 0 0.5em;
-  max-width: 33%;
-}
-
-.trix-content .attachment-gallery.attachment-gallery--2 > action-text-attachment,
-.trix-content .attachment-gallery.attachment-gallery--2 > .attachment, .trix-content .attachment-gallery.attachment-gallery--4 > action-text-attachment,
-.trix-content .attachment-gallery.attachment-gallery--4 > .attachment {
-  flex-basis: 50%;
-  max-width: 50%;
-}
-
-.trix-content action-text-attachment .attachment {
-  padding: 0 !important;
-  max-width: 100% !important;
-}
-
 
 @layer base {
   input {
@@ -72,45 +54,6 @@ body {
 
 .turbo-progress-bar {
   @apply bg-lime-600 !important
-}
-
-.trix-button-row {
-  @apply my-auto w-full bg-gray-100 rounded-t-lg border border-gray-300 border-b-0
-}
-
-.trix-button {
-  @apply p-2 px-0.5 mx-0.5 my-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 border-0 !important
-}
-
-trix-toolbar .trix-button-group{
-  @apply mb-0 !important
-}
-
-trix-editor {
-  @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-b-lg rounded-t-none border border-gray-300 focus:ring-lime-600 focus:border-lime-600 focus:border focus:ring-1 focus:outline-none !important;
-  outline: none;
-}
-
-.trix-dialogs {
-  display: none;
-}
-
-.trix-button-group {
-  @apply !border-0
-}
-
-trix-toolbar .trix-button:not(:first-child) {
-  @apply border-l-0
-}
-
-.trix-button-group .trix-button-group--block-tools {
-  @apply !border-l !border-solid !important
-}
-
-trix-toolbar .trix-button--icon-bold::before {}
-
-trix-toolbar .trix-button.trix-active {
-  @apply !bg-lime-500/25
 }
 
 .field_with_errors input {
