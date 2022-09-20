@@ -87,7 +87,7 @@ trix-toolbar .trix-button-group{
 }
 
 trix-editor {
-  @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-b-lg rounded-t-none border border-gray-300 focus:ring-lime-600 focus:border-lime-600 focus:border-2 !important;
+  @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-b-lg rounded-t-none border border-gray-300 focus:ring-lime-600 focus:border-lime-600 focus:border focus:ring-1 focus:outline-none !important;
   outline: none;
 }
 
