@@ -107,7 +107,7 @@
     <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Files") %>
     <div class="grid grid-cols-1 space-x-8">
 
-      <%= tag.div class: "mb-6 ml-8", data: { "uppy": "experiment[images][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "images", "uppy-allowedfiletypes-value": "image/*" } do %>
+      <%= tag.div class: "mb-6 ml-8", data: { "uppy": "experiment[images][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "images", "uppy-allowedfiletypes-value": "image/*", "uppy-allowmultiple-value": true } do %>
         <%= render Forms::LabelComponent.new().with_content("Images") %>
         <%= tag.div class: "flex items-center justify-center w-full p-4 pr-12 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
           <p class="text-center" data-uppy-target="text">
@@ -117,7 +117,7 @@
         <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("Images (.svg, .png, .jpg or .gif) of any size.") %>
       <% end %>
 
-      <%= tag.div class: "mb-6 ml-8", data: { "uppy": "experiment[files][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "files", "uppy-allowedfiletypes-value": nil } do %>
+      <%= tag.div class: "mb-6 ml-8", data: { "uppy": "experiment[files][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "files", "uppy-allowedfiletypes-value": nil, "uppy-allowmultiple-value": true } do %>
         <%= render Forms::LabelComponent.new().with_content("Other files") %>
         <%= tag.div class: "flex items-center justify-center w-full p-4 pr-12 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
           <p class="text-center" data-uppy-target="text">

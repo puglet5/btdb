@@ -1,37 +1,108 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, local: true, data: { turbo: false }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-
-    <%= f.input :avatar, as: :file %>
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+<%= render "shared/errors", obj: @user %>
+<div class="max-w-screen-xl px-4 py-24 mx-auto sm:px-6 lg:px-8">
+  <div class="max-w-lg mx-auto text-center">
+    <h1 class="text-2xl font-bold sm:text-3xl">Edit profile</h1>
   </div>
+  <div class="max-w-screen-md mx-auto mt-8">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, data: { turbo: false } }, validate: true) do |f| %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+      <%= f.input :avatar, input_html: { value: (f.object.avatar.signed_id if f.object.avatar.attached?), class: "hidden", multiple: false }, label: false, hint: false %>
+      <div class="grid grid-cols-1 space-x-2">
+
+        <div class="grid grid-cols-12 space-x-2">
+
+          <%= tag.div class: "relative col-span-4 row-span-2 my-auto mr-8", data: {controller: "uppy", "uppy": "user[avatar]", "uppy-target": "div", "uppy-allowedfiletypes-value": "image/*", "uppy-allowmultiple-value": false} do %>
+            <span class="flex w-40 h-40 m-auto mb-4 rounded-full bg-primary-300">
+              <%= tag.div data: { "uppy-target": "avatardiv" } do %>
+                <% if resource.avatar.attached? %>
+                  <%= image_tag resource.avatar, class: "object-cover w-20 h-20 rounded-full md:w-40 md:h-40", data: {"uppy-target": "avatar"} %>
+                <% end %>
+              <% end %>
+              <div class="">
+                <label for="avatar-upload" class="absolute top-0 right-0 cursor-pointer" data-uppy-target="trigger">
+                  <%= render TooltipComponent.new(tooltip: "change avatar", cls: "pl-0") do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-500">
+                      <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                    </svg>
+                  <% end %>
+                </label>
+                <%= f.file_field :avatar, direct_upload: true, id: "avatar-upload", class: "hidden" %>
+              </div>
+            </span>
+          <% end %>
+
+          <div class="col-span-8 mb-4">
+            <%= render Forms::LabelComponent.new().with_content("Name") %>
+            <%= f.input :name, required: true, label: false, autofocus: false, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder: "John Doe" %>
+          </div>
+
+          <div class="col-span-8 mb-4">
+            <%= render Forms::LabelComponent.new().with_content("Email") %>
+            <div class="relative">
+              <%= f.input :email, required: false, label: false, autofocus: true, input_html: { autocomplete: "email", class: "w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder: "johndoe@example.com" %>
+
+              <span class="absolute inset-y-0 inline-flex items-center right-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <%= render Forms::LabelComponent.new().with_content("Password") %>
+          <%= tag.div data: { controller: "password" } do %>
+            <div class="relative">
+
+              <%= f.input :password, autocomplete: "new-password", input_html: { class: "w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "password-target": "input" } }, placeholder: "•••••••••", validate: false, label: false %>
+              <%= tag.span class: "absolute inset-y-0 inline-flex items-center right-4", data: { action: "click->password#toggle"} do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-password-target="svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              <% end %>
+            </div>
+            <p class="mt-2 ml-2 text-sm text-gray-500">Leave blank if you don't want to change it</p>
+          <% end %>
+        </div>
+
+        <div class="mb-4">
+          <%= render Forms::LabelComponent.new().with_content("Confirm password") %>
+          <%= tag.div class: "relative", data: { controller: "password" } do %>
+            <%= f.input :password_confirmation, autocomplete: "new-password", type: "password", id: "confirm-password", input_html: { class: "w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "password-target": "input" } }, placeholder: "•••••••••", validate: false, label: false %>
+            <%= tag.span class: "absolute inset-y-0 inline-flex items-center right-4", data: { action: "click->password#toggle"} do %>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-password-target="svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="mb-4">
+          <%= render Forms::LabelComponent.new().with_content("Current password") %>
+          <%= tag.div data: { controller: "password" } do %>
+            <div class="relative">
+              <%= f.input :current_password, autocomplete: "current-password", type: "password", id: "confirm-password", input_html: { class: "w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "password-target": "input" } }, placeholder: "•••••••••", validate: { presence: true }, required: true, label: false %>
+              <%= tag.span class: "absolute inset-y-0 inline-flex items-center right-4", data: { action: "click->password#toggle"} do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-password-target="svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              <% end %>
+            </div>
+            <p class="mt-2 ml-2 text-sm text-gray-500"> Your current password is needed to confirm the changes</p>
+          <% end %>
+        </div>
+
+        <div class="flex items-center">
+          <%= f.submit "Save", class: "inline-block px-8 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
+          <p class="ml-3 text-sm text-gray-500">
+            <%= link_to "Back", new_registration_path(resource_name), class: "hover:underline" %>
+          </p>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

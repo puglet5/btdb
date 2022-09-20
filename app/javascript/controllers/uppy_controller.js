@@ -5,14 +5,17 @@ import ActiveStorageUpload from "uppy-activestorage-upload"
 
 export default class extends Controller {
 
-  static targets = ["div", "trigger", "text"]
+  static targets = ["div", "trigger", "text", "avatar", "avatardiv"]
 
   static values = {
     filetype: String,
-    allowedfiletypes: String
+    allowedfiletypes: String,
+    allowmultiple: Boolean
   }
 
   connect() {
+
+    console.log(this.hasAvatardivTarget)
 
     const setupUppy = (element) => {
       let trigger = this.triggerTarget
@@ -24,10 +27,11 @@ export default class extends Controller {
 
       let uppy = new Uppy({
         autoProceed: false,
-        allowMultipleUploads: true,
-        allowMultipleUploadBatches: true,
+        allowMultipleUploads: this.allowmultipleValue,
+        allowMultipleUploadBatches: this.allowmultipleValue,
         restrictions: {
           allowedFileTypes: this.allowedfiletypesValue ? [this.allowedfiletypesValue] : null,
+          maxNumberOfFiles: this.allowmultipleValue ? null : 1
         },
       })
 
@@ -53,10 +57,15 @@ export default class extends Controller {
 
       uppy.on("complete", (result) => {
         files_uploaded += result.successful.length
-        let txt = this.textTarget
-        txt.innerHTML = `${files_uploaded} ${this.filetypeValue} uploaded`
+        if (this.hasTextTarget) {
+          const txt = this.textTarget
+          txt.innerHTML = `${files_uploaded} ${this.filetypeValue} uploaded`
+        }
         result.successful.forEach(file => {
           appendUploadedFile(element, file, field_name)
+          if (this.hasAvatardivTarget) {
+            previewAvatar(element, file)
+          }
         })
       })
     }
@@ -70,6 +79,20 @@ export default class extends Controller {
       hiddenField.setAttribute("value", file.response.signed_id)
 
       element.appendChild(hiddenField)
+    }
+
+    const previewAvatar = (element, file) => {
+      if (this.hasAvatarTarget) {
+        this.avatarTarget.src = file.preview
+      }
+      else {
+        const avatarDiv = this.avatardivTarget
+        let avatar = document.createElement("img")
+        avatar.src = file.preview
+        const cls = ["object-cover", "rounded-full", "w-20", "h-20", "md:w-40", "md:h-40"]
+        avatar.classList.add(...cls)
+        avatarDiv.prepend(avatar)
+      }
     }
 
     setupUppy(this.divTarget)
