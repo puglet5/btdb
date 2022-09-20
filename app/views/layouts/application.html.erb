@@ -13,8 +13,12 @@
   <body>
     <%= render "shared/nav" %>
     <%= render "shared/announcement" %>
-    <%= render "shared/flash" %>
-    <%= render "shared/clipboard_flash" %>
+
+    <div class="absolute self-end space-y-4 top-20 right-2">
+      <%= render "shared/flash" %>
+      <%= render "shared/clipboard_flash" %>
+    </div>
+
     <%= render "shared/confirm_modal" %>
     <%= yield %>
   </body>
