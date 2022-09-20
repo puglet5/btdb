@@ -75,11 +75,11 @@ body {
 }
 
 .trix-button-row {
-  @apply my-auto w-full bg-gray-100 rounded-t-lg border border-gray-300 border-b-0 dark:bg-gray-700 dark:border-gray-600
+  @apply my-auto w-full bg-gray-100 rounded-t-lg border border-gray-300 border-b-0
 }
 
 .trix-button {
-  @apply p-2 px-0.5 mx-0.5 my-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 border-0 !important
+  @apply p-2 px-0.5 mx-0.5 my-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 border-0 !important
 }
 
 trix-toolbar .trix-button-group{
@@ -87,7 +87,7 @@ trix-toolbar .trix-button-group{
 }
 
 trix-editor {
-  @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-b-lg rounded-t-none border border-gray-300 focus:ring-lime-600 focus:border-lime-600 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-lime-600 dark:focus:border-lime-600 focus:border-2 !important;
+  @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-b-lg rounded-t-none border border-gray-300 focus:ring-lime-600 focus:border-lime-600 focus:border-2 !important;
   outline: none;
 }
 
