@@ -36,3 +36,65 @@ jobs:
         run: |
           bundle exec bundler-audit --update
           bundle exec brakeman -q -w2
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:12.7
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: yarn
+
+      - name: Install packages
+        run: |
+          yarn install
+
+      - name: Install packages
+        run: |
+          yarn build:dev
+          yarn build:css:dev
+
+      - name: Setup test database and run tests
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+        run: |
+          RAILS_ENV=test bin/rails db:drop
+          RAILS_ENV=test bin/rails db:create
+          RAILS_ENV=test bin/rails db:schema:load
+          RAILS_ENV=test bundle exec rspec
+
+      - name: Print test log if rspec fails
+        if: failure()
+        run: cat log/test.log
+
