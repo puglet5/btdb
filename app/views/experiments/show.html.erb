@@ -1,3 +1,201 @@
 <div class="max-w-screen-xl px-4 py-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
-  <%= render @experiment %>
+  <div class="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
+
+    <%= tag.div data: { controller: "tabs"} do %>
+      <div class="w-full bg-white border rounded-lg shadow-md">
+
+        <div class="flex justify-between text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50">
+          <ul class="flex flex-wrap text-sm font-medium text-center">
+            <li class="border-r">
+              <%= tag.div data: { "tabs-target": "tab" }, id: "info-tab", class: "active-tab" do %>
+                <button type="button" role="tab" aria-controls="info" aria-selected="true" class="inline-block p-4 rounded-tl-lg" data-action="click->tabs#switch">Info</button>
+              <% end %>
+            </li>
+            <li class="border-r">
+              <%= tag.div data: { "tabs-target": "tab" }, id: "objects-tab !hover:bg-gray-100", class: "hover:bg-gray-100"  do %>
+                <button type="button" role="tab" aria-controls="objects" aria-selected="false" class="inline-block p-4" data-action="click->tabs#switch">Objects (3)</button>
+              <% end %>
+            </li>
+            <li class="border-r">
+              <%= tag.div data: { "tabs-target": "tab"}, id: "files-tab", class: "hover:bg-gray-100" do %>
+                <button type="button" role="tab" aria-controls="files" aria-selected="false" class="inline-block p-4" data-action="click->tabs#switch">Files (286)</button>
+              <% end %>
+            </li>
+          </ul>
+
+          <div class="flex flex-row items-center justify-center mx-1 space-x-0 border-l">
+
+            <%= render TooltipComponent.new(tooltip: "Edit") do %>
+              <%= link_to edit_experiment_path(@experiment) do %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 my-auto text-gray-400">
+                  <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
+                  <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
+                </svg>
+              <% end %>
+            <% end %>
+
+            <%= render TooltipComponent.new(tooltip: "Favorite") do %>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400">
+                <path d="M17 4.517v9.301L5.433 2.252a41.44 41.44 0 019.637.058C16.194 2.45 17 3.414 17 4.517zM3 17.25V6.182l10.654 10.654L10 15.082l-5.925 2.844A.75.75 0 013 17.25zM3.28 2.22a.75.75 0 00-1.06 1.06l14.5 14.5a.75.75 0 101.06-1.06L3.28 2.22z" />
+              </svg>
+            <% end %>
+
+            <%= render TooltipComponent.new(tooltip: "Delete") do %>
+              <%= link_to @experiment, data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" } do %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400">
+                  <path fill-rule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clip-rule="evenodd" />
+                </svg>
+              <% end %>
+            <% end %>
+
+            <%= tag.div data: { controller: "clipboard", action: "click->clipboard#copy" } do %>
+              <%= render TooltipComponent.new(tooltip: "Copy link") do %>
+                <%= link_to "", @experiment, class: "hidden" , data: { "clipboard-target": "text" } %>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 transition" data-clipboard-target="svg">
+                  <path d="M7 3.5A1.5 1.5 0 018.5 2h3.879a1.5 1.5 0 011.06.44l3.122 3.12A1.5 1.5 0 0117 6.622V12.5a1.5 1.5 0 01-1.5 1.5h-1v-3.379a3 3 0 00-.879-2.121L10.5 5.379A3 3 0 008.379 4.5H7v-1z" />
+                  <path d="M4.5 6A1.5 1.5 0 003 7.5v9A1.5 1.5 0 004.5 18h7a1.5 1.5 0 001.5-1.5v-5.879a1.5 1.5 0 00-.44-1.06L9.44 6.439A1.5 1.5 0 008.378 6H4.5z" />
+                </svg>
+              <% end %>
+            <% end %>
+
+          </div>
+
+        </div>
+
+        <%= tag.div data: { "tabs-target": "panel" }, id: "info-panel", class: "p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
+
+          <%= render ExperimentBadgeComponent.new(status: @experiment.status).with_content(@experiment.status.humanize.downcase) %>
+
+          <h2 class="mt-1 text-2xl font-bold text-gray-600 truncate sm:text-3xl">
+            <%= @experiment.title %>
+          </h2>
+
+          <div class="flex flex-col mt-2 sm:flex-row sm:flex-wrap sm:space-x-6">
+
+            <div class="flex items-center ml-1 text-sm text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 mr-1.5">
+                <path fill-rule="evenodd" d="M5.5 3A2.5 2.5 0 003 5.5v2.879a2.5 2.5 0 00.732 1.767l6.5 6.5a2.5 2.5 0 003.536 0l2.878-2.878a2.5 2.5 0 000-3.536l-6.5-6.5A2.5 2.5 0 008.38 3H5.5zM6 7a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+              </svg>
+              <%= @experiment.category.humanize %>
+            </div>
+
+            <div class="flex items-center text-sm text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 mr-1.5">
+                <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+              </svg>
+
+              <%= @experiment.author %>
+            </div>
+
+            <div class="flex items-center text-sm text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 mr-1.5">
+                <path d="M11 5a3 3 0 11-6 0 3 3 0 016 0zM2.615 16.428a1.224 1.224 0 01-.569-1.175 6.002 6.002 0 0111.908 0c.058.467-.172.92-.57 1.174A9.953 9.953 0 018 18a9.953 9.953 0 01-5.385-1.572zM16.25 5.75a.75.75 0 00-1.5 0v2h-2a.75.75 0 000 1.5h2v2a.75.75 0 001.5 0v-2h2a.75.75 0 000-1.5h-2v-2z" />
+              </svg>
+
+              <%= link_to @experiment.user, class:"font-medium hover:underline" do %>
+                <%= @experiment.user.name %>
+              <% end %>
+            </div>
+
+            <div class="flex items-center text-sm text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 mr-1.5">
+                <path d="M5.25 12a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H6a.75.75 0 01-.75-.75V12zM6 13.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V14a.75.75 0 00-.75-.75H6zM7.25 12a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H8a.75.75 0 01-.75-.75V12zM8 13.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V14a.75.75 0 00-.75-.75H8zM9.25 10a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H10a.75.75 0 01-.75-.75V10zM10 11.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75H10zM9.25 14a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H10a.75.75 0 01-.75-.75V14zM12 9.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V10a.75.75 0 00-.75-.75H12zM11.25 12a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H12a.75.75 0 01-.75-.75V12zM12 13.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V14a.75.75 0 00-.75-.75H12zM13.25 10a.75.75 0 01.75-.75h.01a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75H14a.75.75 0 01-.75-.75V10zM14 11.25a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75h.01a.75.75 0 00.75-.75V12a.75.75 0 00-.75-.75H14z" />
+                <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+              </svg>
+
+              <%= @experiment.created_at.to_formatted_s(:long) %>
+            </div>
+          </div>
+
+          <div class="pl-4 my-6 text-gray-700 border-l">
+            <%= @experiment.description %>
+          </div>
+
+          <dl class="max-w-md text-gray-700 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+            <div class="flex flex-col pb-3">
+              <dt class="mb-1 text-sm text-gray-500 dark:text-gray-400">Additional staff</dt>
+              <dd class="text-base font-medium"><%= @experiment.staff %></dd>
+            </div>
+            <div class="flex flex-col py-3">
+              <dt class="mb-1 text-sm text-gray-500 dark:text-gray-400">Open date</dt>
+              <dd class="text-base font-medium">
+                <%= @experiment.open_date %>
+              </dd>
+            </div>
+            <div class="flex flex-col pt-3">
+              <dt class="mb-1 text-sm text-gray-500 dark:text-gray-400">Close date</dt>
+              <dd class="text-base font-medium">
+                <%= @experiment.close_date %>
+              </dd>
+            </div>
+          </dl>
+
+        <% end %>
+
+        <%= tag.div data: { "tabs-target": "panel" }, id: "objects-panel", class: "hidden p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
+
+          <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
+            <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
+              <svg class="w-12 h-12 text-gray-200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512"><path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z"></path></svg>
+            </div>
+            <div class="w-full">
+              <div class="w-48 mb-4 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+            </div>
+            <span class="sr-only">Loading...</span>
+          </div>
+
+        <% end %>
+
+        <%= tag.div data: { "tabs-target": "panel" }, id: "files-panel", class: "hidden p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
+
+          <div role="status" class="max-w-md p-4 space-y-4 divide-y divide-gray-200 rounded animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+              </div>
+              <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+              <div>
+                <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+              </div>
+              <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+              <div>
+                <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+              </div>
+              <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+              <div>
+                <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+              </div>
+              <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+              <div>
+                <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+              </div>
+              <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+            </div>
+            <span class="sr-only">Loading...</span>
+          </div>
+
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+
 </div>

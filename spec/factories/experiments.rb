@@ -19,10 +19,14 @@
 #
 FactoryBot.define do
   factory :experiment do
-    title { 'MyString' }
-    author { 'MyString' }
-    staff { 'MyString' }
-    type { 1 }
-    status { 1 }
+    title { 'Test title' }
+    author { 'John Doe' }
+    staff { 'Jane Doe, John Doe' }
+    category { 'not_set' }
+    status { 'not_set' }
+    metadata { '{"test_key": "test_value"}' }
+    open_date { 1.day.ago }
+    close_date { 1.day.ago }
+    association :user, factory: :user, strategy: :build
   end
 end
