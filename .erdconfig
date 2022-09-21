@@ -11,11 +11,11 @@ markup: true
 notation: bachman
 orientation: horizontal
 polymorphism: false
-sort: true
+sort: false
 warn: true
 title: null
 only: null
 only_recursion_depth: null
 prepend_primary: true
-cluster: true
+cluster: false
 splines: spline
