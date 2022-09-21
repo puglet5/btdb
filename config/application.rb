@@ -35,6 +35,11 @@ module Btdb
     config.active_storage.track_variants = true # used to eager load image variants
 
     config.action_view.image_loading = 'lazy'
+
+    config.generators do |g|
+      g.view_specs false
+      g.helper_specs false
+    end
   end
 end
 
