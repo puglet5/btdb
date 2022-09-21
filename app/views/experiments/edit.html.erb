@@ -16,7 +16,7 @@
     <div class="grid grid-cols-2 space-x-8">
 
       <div class="mb-4 ml-8 ">
-        <%= render Forms::LabelComponent.new().with_content("Title/Name") %>
+        <%= render Forms::LabelComponent.new(optional: false).with_content("Title/Name") %>
         <div class="relative">
           <%= tag.div data: { controller: "input" } do %>
             <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "Here be dragons" %>
@@ -32,7 +32,7 @@
       </div>
 
       <div class="mb-4">
-        <%= render Forms::LabelComponent.new().with_content("Author") %>
+        <%= render Forms::LabelComponent.new(optional: false).with_content("Author") %>
         <div class="relative">
           <%= tag.div data: { controller: "input" } do %>
             <%= f.input :author, label: false, hint: false, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "John Doe" %>
