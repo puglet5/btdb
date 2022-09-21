@@ -15,8 +15,6 @@ export default class extends Controller {
 
   connect() {
 
-    console.log(this.hasAvatardivTarget)
-
     const setupUppy = (element) => {
       let trigger = this.triggerTarget
 

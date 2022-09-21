@@ -1,0 +1,9 @@
+<%= tag.div class: "text-xs text-gray-900 cursor-pointer px-0.5 py-1.5 tooltip #{@cls}", data: {controller: "popup", "popup-target": "trigger", action: "mouseover->popup#show mouseout->popup#hide click->modal#toggle"} do %>
+  <%= content %>
+  <%= tag.div class: "absolute z-10 invisible inline-block w-64 text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0", data: {"popup-target": "tooltip"}, role: "tooltip", id: "popper" do %>
+    <div class="px-3 py-2">
+      <%= @text %>
+    </div>
+    <div id="arrow" data-popup-target="arrow"></div>
+  <% end %>
+<% end %>

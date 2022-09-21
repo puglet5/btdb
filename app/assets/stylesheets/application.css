@@ -15,20 +15,19 @@ body {
   @apply bg-lime-300/25 text-lime-600 hover:bg-lime-400/25 !important
 }
 
-#arrow,
-#arrow::before {
+.arrow,
+.arrow::before {
   position: absolute;
   width: 10px;
   height: 10px;
   z-index: -1;
 }
 
-#arrow::before {
+.arrow::before {
   content: '';
   transform: rotate(45deg);
   @apply bg-neutral-700 -z-10;
 }
-
 
 @layer base {
   input {

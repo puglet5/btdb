@@ -1,4 +1,4 @@
-<div class="max-w-screen-xl px-4 py-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
+<div class="max-w-screen-xl px-4 pt-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
   <div class="container mx-auto">
     <div class="p-4 bg-white border rounded-lg shadow-md sm:p-6">
       <div class="grid grid-cols-12">
@@ -31,7 +31,19 @@
           </div>
         </div>
         <div class="col-span-6 border-l">
-          <h4 class="mb-4 ml-8 font-medium text-l">Settings</h4>
+          <h4 class="mb-4 ml-4 font-medium text-l">Settings</h4>
+
+          <div class="ml-8">
+            <div role="status" class="max-w-sm animate-pulse">
+              <div class="w-48 mb-4 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
+              <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
 
         </div>
 
@@ -40,11 +52,92 @@
             <div class="mx-4">
               <% if @user.has_role?(:admin) %>
                 <h4 class="mb-4 ml-4 font-medium text-l">Administration</h4>
+
+                <div role="status" class="max-w-md p-4 space-y-4 divide-y divide-gray-200 rounded animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                      <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+                  </div>
+                  <div class="flex items-center justify-between pt-4">
+                    <div>
+                      <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                      <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+                  </div>
+                  <div class="flex items-center justify-between pt-4">
+                    <div>
+                      <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                      <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+                  </div>
+                  <div class="flex items-center justify-between pt-4">
+                    <div>
+                      <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                      <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+                  </div>
+                  <div class="flex items-center justify-between pt-4">
+                    <div>
+                      <div class="w-24 bg-gray-300 rounded-full h-2.5 dark:bg-gray-600 mb-2.5"></div>
+                      <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                    </div>
+                    <div class="w-12 bg-gray-300 rounded-full h-2.5 dark:bg-gray-700"></div>
+                  </div>
+                  <span class="sr-only">Loading...</span>
+                </div>
+
               <% end %>
             </div>
           <% end %>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-screen-xl px-4 mx-auto text-gray-700 sm:px-6 lg:px-8">
+  <hr class="h-px my-8 bg-gray-200 border-0 ">
+  <div class="container mx-auto">
+    <div class="p-4 bg-white border rounded-lg shadow-md sm:p-6">
+
+      <div class="grid grid-cols-2">
+        <div role="status" class="max-w-sm p-4 rounded animate-pulse md:p-6 dark:border-gray-700">
+          <div class="w-32 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mb-2.5"></div>
+          <div class="w-48 h-2 mb-10 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+          <div class="flex items-baseline mt-4 space-x-6">
+            <div class="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+            <div class="w-full h-56 bg-gray-200 rounded-t-lg dark:bg-gray-700"></div>
+            <div class="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+            <div class="w-full h-64 bg-gray-200 rounded-t-lg dark:bg-gray-700"></div>
+            <div class="w-full bg-gray-200 rounded-t-lg h-80 dark:bg-gray-700"></div>
+            <div class="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+            <div class="w-full bg-gray-200 rounded-t-lg h-80 dark:bg-gray-700"></div>
+          </div>
+          <span class="sr-only">Loading...</span>
+        </div>
+
+        <div role="status" class="max-w-sm p-4 rounded animate-pulse md:p-6 dark:border-gray-700">
+          <div class="w-32 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 mb-2.5"></div>
+          <div class="w-48 h-2 mb-10 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+          <div class="flex items-baseline mt-4 space-x-6">
+            <div class="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+            <div class="w-full h-56 bg-gray-200 rounded-t-lg dark:bg-gray-700"></div>
+            <div class="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+            <div class="w-full h-64 bg-gray-200 rounded-t-lg dark:bg-gray-700"></div>
+            <div class="w-full bg-gray-200 rounded-t-lg h-80 dark:bg-gray-700"></div>
+            <div class="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+            <div class="w-full bg-gray-200 rounded-t-lg h-80 dark:bg-gray-700"></div>
+          </div>
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
