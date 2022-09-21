@@ -515,7 +515,7 @@ __metadata:
     "@tailwindcss/nesting": ^0.0.0-insiders.565cd3e
     "@uppy/core": ^3.0.1
     "@uppy/dashboard": ^3.0.1
-    autoprefixer: ^10.4.11
+    autoprefixer: ^10.4.12
     cssnano: ^5.1.13
     esbuild: ^0.15.8
     esbuild-rails: ^1.0.3
@@ -585,12 +585,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.11":
-  version: 10.4.11
-  resolution: "autoprefixer@npm:10.4.11"
+"autoprefixer@npm:^10.4.12":
+  version: 10.4.12
+  resolution: "autoprefixer@npm:10.4.12"
   dependencies:
-    browserslist: ^4.21.3
-    caniuse-lite: ^1.0.30001399
+    browserslist: ^4.21.4
+    caniuse-lite: ^1.0.30001407
     fraction.js: ^4.2.0
     normalize-range: ^0.1.2
     picocolors: ^1.0.0
@@ -599,7 +599,7 @@ __metadata:
     postcss: ^8.1.0
   bin:
     autoprefixer: bin/autoprefixer
-  checksum: fb8b2abbb0ce5e3c6bc957ffb714b84aa2e6a9f24cf9c139bcfec33ba5e3334f61a132c606a621e04097d026c1f653fe1bda2d1c3dc47b87c9f6b00d90732daa
+  checksum: 6ae79cbacd31fb3d464ec64eb6ad2600f4f689c3080bbe62c5536d539b41b472083a2e941ef99d14aa11142370d6c16e8b05a62f077374933ed991aceb5943d2
   languageName: node
   linkType: hard
 
@@ -652,7 +652,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:^4.0.0, browserslist@npm:^4.16.6, browserslist@npm:^4.20.3, browserslist@npm:^4.21.3":
+"browserslist@npm:^4.0.0, browserslist@npm:^4.16.6, browserslist@npm:^4.20.3, browserslist@npm:^4.21.4":
   version: 4.21.4
   resolution: "browserslist@npm:4.21.4"
   dependencies:
@@ -728,10 +728,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001399, caniuse-lite@npm:^1.0.30001400":
+"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001400":
   version: 1.0.30001402
   resolution: "caniuse-lite@npm:1.0.30001402"
   checksum: 6068ccccd64b357f75388cb2303cf351b686b20800571d0a845bff5c0e0d24f83df0133afbbdd8177a33eb087c93d39ecf359035a52b2feac5f182c946f706ee
+  languageName: node
+  linkType: hard
+
+"caniuse-lite@npm:^1.0.30001407":
+  version: 1.0.30001409
+  resolution: "caniuse-lite@npm:1.0.30001409"
+  checksum: d8581693491295ad8716db7ad6dccf74de970fc3ef4723b38bbc03b972862d363a9710c2a7582abcb741e1619164ddceca1df4dcf3d53d550e74829a9cb5ca82
   languageName: node
   linkType: hard
 
