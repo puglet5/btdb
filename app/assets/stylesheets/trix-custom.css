@@ -39,7 +39,7 @@
 
 */
 
-.trix-button--icon-quote {
+/* .trix-button--icon-quote {
   @apply hidden
 }
 
@@ -56,14 +56,14 @@
 }
 .trix-button--icon-decrease-nesting-level {
   @apply hidden
-}
+} */
 
 .trix-button-row {
   @apply my-auto w-full bg-gray-100 rounded-t-lg border border-gray-300 border-b-0
 }
 
 .trix-button {
-  @apply p-2 px-0.5 mx-0.5 my-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-200 border-0 w-6 !important
+  @apply p-2 px-4 mx-0.5 my-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-200 border-0 w-6 !important
 }
 
 trix-toolbar .trix-button-group{

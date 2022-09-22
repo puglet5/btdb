@@ -27,8 +27,8 @@
           <% end %>
         </div>
       </div>
-      <div class="mb-4">
 
+      <div class="mb-4">
         <%= render Forms::LabelComponent.new() do %>
           Category/Type
           <%= render PopoverComponent.new(text: "God made the wild animals of the earth. And on the seventh day God finished the work that he had made, and indeed, it was very good. And there was no one to till the ground.", cls: "") do %>
@@ -38,8 +38,57 @@
           <% end %>
         <% end %>
         <%= f.input :category, default: @sample.category, collection: Sample.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-12 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
+      </div>
+
+      <div class="col-span-2 mb-4">
+        <%= render Forms::LabelComponent.new().with_content("Description") %>
+        <%= f.input :description, as: :rich_text_area, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-300 rounded-lg shadow-sm" }, label: false %>
+        <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("You can edit the content and attach images with buttons above. ") %>
 
       </div>
+    </div>
+
+    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Metadata") %>
+    <div class="grid grid-cols-1 space-x-8">
+
+      <div class="mb-4 ml-8">
+        <%= render Forms::LabelComponent.new().with_content("Metadata") %>
+
+        <%= f.input :metadata, as: :text, label: false, hint: false, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { controller: "textarea", action: 'input->textarea#resize', 'textarea-target': 'input' } } %>
+
+        <%= render Forms::PHelperComponent.new(cls: "!ml-2") do %>
+          Enter metadata to store additional fields in JSON format. Learn
+          <a href="https://www.json.org/json-en.html" class="font-bold hover:underline">more</a>.
+        <% end %>
+      </div>
+
+    </div>
+    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Files") %>
+    <div class="grid grid-cols-2 space-x-8">
+      <div class="mb-4 ml-8">
+        <%= render Forms::LabelComponent.new().with_content("Thumbnail") %>
+
+        <%= f.input :thumbnail, as: :file, hint: false, label: false, input_html: { class: "block w-full text-sm text-gray-900 bg-white border border-gray-300 rounded-lg cursor-pointer file:mr-4 focus:outline-none file:bg-gray-600 file:text-sm file:text-white file:p-2.5 file:px-4 file:border-none file:focus:outline-none file:outline-none", direct: true } %>
+
+        <%= render Forms::PHelperComponent.new(cls: "!ml-2") do %>
+          Used in sample cards.
+        <% end %>
+      </div>
+      <div class="mb-4 ml-8">
+        <%= render Forms::LabelComponent.new().with_content("Files") %>
+
+        <%= f.input :thumbnail, as: :file, hint: false, label: false, input_html: { class: "block w-full text-sm text-gray-900 bg-white border border-gray-300 rounded-lg cursor-pointer file:mr-4 focus:outline-none file:bg-gray-600 file:text-sm file:text-white file:p-2.5 file:px-4 file:border-none file:focus:outline-none file:outline-none", direct: true, multiple: true } %>
+
+      </div>
+      <%= tag.div class: "mb-4 ml-8", data: { "uppy": "sample[images][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "images", "uppy-allowedfiletypes-value": "image/*", "uppy-allowmultiple-value": true } do %>
+        <%= render Forms::LabelComponent.new().with_content("Images") %>
+        <%= tag.div class: "flex items-center justify-center w-full p-4 pr-12 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
+          <p class="text-center" data-uppy-target="text">
+            Browse...
+          </p>
+        <% end %>
+        <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("Images (.svg, .png, .jpg or .gif) of any size.") %>
+      <% end %>
     </div>
 
     <div class="ml-4 form-actions">

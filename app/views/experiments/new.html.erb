@@ -52,7 +52,6 @@
         <%= render Forms::LabelComponent.new().with_content("Description") %>
         <%= f.input :description, as: :rich_text_area, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-300 rounded-lg shadow-sm" }, label: false %>
         <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("You can edit the content and attach images with buttons above. ") %>
-
       </div>
 
       <div class="mb-4">

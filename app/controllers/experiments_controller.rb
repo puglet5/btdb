@@ -6,13 +6,13 @@ class ExperimentsController < ApplicationController
   def index
     @experiments = Experiment
                    .all
-                   .includes([:user, :rich_text_description, { images_attachments: :blob }, { files_attachments: :blob }])
+                   .includes([:user, :rich_text_description, :samples, :experiment_samples, { images_attachments: :blob }, { files_attachments: :blob }])
                    .order('created_at desc')
   end
 
   def show
     @experiment = Experiment
-                  .includes([{ images_attachments: :blob }, { files_attachments: :blob }])
+                  .includes(:samples, :experiment_samples, [{ images_attachments: :blob }, { files_attachments: :blob }])
                   .find(params[:id])
   end
 
