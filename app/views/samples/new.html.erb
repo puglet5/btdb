@@ -6,7 +6,7 @@
     <h1 class="font-bold tracking-widef mb-text-2xl sm:text-3xl">New Sample</h1>
   </div>
 
-  <%= simple_form_for(@sample, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" }) do |f| %>
+  <%= simple_form_for(@sample, validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4", id: "main-form" }) do |f| %>
 
     <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700") do %>
       <div class="flex">
@@ -20,24 +20,33 @@
     <% end %>
 
     <%= turbo_frame_tag :form do %>
+
       <%= tag.div data: { controller: "sample-form" }, id: "category-selector" do %>
         <%= f.button :button, "Validate", formaction: new_sample_path, formmethod: :get, data: { sample_form_target: "validate", turbo_frame: :form }, class: "hidden" %>
         <div class="input radio_buttons sample_category">
           <%= f.input :category, as: :hidden, input_html: { value: @sample.category } %>
-          <ul class="grid w-full gap-6 my-4 md:grid-cols-2" data-action="change->sample-form#submit">
+          <ul class="grid w-full gap-6 my-4 md:grid-cols-3" data-action="change->sample-form#submit">
             <li>
-              <input type="radio" id="sample_category_not_set" name="sample[category]" value="not_set" class="hidden peer">
-              <label for="sample_category_not_set" class="inline-flex items-center justify-between w-full p-5 bg-white border rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-100 <%= @sample.not_set_category? ? 'border-sky-600 text-sky-600' : 'peer-checked:text-gray-500 border-gray-200' %>">
+              <input type="radio" id="sample_category_not_set" name="sample[category]" value="not_set" class="hidden peer" <%= "disabled" if @sample.not_set_category? %>>
+              <label for="sample_category_not_set" class="inline-flex items-center justify-between w-full p-5 bg-white border rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-100 <%= @sample.not_set_category? ? 'border-sky-600 text-sky-600 select-none' : 'peer-checked:text-gray-500 border-gray-200' %>">
                 <div class="block">
                   <div class="w-full text-lg font-semibold">Generic</div>
                 </div>
               </label>
             </li>
             <li>
-              <input type="radio" id="sample_category_phantom" name="sample[category]" value="phantom" class="hidden peer">
-              <label for="sample_category_phantom" class="inline-flex items-center justify-between w-full p-5 bg-white border rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-100 <%= @sample.phantom_category? ? 'border-teal-600 text-teal-600' : 'text-gray-500 border-gray-200' %>">
+              <input type="radio" id="sample_category_phantom" name="sample[category]" value="phantom" class="hidden peer" <%= "disabled" if @sample.phantom_category? %>>
+              <label for="sample_category_phantom" class="inline-flex items-center justify-between w-full p-5 bg-white border rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-100 <%= @sample.phantom_category? ? 'border-teal-600 text-teal-600 select-none' : 'text-gray-500 border-gray-200' %>">
                 <div class="block">
                   <div class="w-full text-lg font-semibold">Phantom</div>
+                </div>
+              </label>
+            </li>
+            <li>
+              <input type="radio" id="sample_category_mixed" name="sample[category]" value="mixed" class="hidden peer" <%= "disabled" if @sample.mixed_category? %>>
+              <label for="sample_category_mixed" class="inline-flex items-center justify-between w-full p-5 bg-white border rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-100 <%= @sample.mixed_category? ? 'border-rose-600 text-rose-600 select-none' : 'text-gray-500 border-gray-200' %>">
+                <div class="block">
+                  <div class="w-full text-lg font-semibold">Mixed</div>
                 </div>
               </label>
             </li>
@@ -67,7 +76,7 @@
         <% if !@sample.not_set_category? %>
           <div class="mb-4">
             <%= render Forms::LabelComponent.new(optional: false).with_content("Survey date") %>
-            <%= f.input :survey_date, as: :date, html5: true, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" } %>
+            <%= f.input :survey_date, as: :date, html5: true, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm validate focus:ring-1 focus:ring-lime-600 focus:border-lime-600" } %>
           </div>
         <% end %>
 
@@ -121,6 +130,26 @@
         <% end %>
         <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("Images (.svg, .png, .jpg or .gif) of any size.") %>
       <% end %>
+    </div>
+
+    <div  class="p-4 ml-8 bg-white border border-gray-300 rounded-lg" role="alert">
+      <div class="flex items-center">
+        <svg aria-hidden="true" class="w-5 h-5 mr-2 text-gray-500 " fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+        <span class="sr-only">Info</span>
+        <h3 class="text-lg font-medium text-gray-500 ">Linking samples</h3>
+      </div>
+      <div class="mt-2 mb-4 text-sm text-gray-500 ">
+        You will be able to link newly created sample to an experiment on the edit page. Alternatively, bulk assign samples to experiments on experiment edit page
+      </div>
+      <div class="flex">
+        <button type="button" class="inline-flex items-center px-3 mr-2 text-xs font-medium text-center text-white bg-gray-500 rounded-lg hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 py-1.5">
+          <svg aria-hidden="true" class="w-4 h-4 mr-2 -ml-0.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+          View more
+        </button>
+        <button type="button" class="px-3 text-xs font-medium text-center text-gray-500 bg-transparent border border-gray-500 rounded-lg hover:bg-gray-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 py-1.5 " aria-label="Close">
+          Dismiss
+        </button>
+      </div>
     </div>
 
     <div class="ml-4 form-actions">

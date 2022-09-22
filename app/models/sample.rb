@@ -28,7 +28,6 @@ class Sample < ApplicationRecord
   enum category: { not_set: 0, processed_meat: 1, phantom: 2, mixed: 3 }, _suffix: :category
 
   validates :title, presence: true
-  validates :survey_date, presence: true, if: :phantom_category?
 
   after_commit :parse_json, on: %i[create update]
 end
