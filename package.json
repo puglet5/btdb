@@ -41,5 +41,6 @@
     "eslint": "^8.23.1",
     "postcss-nested": "^5.0.6",
     "tailwind-config-viewer": "^1.7.2"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }
