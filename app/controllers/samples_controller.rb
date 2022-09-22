@@ -4,7 +4,10 @@ class SamplesController < ApplicationController
   before_action :set_sample, only: %i[show edit update destroy]
 
   def index
-    @samples = Sample.all
+    @samples = Sample
+               .all
+               .includes([:user, { thumbnail_attachment: :blob }])
+               .order('created_at desc')
   end
 
   def show; end

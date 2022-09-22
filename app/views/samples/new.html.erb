@@ -1,9 +1,51 @@
-<h1>New sample</h1>
+<%= render "shared/errors", obj: @sample %>
 
-<%= render "form", sample: @sample %>
+<div class="max-w-screen-xl px-4 py-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
 
-<br>
+  <div class="flex items-center justify-center">
+    <h1 class="font-bold tracking-widef mb-text-2xl sm:text-3xl">New Sample</h1>
+  </div>
 
-<div>
-  <%= link_to "Back to samples", samples_path %>
+  <%= simple_form_for(@sample, validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" }) do |f| %>
+
+    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
+
+    <div class="grid grid-cols-2 space-x-8">
+
+      <div class="mb-4 ml-8">
+        <%= render Forms::LabelComponent.new(optional: false).with_content("Title/Name") %>
+        <div class="relative">
+          <%= tag.div data: { controller: "input" } do %>
+            <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "" %>
+            <span class="absolute inset-y-0 inline-flex items-center right-4">
+              <%= render TooltipComponent.new(tooltip: "required") do %>
+                <svg data-input-target="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                </svg>
+              <% end %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+      <div class="mb-4">
+
+        <%= render Forms::LabelComponent.new() do %>
+          Category/Type
+          <%= render PopoverComponent.new(text: "God made the wild animals of the earth. And on the seventh day God finished the work that he had made, and indeed, it was very good. And there was no one to till the ground.", cls: "") do %>
+            <svg class="w-4 h-4 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="sr-only">Show information</span>
+          <% end %>
+        <% end %>
+        <%= f.input :category, default: @sample.category, collection: Sample.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-12 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
+
+      </div>
+    </div>
+
+    <div class="ml-4 form-actions">
+      <%= f.submit "Create Sample", class: "inline-block px-5 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
+      <%= link_to "Back to samples", samples_path, class: "text-sm text-gray-500 hover:underline" %>
+    </div>
+  <% end %>
+
 </div>
