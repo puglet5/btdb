@@ -6,7 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  title      :string
-#  category   :integer
+#  category   :integer          default("not_set"), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :integer
