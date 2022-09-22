@@ -11,8 +11,8 @@
             <% end %>
           </li>
           <li class="border-r">
-            <%= tag.div data: { "tabs-target": "tab" }, id: "objects-tab !hover:bg-gray-100", class: "hover:bg-gray-100"  do %>
-              <button type="button" role="tab" aria-controls="objects" aria-selected="false" class="inline-block p-4" data-action="click->tabs#switch">Objects (3)</button>
+            <%= tag.div data: { "tabs-target": "tab" }, id: "samples-tab !hover:bg-gray-100", class: "hover:bg-gray-100"  do %>
+              <button type="button" role="tab" aria-controls="samples" aria-selected="false" class="inline-block p-4" data-action="click->tabs#switch">Samples (<%= experiment.samples.count %>)</button>
             <% end %>
           </li>
           <li class="border-r">
@@ -114,7 +114,7 @@
 
       <% end %>
 
-      <%= tag.div data: { "tabs-target": "panel" }, id: "objects-panel", class: "hidden p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
+      <%= tag.div data: { "tabs-target": "panel" }, id: "samples-panel", class: "hidden p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
 
         <div role="status" class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center">
           <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded sm:w-96 ">

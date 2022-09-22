@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ExperimentsController < ApplicationController
-  before_action :set_experiment, only: %i[show edit update destroy]
+  before_action :set_experiment, only: %i[edit update destroy]
 
   def index
     @experiments = Experiment
@@ -10,7 +10,11 @@ class ExperimentsController < ApplicationController
                    .order('created_at desc')
   end
 
-  def show; end
+  def show
+    @experiment = Experiment
+                  .includes([{ images_attachments: :blob }, { files_attachments: :blob }])
+                  .find(params[:id])
+  end
 
   def new
     @experiment = current_user.experiments.build
