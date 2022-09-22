@@ -16,7 +16,7 @@
         <%= render Forms::LabelComponent.new(optional: false).with_content("Title/Name") %>
         <div class="relative">
           <%= tag.div data: { controller: "input" } do %>
-            <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "" %>
+            <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "" %>
             <span class="absolute inset-y-0 inline-flex items-center right-4">
               <%= render TooltipComponent.new(tooltip: "required") do %>
                 <svg data-input-target="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600">
@@ -37,12 +37,12 @@
             <span class="sr-only">Show information</span>
           <% end %>
         <% end %>
-        <%= f.input :category, default: @sample.category, collection: Sample.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-12 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
+        <%= f.input :category, default: @sample.category, collection: Sample.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-6 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
       </div>
 
       <div class="col-span-2 mb-4">
         <%= render Forms::LabelComponent.new().with_content("Description") %>
-        <%= f.input :description, as: :rich_text_area, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-300 rounded-lg shadow-sm" }, label: false %>
+        <%= f.input :description, as: :rich_text_area, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm" }, label: false %>
         <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("You can edit the content and attach images with buttons above. ") %>
 
       </div>
@@ -54,7 +54,7 @@
       <div class="mb-4 ml-8">
         <%= render Forms::LabelComponent.new().with_content("Metadata") %>
 
-        <%= f.input :metadata, as: :text, label: false, hint: false, input_html: { class: "w-full p-4 pr-12 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { controller: "textarea", action: 'input->textarea#resize', 'textarea-target': 'input' } } %>
+        <%= f.input :metadata, as: :text, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { controller: "textarea", action: 'input->textarea#resize', 'textarea-target': 'input' } } %>
 
         <%= render Forms::PHelperComponent.new(cls: "!ml-2") do %>
           Enter metadata to store additional fields in JSON format. Learn
@@ -82,7 +82,7 @@
       </div>
       <%= tag.div class: "mb-4 ml-8", data: { "uppy": "sample[images][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "images", "uppy-allowedfiletypes-value": "image/*", "uppy-allowmultiple-value": true } do %>
         <%= render Forms::LabelComponent.new().with_content("Images") %>
-        <%= tag.div class: "flex items-center justify-center w-full p-4 pr-12 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
+        <%= tag.div class: "flex items-center justify-center w-full p-4 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
           <p class="text-center" data-uppy-target="text">
             Browse...
           </p>
