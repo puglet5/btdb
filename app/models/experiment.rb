@@ -21,6 +21,10 @@ class Experiment < ApplicationRecord
   include ParseJson
 
   belongs_to :user
+
+  has_many :experiment_samples, dependent: :destroy
+  has_many :samples, through: :experiment_samples
+
   validates :title, :author, presence: true
 
   enum status: { not_set: 0, ongoing: 1, cancelled: 2, finished: 3 }

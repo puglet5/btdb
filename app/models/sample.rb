@@ -12,6 +12,7 @@
 #  user_id    :integer
 #
 class Sample < ApplicationRecord
+  has_many :experiment_samples, dependent: :destroy
   has_many :experiments, through: :experiment_samples
   belongs_to :user
 
