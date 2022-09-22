@@ -10,7 +10,7 @@ gem 'cssbundling-rails'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'dotenv-rails', '~> 2.8'
 gem 'image_processing', '~> 1.12', '>= 1.12.1'
-gem 'jbuilder'
+# gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'mini_magick', '~> 4.11' # image processing
 gem 'pagy', '~> 5.10.1' # pagination

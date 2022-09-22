@@ -177,9 +177,6 @@ GEM
     irb (1.4.1)
       reline (>= 0.3.0)
     jaro_winkler (1.5.4)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     js_regex (3.7.2)
       character_set (~> 1.4)
       regexp_parser (~> 2.5)
@@ -465,7 +462,6 @@ DEPENDENCIES
   guard-livereload
   htmlbeautifier
   image_processing (~> 1.12, >= 1.12.1)
-  jbuilder
   jsbundling-rails
   memory_profiler
   mini_magick (~> 4.11)
