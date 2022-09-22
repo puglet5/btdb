@@ -12,6 +12,8 @@
 #  user_id    :integer
 #
 class Sample < ApplicationRecord
+  include ParseJson
+
   has_many :experiment_samples, dependent: :destroy
   has_many :experiments, through: :experiment_samples
   belongs_to :user
@@ -24,4 +26,6 @@ class Sample < ApplicationRecord
   has_many_attached :files
 
   enum category: { not_set: 0, processed_meat: 1, phantom: 2, mixed: 3 }, _suffix: :category
+
+  after_commit :parse_json, on: %i[create update]
 end

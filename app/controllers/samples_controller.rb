@@ -49,6 +49,14 @@ class SamplesController < ApplicationController
   end
 
   def sample_params
-    params.require(:sample).permit(:title, :category)
+    params.require(:sample).permit(
+      :title,
+      :category,
+      :description,
+      :thumbnail,
+      :metadata,
+      images: [],
+      files: []
+    )
   end
 end
