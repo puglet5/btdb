@@ -13,7 +13,7 @@ class SamplesController < ApplicationController
   def show; end
 
   def new
-    @sample = current_user.samples.build
+    @sample = current_user.samples.build sample_params
   end
 
   def edit; end
@@ -49,11 +49,12 @@ class SamplesController < ApplicationController
   end
 
   def sample_params
-    params.require(:sample).permit(
+    params.fetch(:sample, {}).permit(
       :title,
       :category,
       :description,
       :thumbnail,
+      :survey_date,
       :metadata,
       images: [],
       files: []

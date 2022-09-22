@@ -60,7 +60,6 @@
       </div>
 
       <div class="mb-4">
-
         <%= render Forms::LabelComponent.new() do %>
           Category/Type
           <%= render PopoverComponent.new(text: "God made the wild animals of the earth. And on the seventh day God finished the work that he had made, and indeed, it was very good. And there was no one to till the ground.", cls: "") do %>
@@ -70,24 +69,19 @@
           <% end %>
         <% end %>
         <%= f.input :category, default: @experiment.category, collection: Experiment.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-6 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
-
       </div>
 
       <div class="mb-4">
-
         <%= render Forms::LabelComponent.new().with_content("Status") %>
         <%= f.input :status, default: @experiment.status, collection: Experiment.statuses.keys.map { |s| [s.humanize, s] }, input_html: { class: "block w-full p-4 px-0 pr-6 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer" }, hint: false, label: false %>
       </div>
 
       <div class="mb-4">
-
         <%= render Forms::LabelComponent.new().with_content("Open date") %>
-
         <%= f.input :open_date, as: :date, html5: true, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" } %>
       </div>
 
       <div class="mb-4">
-
         <%= render Forms::LabelComponent.new() do %>
           Close date
           <%= render PopoverComponent.new(text: "These are the generations of the LORD God said, See, I have given every green plant for food. Thorns and thistles it shall bring forth children, yet your desire shall be for signs and for seasons and for seasons and for days and years.", cls: "") do %>

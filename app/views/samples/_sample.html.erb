@@ -14,7 +14,7 @@
         <% end %>
       </div>
       <div class="w-full p-8 pt-4 md:pl-0">
-        <%= render ExperimentBadgeComponent.new(status: "not_set").with_content("not set") %>
+        <%= render SampleCategoryBadgeComponent.new(category: sample.category).with_content(sample.category.humanize.downcase) %>
 
         <%= link_to sample, class: "" do %>
           <h2 class="mb-2 text-2xl font-semibold md:mt-2 "> <%= sample.title %></h2>

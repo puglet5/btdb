@@ -6,47 +6,79 @@
     <h1 class="font-bold tracking-widef mb-text-2xl sm:text-3xl">New Sample</h1>
   </div>
 
-  <%= simple_form_for(@sample, validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" }) do |f| %>
+  <%= simple_form_for(@sample, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" }) do |f| %>
 
-    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
+    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700") do %>
+      <div class="flex">
+        Choose sample type:
+        <%= render PopoverComponent.new(text: "God made the wild animals of the earth. And on the seventh day God finished the work that he had made, and indeed, it was very good. And there was no one to till the ground.", cls: "") do %>
+          <svg class="w-4 h-4 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="sr-only">Show information</span>
+        <% end %>
+      </div>
+    <% end %>
 
-    <div class="grid grid-cols-2 space-x-8">
+    <%= turbo_frame_tag :form do %>
+      <%= tag.div data: { controller: "sample-form" }, id: "category-selector" do %>
+        <%= f.button :button, "Validate", formaction: new_sample_path, formmethod: :get, data: { sample_form_target: "validate", turbo_frame: :form }, class: "hidden" %>
+        <div class="input radio_buttons sample_category">
+          <%= f.input :category, as: :hidden, input_html: { value: @sample.category } %>
+          <ul class="grid w-full gap-6 my-4 md:grid-cols-2" data-action="change->sample-form#submit">
+            <li>
+              <input type="radio" id="sample_category_not_set" name="sample[category]" value="not_set" class="hidden peer">
+              <label for="sample_category_not_set" class="inline-flex items-center justify-between w-full p-5 bg-white border rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-100 <%= @sample.not_set_category? ? 'border-sky-600 text-sky-600' : 'peer-checked:text-gray-500 border-gray-200' %>">
+                <div class="block">
+                  <div class="w-full text-lg font-semibold">Generic</div>
+                </div>
+              </label>
+            </li>
+            <li>
+              <input type="radio" id="sample_category_phantom" name="sample[category]" value="phantom" class="hidden peer">
+              <label for="sample_category_phantom" class="inline-flex items-center justify-between w-full p-5 bg-white border rounded-lg cursor-pointer hover:text-gray-600 hover:bg-gray-100 <%= @sample.phantom_category? ? 'border-teal-600 text-teal-600' : 'text-gray-500 border-gray-200' %>">
+                <div class="block">
+                  <div class="w-full text-lg font-semibold">Phantom</div>
+                </div>
+              </label>
+            </li>
+          </ul>
+        </div>
+      <% end %>
 
-      <div class="mb-4 ml-8">
-        <%= render Forms::LabelComponent.new(optional: false).with_content("Title/Name") %>
-        <div class="relative">
-          <%= tag.div data: { controller: "input" } do %>
-            <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "" %>
-            <span class="absolute inset-y-0 inline-flex items-center right-4">
-              <%= render TooltipComponent.new(tooltip: "required") do %>
-                <svg data-input-target="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                </svg>
-              <% end %>
-            </span>
-          <% end %>
+      <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
+
+      <div class="grid grid-cols-2 space-x-8">
+
+        <div class="mb-4 ml-8">
+          <%= render Forms::LabelComponent.new(optional: false).with_content("Title/Name") %>
+          <div class="relative">
+            <%= tag.div data: { controller: "input" } do %>
+              <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "Sample Text Sample Text" %>
+              <span class="absolute inset-y-0 inline-flex items-center right-4">
+                <%= render TooltipComponent.new(tooltip: "required") do %>
+                  <svg data-input-target="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                  </svg>
+                <% end %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+        <% if !@sample.not_set_category? %>
+          <div class="mb-4">
+            <%= render Forms::LabelComponent.new(optional: false).with_content("Survey date") %>
+            <%= f.input :survey_date, as: :date, html5: true, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" } %>
+          </div>
+        <% end %>
+
+        <div class="col-span-2 mb-4">
+          <%= render Forms::LabelComponent.new().with_content("Description") %>
+          <%= f.input :description, as: :rich_text_area, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm" }, label: false %>
+          <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("You can edit the content and attach images with buttons above. ") %>
+
         </div>
       </div>
-
-      <div class="mb-4">
-        <%= render Forms::LabelComponent.new() do %>
-          Category/Type
-          <%= render PopoverComponent.new(text: "God made the wild animals of the earth. And on the seventh day God finished the work that he had made, and indeed, it was very good. And there was no one to till the ground.", cls: "") do %>
-            <svg class="w-4 h-4 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
-            </svg>
-            <span class="sr-only">Show information</span>
-          <% end %>
-        <% end %>
-        <%= f.input :category, default: @sample.category, collection: Sample.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-6 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
-      </div>
-
-      <div class="col-span-2 mb-4">
-        <%= render Forms::LabelComponent.new().with_content("Description") %>
-        <%= f.input :description, as: :rich_text_area, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm" }, label: false %>
-        <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("You can edit the content and attach images with buttons above. ") %>
-
-      </div>
-    </div>
+    <% end %>
 
     <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Metadata") %>
     <div class="grid grid-cols-1 space-x-8">
@@ -68,7 +100,7 @@
       <div class="mb-4 ml-8">
         <%= render Forms::LabelComponent.new().with_content("Thumbnail") %>
 
-        <%= f.input :thumbnail, as: :file, hint: false, label: false, input_html: { class: "block w-full text-sm text-gray-900 bg-white border border-gray-300 rounded-lg cursor-pointer file:mr-4 focus:outline-none file:bg-gray-600 file:text-sm file:text-white file:p-2.5 file:px-4 file:border-none file:focus:outline-none file:outline-none", direct: true } %>
+        <%= f.input :thumbnail, as: :file, hint: false, label: false, input_html: { class: "block w-full text-sm text-gray-900 bg-white border border-gray-300 rounded-lg cursor-pointer file:mr-4 focus:outline-none file:bg-gray-600 file:text-sm file:text-white file:p-2.5 file:px-4 file:border-none file:focus:outline-none file:outline-none", direct: true, multiple: false } %>
 
         <%= render Forms::PHelperComponent.new(cls: "!ml-2") do %>
           Used in sample cards.
@@ -77,12 +109,12 @@
       <div class="mb-4 ml-8">
         <%= render Forms::LabelComponent.new().with_content("Files") %>
 
-        <%= f.input :thumbnail, as: :file, hint: false, label: false, input_html: { class: "block w-full text-sm text-gray-900 bg-white border border-gray-300 rounded-lg cursor-pointer file:mr-4 focus:outline-none file:bg-gray-600 file:text-sm file:text-white file:p-2.5 file:px-4 file:border-none file:focus:outline-none file:outline-none", direct: true, multiple: true } %>
+        <%= f.input :files, as: :file, hint: false, label: false, input_html: { class: "block w-full text-sm text-gray-900 bg-white border border-gray-300 rounded-lg cursor-pointer file:mr-4 focus:outline-none file:bg-gray-600 file:text-sm file:text-white file:p-2.5 file:px-4 file:border-none file:focus:outline-none file:outline-none", direct: true, multiple: true } %>
 
       </div>
       <%= tag.div class: "mb-4 ml-8", data: { "uppy": "sample[images][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "images", "uppy-allowedfiletypes-value": "image/*", "uppy-allowmultiple-value": true } do %>
         <%= render Forms::LabelComponent.new().with_content("Images") %>
-        <%= tag.div class: "flex items-center justify-center w-full p-4 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
+        <%= tag.div class: "flex items-center justify-center w-full p-2 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
           <p class="text-center" data-uppy-target="text">
             Browse...
           </p>

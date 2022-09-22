@@ -1,7 +1,9 @@
 <% if obj.errors.full_messages.any? %>
   <div class="absolute self-end top-20 right-2">
     <% obj.errors.full_messages.each do |msg| %>
-      <%= render(FlashComponent.new(msg: msg, type: 'error', cls: "flash-error")) %>
+      <div class="my-2">
+        <%= render(FlashComponent.new(msg: msg, type: 'error', cls: "flash-error")) %>
+      </div>
     <% end %>
   </div>
 <% end %>
