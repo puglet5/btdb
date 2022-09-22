@@ -14,5 +14,6 @@
 require 'rails_helper'
 
 RSpec.describe Sample, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_many(:experiments) }
+  it { should have_many(:experiment_samples) }
 end

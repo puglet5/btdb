@@ -30,6 +30,8 @@ RSpec.describe User, type: :model do
 
   describe 'Associations' do
     it { should have_many(:experiments) }
+    it { should have_many(:samples) }
+
     it { should have_one_attached(:avatar) }
   end
 
