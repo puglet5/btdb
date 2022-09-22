@@ -146,6 +146,9 @@ GEM
     ffi (1.15.5)
     foreman (0.87.2)
     formatador (1.1.0)
+    fuubar (2.5.1)
+      rspec-core (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
     guard (2.18.0)
@@ -458,6 +461,7 @@ DEPENDENCIES
   factory_bot_rails
   faker (~> 2.22)
   foreman (~> 0.87.2)
+  fuubar (~> 2.5)
   guard-livereload
   htmlbeautifier
   image_processing (~> 1.12, >= 1.12.1)

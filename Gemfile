@@ -49,6 +49,7 @@ group :development do
   gem 'bullet', '~> 7.0', '>= 7.0.3' # detect ineffective db queries
   gem 'bundler-audit', '~> 0.9.1'
   gem 'foreman', '~> 0.87.2'
+  gem 'fuubar', '~> 2.5'
   gem 'guard-livereload' # reload browser on file changes
   gem 'htmlbeautifier' # erb formatter
   gem 'memory_profiler' # For memory profiling
