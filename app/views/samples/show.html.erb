@@ -1,10 +1,10 @@
-<p style="color: green"><%= notice %></p>
+<div class="max-w-screen-xl px-4 py-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
 
-<%= render @sample %>
+  <%= render @sample %>
 
-<div>
-  <%= link_to "Edit this sample", edit_sample_path(@sample) %> |
-  <%= link_to "Back to samples", samples_path %>
+  <div>
+    <%= link_to "Edit this sample", edit_sample_path(@sample) %> |
+    <%= link_to "Back to samples", samples_path %>
 
-  <%= button_to "Destroy this sample", @sample, method: :delete %>
-</div>
+    <%= button_to "Destroy this sample", @sample, method: :delete %>
+  </div>

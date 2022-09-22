@@ -19,6 +19,9 @@ class Sample < ApplicationRecord
   validates :title, presence: true
 
   has_rich_text :description
+  has_one_attached :thumbnail
   has_many_attached :images
   has_many_attached :files
+
+  enum category: { not_set: 0, processed_meat: 1, phantom: 2, mixed: 3 }, _suffix: :category
 end
