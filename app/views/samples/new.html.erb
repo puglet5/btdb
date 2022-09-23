@@ -73,10 +73,15 @@
             <% end %>
           </div>
         </div>
+
+        <%#= f.input :survey_date, as: :hidden %>
+        <%# retain the value when changing to category
+            which does not send particular field's params %>
+
         <% if !@sample.not_set_category? %>
           <div class="mb-4">
             <%= tag.div data: { controller: "datepicker" } do %>
-              <%= render Forms::LabelComponent.new(optional: false).with_content("Survey date") %>
+              <%= render Forms::LabelComponent.new(optional: true).with_content("Survey date") %>
               <%= f.input :survey_date, as: :string, input_html: { data: { datepicker_target: "input" }, class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm date required validate focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, hint: false, label: false, placeholder: "DD/MM/YYYY" %>
             </div>
           <% end %>
