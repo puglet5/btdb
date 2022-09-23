@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SamplesController < ApplicationController
+  include PurgeAttachment
+
   before_action :set_sample, only: %i[show edit update destroy]
 
   def index

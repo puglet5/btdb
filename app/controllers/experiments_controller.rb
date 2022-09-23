@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class ExperimentsController < ApplicationController
-  before_action :set_experiment, only: %i[edit update destroy]
+  include PurgeAttachment
+
+  before_action :set_experiment, only: %i[update destroy]
 
   def index
     @experiments = Experiment
@@ -20,7 +22,12 @@ class ExperimentsController < ApplicationController
     @experiment = current_user.experiments.build
   end
 
-  def edit; end
+  def edit
+    @experiment = Experiment
+                  .with_attached_images
+                  .with_attached_files
+                  .find(params[:id])
+  end
 
   def create
     @experiment = current_user.experiments.build experiment_params
