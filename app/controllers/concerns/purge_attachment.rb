@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PurgeAttachment
   extend ActiveSupport::Concern
 
