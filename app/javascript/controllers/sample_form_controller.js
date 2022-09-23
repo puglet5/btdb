@@ -10,12 +10,12 @@ export default class extends Controller {
     this.validateTarget.hidden = true
     $("#main-form").enableClientSideValidations()
     $("#main-form").resetClientSideValidations()
-    $("#dynamic-form").validate()
+    // $("#dynamic-form").validate()
   }
 
   submit() {
     $("#main-form").disableClientSideValidations()
-    $("#dynamic-form").disableClientSideValidations()
+    // $("#dynamic-form").disableClientSideValidations()
     this.validateTarget.click()
   }
 

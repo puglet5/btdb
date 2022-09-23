@@ -77,7 +77,7 @@
           <div class="mb-4">
             <%= tag.div data: { controller: "datepicker" } do %>
               <%= render Forms::LabelComponent.new(optional: false).with_content("Survey date") %>
-              <input class="w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm date required validate focus:ring-1 focus:ring-lime-600 focus:border-lime-600" data-datepicker-target="input" required="required" aria-required="true" name="sample[survey_date]" id="sample_survey_date" data-validate="true" placeholder="DD/MM/YYYY">
+              <%= f.input :survey_date, as: :string, input_html: { data: { datepicker_target: "input" }, class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm date required validate focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, hint: false, label: false, placeholder: "DD/MM/YYYY" %>
             </div>
           <% end %>
         <% end %>
