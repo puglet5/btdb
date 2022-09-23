@@ -1,0 +1,38 @@
+.ts-control {
+  @apply !rounded-lg !font-normal !text-gray-700 !p-1 !pr-1
+}
+
+.ts-control,
+.item {
+  @apply !font-normal !text-sm bg-white !m-0.5
+}
+
+.ts-control .item {
+  @apply !bg-gray-100 truncate
+}
+
+.ts-control .active {
+  @apply !bg-gray-200 !whitespace-pre-wrap
+}
+
+.ts-control input#select-ts-control {
+  @apply  !text-sm !font-normal !p-2
+}
+
+.no-results {
+  @apply !text-sm !font-normal
+}
+
+.ts-dropdown-content {
+  @apply !bg-white !text-xs
+}
+
+.ts-dropdown-content
+.active {
+  @apply !font-medium !bg-white !text-xs
+}
+
+.ts-dropdown-content,
+.ts-dropdown  {
+  @apply !rounded-lg
+}

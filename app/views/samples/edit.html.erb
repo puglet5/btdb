@@ -40,6 +40,16 @@
         <%= f.input :category, default: @sample.category, collection: Sample.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-6 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
 
       </div>
+
+      <div class="mb-4">
+
+        <%= render Forms::LabelComponent.new() do %>
+          Linked experiments
+        <% end %>
+
+        <%= f.collection_select :experiment_ids, Experiment.all, :id, :title, {}, multiple: true, data: { controller: "select" }, id: "select", class: "", placeholder: "Select experiments" %>
+
+      </div>
     </div>
 
     <div class="ml-4 form-actions">

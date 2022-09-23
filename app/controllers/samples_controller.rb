@@ -58,6 +58,7 @@ class SamplesController < ApplicationController
       :thumbnail,
       :survey_date,
       :metadata,
+      experiment_ids: [],
       images: [],
       files: []
     )

@@ -72,6 +72,7 @@ class ExperimentsController < ApplicationController
       :open_date,
       :close_date,
       :metadata,
+      sample_ids: [],
       images: [],
       files: []
     )

@@ -178,6 +178,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@orchidjs/sifter@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@orchidjs/sifter@npm:1.0.1"
+  dependencies:
+    "@orchidjs/unicode-variants": ^1.0.2
+  checksum: 39496861889f918a201c8336fd5f0f754b3c29269cb464997bf08a86c96df275821ab55782ff8679ede707a727475b9bd7bb62ef85f7ba3fd69a02f935c05b13
+  languageName: node
+  linkType: hard
+
+"@orchidjs/unicode-variants@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@orchidjs/unicode-variants@npm:1.0.2"
+  checksum: dc1d8682ecdd15bfc8d0be204eff47b8ff7ca88741ae4b61ebf5bf2e31fb9d22338a40b71a0082b8a965ea6c6b57de0c05683f7b4152e1500a010b7c0ddbf05f
+  languageName: node
+  linkType: hard
+
 "@popperjs/core@npm:^2.11.6, @popperjs/core@npm:^2.9.3":
   version: 2.11.6
   resolution: "@popperjs/core@npm:2.11.6"
@@ -513,6 +529,7 @@ __metadata:
     postcss-nested: ^5.0.6
     tailwind-config-viewer: ^1.7.2
     tailwindcss: ^3.1.8
+    tom-select: ^2.2.0
     trix: ^2.0.0-beta.0
     uppy-activestorage-upload: "https://github.com/puglet5/uppy-activestorage-upload"
   languageName: unknown
@@ -3919,6 +3936,16 @@ __metadata:
   version: 1.0.1
   resolution: "toidentifier@npm:1.0.1"
   checksum: 952c29e2a85d7123239b5cfdd889a0dde47ab0497f0913d70588f19c53f7e0b5327c95f4651e413c74b785147f9637b17410ac8c846d5d4a20a5a33eb6dc3a45
+  languageName: node
+  linkType: hard
+
+"tom-select@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "tom-select@npm:2.2.0"
+  dependencies:
+    "@orchidjs/sifter": ^1.0.1
+    "@orchidjs/unicode-variants": ^1.0.2
+  checksum: fa34f5e50c1cb2d87147322bd6ec6477996080ace54730b21c21f7c077cd2f28a8eeadd6b94af91f04c8dfc09de3351a052eebbb985e08fe4dd97c15d35ec026
   languageName: node
   linkType: hard
 
