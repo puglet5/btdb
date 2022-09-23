@@ -75,9 +75,11 @@
         </div>
         <% if !@sample.not_set_category? %>
           <div class="mb-4">
-            <%= render Forms::LabelComponent.new(optional: false).with_content("Survey date") %>
-            <%= f.input :survey_date, as: :date, html5: true, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm validate focus:ring-1 focus:ring-lime-600 focus:border-lime-600" } %>
-          </div>
+            <%= tag.div data: { controller: "datepicker" } do %>
+              <%= render Forms::LabelComponent.new(optional: false).with_content("Survey date") %>
+              <input class="w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm date required validate focus:ring-1 focus:ring-lime-600 focus:border-lime-600" data-datepicker-target="input" required="required" aria-required="true" name="sample[survey_date]" id="sample_survey_date" data-validate="true" placeholder="DD/MM/YYYY">
+            </div>
+          <% end %>
         <% end %>
 
         <div class="col-span-2 mb-4">

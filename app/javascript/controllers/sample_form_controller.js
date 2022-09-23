@@ -8,6 +8,7 @@ export default class extends Controller {
 
   connect() {
     this.validateTarget.hidden = true
+    $("#main-form").enableClientSideValidations()
     $("#main-form").resetClientSideValidations()
     $("#dynamic-form").validate()
   }

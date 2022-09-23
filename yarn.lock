@@ -180,7 +180,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:^2.11.6":
+"@popperjs/core@npm:^2.11.6, @popperjs/core@npm:^2.9.3":
   version: 2.11.6
   resolution: "@popperjs/core@npm:2.11.6"
   checksum: 47fb328cec1924559d759b48235c78574f2d71a8a6c4c03edb6de5d7074078371633b91e39bbf3f901b32aa8af9b9d8f82834856d2f5737a23475036b16817f0
@@ -520,6 +520,7 @@ __metadata:
     esbuild: ^0.15.8
     esbuild-rails: ^1.0.3
     eslint: ^8.23.1
+    flowbite-datepicker: ^1.2.2
     jquery: ^3.6.1
     postcss: ^8.4.16
     postcss-cli: ^10.0.0
@@ -1732,6 +1733,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"flowbite-datepicker@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "flowbite-datepicker@npm:1.2.2"
+  dependencies:
+    flowbite: ^1.4.5
+  checksum: 5adef853a0a4d438acb1b6390da607357104b91e88a86edc35b03fb6e350e77b01cbda6f00a607b6fdf6d67c25f96b2ae332036716b53bc4f9d99aefac8f4d50
+  languageName: node
+  linkType: hard
+
+"flowbite@npm:^1.4.5":
+  version: 1.5.3
+  resolution: "flowbite@npm:1.5.3"
+  dependencies:
+    "@popperjs/core": ^2.9.3
+    mini-svg-data-uri: ^1.4.3
+  checksum: 21de225e77b97b810f902c903404d1931ab3c27f58d7a3c2f25886f2868f8603478dd90afc16175df39f35e87e5497cd465e2d8a3dbfafe6bfff6a4a817e25f5
+  languageName: node
+  linkType: hard
+
 "fraction.js@npm:^4.2.0":
   version: 4.2.0
   resolution: "fraction.js@npm:4.2.0"
@@ -2529,7 +2549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mini-svg-data-uri@npm:^1.2.3":
+"mini-svg-data-uri@npm:^1.2.3, mini-svg-data-uri@npm:^1.4.3":
   version: 1.4.4
   resolution: "mini-svg-data-uri@npm:1.4.4"
   bin:
