@@ -6,11 +6,17 @@ RSpec.describe '/samples', type: :request do
   let(:user) { create(:user) }
 
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    {
+      'title' => 'test title',
+      'user_id' => user.id
+    }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    {
+      'title' => nil,
+      'user_id' => user.id
+    }
   end
 
   before :each do
@@ -69,9 +75,9 @@ RSpec.describe '/samples', type: :request do
         end.to change(Sample, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders a successful response (i.e. to display the 'new' template with 422 status)" do
         post samples_url, params: { sample: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq(422)
       end
     end
   end
@@ -79,14 +85,16 @@ RSpec.describe '/samples', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        {
+          'title' => 'new test title'
+        }
       end
 
       it 'updates the requested sample' do
         sample = Sample.create! valid_attributes
         patch sample_url(sample), params: { sample: new_attributes }
         sample.reload
-        skip('Add assertions for updated state')
+        expect(sample.title).to eq('new test title')
       end
 
       it 'redirects to the sample' do
@@ -98,10 +106,10 @@ RSpec.describe '/samples', type: :request do
     end
 
     context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      it "renders a successful response (i.e. to display the 'edit' template with 422 response)" do
         sample = Sample.create! valid_attributes
         patch sample_url(sample), params: { sample: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq(422)
       end
     end
   end
