@@ -10,6 +10,9 @@ class SamplesController < ApplicationController
                .all
                .includes([:user, { thumbnail_attachment: :blob }])
                .order('created_at desc')
+
+    @query = @samples.ransack(params[:query])
+    @samples = @query.result(distinct: true).order('created_at DESC')
   end
 
   def show; end

@@ -13,16 +13,18 @@
 
       <% end %>
 
-      <form class="my-auto ml-4 w-96">
+      <%= search_form_for @query, class: "my-auto ml-4 w-96" do |f| %>
         <label for="index-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
         <div class="relative">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg aria-hidden="true" class="w-5 h-5 text-gray-500 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
           </div>
-          <input type="search" id="default-search" class="block w-full p-4 pl-10 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-lime-600 focus:border-lime-600 " placeholder="Search Objects, Files" required>
+
+          <%= f.search_field :title_or_rich_text_description_body_cont, class: "block w-full p-4 pl-10 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-lime-600 focus:border-lime-600", placeholder: "Search Objects, Files", required: false %>
+
           <button type="submit" class="absolute px-4 py-2 text-sm font-medium text-white rounded-lg bg-lime-600 right-2.5 bottom-2.5 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-600 ">Search</button>
         </div>
-      </form>
+      <% end %>
 
     </div>
 

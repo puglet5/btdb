@@ -10,6 +10,9 @@ class ExperimentsController < ApplicationController
                    .all
                    .includes([:user, :rich_text_description, :samples, :experiment_samples, { images_attachments: :blob }, { files_attachments: :blob }])
                    .order('created_at desc')
+
+    @query = @experiments.ransack(params[:query])
+    @experiments = @query.result(distinct: true).order('created_at DESC')
   end
 
   def show
