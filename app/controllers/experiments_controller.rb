@@ -45,6 +45,11 @@ class ExperimentsController < ApplicationController
 
   def update
     if @experiment.update experiment_params
+
+      attachment_params[:purge_attachments]&.each do |id|
+        purge_attachment id
+      end
+
       redirect_to experiment_url(@experiment)
       flash[:success] = 'Experiment was successfully updated'
     else
@@ -78,6 +83,12 @@ class ExperimentsController < ApplicationController
       sample_ids: [],
       images: [],
       files: []
+    )
+  end
+
+  def attachment_params
+    params.require(:experiment).permit(
+      purge_attachments: []
     )
   end
 end
