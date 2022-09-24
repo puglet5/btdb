@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
 
-  static targets = ["delete", "object", "return", "div", "input"]
+  static targets = ["delete", "object", "return", "div", "input", "placeholder"]
 
   static values = {
     classname: String,
@@ -17,6 +17,7 @@ export default class extends Controller {
     this.greyout()
     this.deleteTarget.classList.toggle("hidden")
     this.returnTarget.classList.toggle("hidden")
+    this.placeholderTarget.classList.toggle("hidden")
 
     let input = document.createElement("input")
     input.classList.add("hidden")
@@ -24,14 +25,13 @@ export default class extends Controller {
     input.setAttribute("value", this.idValue)
     input.setAttribute("data-attachment-target", "input")
     this.divTarget.appendChild(input)
-
-    console.log(this.classnameValue)
   }
 
   return() {
     this.greyout()
     this.deleteTarget.classList.toggle("hidden")
     this.returnTarget.classList.toggle("hidden")
+    this.placeholderTarget.classList.toggle("hidden")
 
     this.inputTarget.remove()
   }
