@@ -1,14 +1,18 @@
 .ts-control {
-  @apply !rounded-lg !font-normal !text-gray-700 !p-0 !pr-0
+  @apply !rounded-lg !font-normal !text-gray-700 !p-2
 }
 
-.ts-control,
+.ts-control
 .item {
-  @apply !font-normal !text-sm bg-white !m-0.5
+  @apply block !font-normal !text-sm bg-white !my-auto h-fit !border !border-white rounded-sm !ml-1
+}
+
+.highlight {
+  @apply !bg-lime-100
 }
 
 .ts-control .item {
-  @apply !bg-gray-100 truncate !my-auto
+  @apply !bg-gray-100 truncate
 }
 
 .ts-control .active {
@@ -16,7 +20,7 @@
 }
 
 .ts-control input#select-ts-control {
-  @apply  !text-sm !font-normal !p-4
+  @apply  !text-sm !font-normal !p-2
 }
 
 .no-results {

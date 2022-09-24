@@ -74,7 +74,7 @@
       <div class="mb-4">
         <%= tag.div data: { controller: "datepicker" } do %>
           <%= render Forms::LabelComponent.new().with_content("Open date") %>
-          <%= f.input :open_date, as: :string, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { datepicker_target: "input" }, value: @experiment.open_date.strftime("%d/%m/%Y") }, placeholder: "DD/MM/YYYY" %>
+          <%= f.input :open_date, as: :string, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { datepicker_target: "input" }, value: @experiment.open_date&.strftime("%d/%m/%Y") }, placeholder: "DD/MM/YYYY" %>
         <% end %>
       </div>
 
@@ -88,7 +88,7 @@
               <span class="sr-only">Show information</span>
             <% end %>
           <% end %>
-          <%= f.input :close_date, as: :string, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { datepicker_target: "input" }, value: @experiment.open_date.strftime("%d/%m/%Y") }, placeholder: "DD/MM/YYYY" %>
+          <%= f.input :close_date, as: :string, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { datepicker_target: "input" }, value: @experiment.close_date&.strftime("%d/%m/%Y") }, placeholder: "DD/MM/YYYY" %>
         <% end %>
       </div>
 
