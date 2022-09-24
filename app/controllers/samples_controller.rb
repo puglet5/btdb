@@ -34,7 +34,12 @@ class SamplesController < ApplicationController
   end
 
   def update
-    if @sample.update(sample_params)
+    if @sample.update sample_params
+
+      attachment_params[:purge_attachments]&.each do |id|
+        purge_attachment id
+      end
+
       redirect_to sample_url(@sample), notice: 'Sample was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
@@ -64,6 +69,12 @@ class SamplesController < ApplicationController
       experiment_ids: [],
       images: [],
       files: []
+    )
+  end
+
+  def attachment_params
+    params.require(:sample).permit(
+      purge_attachments: []
     )
   end
 end

@@ -5,6 +5,7 @@ export default class extends Controller {
   static targets = ["delete", "object", "return", "div", "input"]
 
   static values = {
+    classname: String,
     id: String
   }
 
@@ -19,10 +20,12 @@ export default class extends Controller {
 
     let input = document.createElement("input")
     input.classList.add("hidden")
-    input.name = "experiment[purge_attachments][]"
+    input.name = `${this.classnameValue}[purge_attachments][]`
     input.setAttribute("value", this.idValue)
     input.setAttribute("data-attachment-target", "input")
     this.divTarget.appendChild(input)
+
+    console.log(this.classnameValue)
   }
 
   return() {

@@ -10,7 +10,7 @@
               Attached images
             </h3>
             <p class="text-sm leading-relaxed text-gray-500 ">
-              Delete images by clicking the cross icon, no need to update upload
+              Delete or reorder images by dragging
             </p>
           </div>
           <button type="button" class="inline-flex items-center ml-auto text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 p-1.5" data-action="click->modal#toggle">
@@ -22,7 +22,7 @@
           <div class="grid grid-cols-5 overflow-auto gap-y-1 max-h-1/2">
             <% obj.images.each do |image| %>
               <% if image.persisted? %>
-                <%= tag.div data: { controller: "attachment", attachment_id_value: image.signed_id, attachment_target: "div" }, class: "m-2 border border-gray-200 rounded" do %>
+                <%= tag.div data: { controller: "attachment", attachment_id_value: image.signed_id, attachment_target: "div", "attachment-classname-value": obj.class.name.demodulize.downcase }, class: "m-2 border border-gray-200 rounded" do %>
                   <div class="relative" id="modal-image-container">
                     <%= image_tag image.variant(resize: '400x300^', crop: '400x300+0+0').processed, class: "object-cover w-full rounded ", data: { attachment_target: "object" } %>
                     <%= tag.button type: "button", class: "absolute top-0 right-0", data: { action: "click->attachment#delete", attachment_target: "delete" } do %>

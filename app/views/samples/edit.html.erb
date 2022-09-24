@@ -85,11 +85,28 @@
       </div>
       <%= tag.div class: "mb-4 ml-8", data: { "uppy": "sample[images][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "images", "uppy-allowedfiletypes-value": "image/*", "uppy-allowmultiple-value": true } do %>
         <%= render Forms::LabelComponent.new().with_content("Images") %>
-        <%= tag.div class: "flex items-center justify-center w-full p-2 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
-          <p class="text-center" data-uppy-target="text">
-            Browse...
-          </p>
-        <% end %>
+        <div class="flex">
+
+          <%= tag.div class: "flex items-center justify-center w-full p-2 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
+            <p class="text-center" data-uppy-target="text">
+              Browse...
+            </p>
+          <% end %>
+
+          <% if @sample.images&.count > 0 %>
+            <%= tag.div data: { controller: "modal" } do %>
+              <%= render TooltipComponent.new(tooltip: "Show attached images", cls: "hover:bg-gray-100 !p-0 !ml-2") do %>
+                <%= tag.div class: "w-10 h-full p-2 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg cursor-pointer c hover:bg-gray-100 py-auto", data: { action: "click->modal#toggle" } do %>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 m-auto">
+                    <path fill-rule="evenodd" d="M1 5.25A2.25 2.25 0 013.25 3h13.5A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17H3.25A2.25 2.25 0 011 14.75v-9.5zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 00.75-.75v-2.69l-2.22-2.219a.75.75 0 00-1.06 0l-1.91 1.909.47.47a.75.75 0 11-1.06 1.06L6.53 8.091a.75.75 0 00-1.06 0l-2.97 2.97zM12 7a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd" />
+                  </svg>
+                <% end %>
+              <% end %>
+              <%= render "shared/images_modal", obj: @sample %>
+            <% end %>
+          <% end %>
+        </div>
         <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("Images (.svg, .png, .jpg or .gif) of any size.") %>
       <% end %>
     </div>
