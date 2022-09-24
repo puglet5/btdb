@@ -30,7 +30,7 @@ class Sample < ApplicationRecord
   validates :title, presence: true
 
   after_commit :parse_json, on: %i[create update]
-  # after_commit :process_images
+  after_commit :process_images
 
   private
 
