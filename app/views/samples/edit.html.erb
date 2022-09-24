@@ -56,13 +56,19 @@
 
       <div class="mb-4 ml-8">
         <%= render Forms::LabelComponent.new().with_content("Metadata") %>
+        <%= f.input :metadata, as: :text, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { controller: "textarea", action: 'input->textarea#resize', 'textarea-target': 'input' }, value: (JSON.is_json?(@sample.metadata) ? JSON.generate(@sample.metadata) : @sample.metadata)  } %>
 
-        <%= f.input :metadata, as: :text, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { controller: "textarea", action: 'input->textarea#resize', 'textarea-target': 'input' } } %>
+        <div class="ml-2">
 
-        <%= render Forms::PHelperComponent.new(cls: "!ml-2") do %>
-          Enter metadata to store additional fields in JSON format. Learn
-          <a href="https://www.json.org/json-en.html" class="font-bold hover:underline">more</a>.
-        <% end %>
+          <% unless JSON.is_json?(@sample.metadata) %>
+            <%= render Forms::PHelperComponent.new(cls: "!text-amber-600").with_content("Provided metadata doesn't appear to be valid. Check the contents or contact the admin. Invalid metadata can't be indexed or searched!") %>
+          <% end %>
+          <%= render Forms::PHelperComponent.new(cls: "") do %>
+            Enter metadata to store additional fields in JSON format. Learn
+            <a href="https://www.json.org/json-en.html" class="font-bold hover:underline">more</a>.
+          <% end %>
+        </div>
+
       </div>
 
     </div>
@@ -112,7 +118,7 @@
     </div>
 
     <div class="ml-4 form-actions">
-      <%= f.submit "Create Sample", class: "inline-block px-5 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
+      <%= f.submit "Save Sample", class: "inline-block px-5 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
       <%= link_to "Back to samples", samples_path, class: "text-sm text-gray-500 hover:underline" %>
     </div>
   <% end %>
