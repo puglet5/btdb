@@ -30,4 +30,11 @@ class Sample < ApplicationRecord
   validates :title, presence: true
 
   after_commit :parse_json, on: %i[create update]
+  # after_commit :process_images
+
+  private
+
+  def process_images
+    ProcessImagesJob.perform_later(self)
+  end
 end
