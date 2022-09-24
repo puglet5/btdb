@@ -24,7 +24,7 @@
               <% if image.persisted? %>
                 <%= tag.div data: { controller: "attachment", attachment_id_value: image.signed_id, attachment_target: "div", "attachment-classname-value": obj.class.name.demodulize.downcase }, class: "m-2 border border-gray-200 rounded" do %>
                   <div class="relative" id="modal-image-container">
-                    <%= image_tag image.variant(resize: '400x300^', crop: '400x300+0+0').processed, class: "object-cover w-full rounded ", data: { attachment_target: "object" } %>
+                    <%= image_tag image.variant(resize: '400x300^', crop: '400x300+0+0').processed.url, class: "object-cover w-full rounded ", data: { attachment_target: "object" } %>
                     <%= tag.button type: "button", class: "absolute top-0 right-0", data: { action: "click->attachment#delete", attachment_target: "delete" } do %>
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white bg-gray-700 rounded-lg bg-opacity-30 m-0.5 hover:bg-gray-900 hover:bg-opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
