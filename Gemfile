@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
 
+gem 'amazing_print', '~> 1.4'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise', '~> 4.8', '>= 4.8.1'
@@ -44,7 +45,6 @@ end
 
 group :development do
   gem 'active_record_doctor', '~> 1.10'
-  gem 'amazing_print', '~> 1.4'
   gem 'annotate', '~> 3.2' # db schema annotations for models and tests
   gem 'brakeman', '~> 5.3'
   gem 'bullet', '~> 7.0', '>= 7.0.3' # detect ineffective db queries

@@ -53,6 +53,16 @@ Rails.application.configure do
   # setup sidekiq logger to work with semantic logger
   config.semantic_logger.add_appender(io: $stdout, formatter: :color) if Sidekiq.server?
 
+  config.rails_semantic_logger.semantic = true
+  config.rails_semantic_logger.started    = false
+  config.rails_semantic_logger.processing = true
+  config.rails_semantic_logger.rendered   = false
+  config.log_level = :info
+  config.rails_semantic_logger.quiet_assets = true
+  config.rails_semantic_logger.ap_options = { multiline: true }
+  config.rails_semantic_logger.format = :color
+  config.log_tags = nil
+
   # rack livereload
   config.middleware.use(Rack::LiveReload, host: 'localhost', source: :vendored)
 end
