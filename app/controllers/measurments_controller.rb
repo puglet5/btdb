@@ -59,7 +59,7 @@ class MeasurmentsController < ApplicationController
   private
 
   def set_measurment
-    @measurment = Measurment.find(params[:id])
+    @measurment = @sample.measurments.find(params[:id])
   end
 
   def set_sample
