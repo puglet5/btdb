@@ -1,6 +1,20 @@
 <h1>New measurment</h1>
 
-<%= render "form", measurment: @measurment %>
+<%= simple_form_for([@sample, @measurment], validate: true) do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :category, collection: Measurment.categories.keys %>
+    <%= f.input :equipment %>
+    <%= f.input :spectra, input_html: { multiple: true } %>
+    <%= f.input :equipment_settings, input_html: { multiple: true } %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
 
 <br>
 

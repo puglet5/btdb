@@ -31,7 +31,7 @@ class MeasurmentsController < ApplicationController
     authorize @measurment
 
     if @measurment.save
-      redirect_to sample_measurment_path(id: @measurment.id), notice: 'Measurment was successfully created.'
+      redirect_to [@sample, @measurment], notice: 'Measurment was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class MeasurmentsController < ApplicationController
     authorize @measurment
 
     if @measurment.update(measurment_params)
-      redirect_to sample_measurment_path(id: @measurment.id), notice: 'Measurment was successfully updated.'
+      redirect_to [@sample, @measurment], notice: 'Measurment was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
