@@ -4,6 +4,8 @@ class SamplesController < ApplicationController
   include PurgeAttachment
 
   before_action :set_sample, only: %i[show edit update destroy]
+  before_action :authorize_sample!
+  after_action :verify_authorized
 
   def index
     @samples = Sample
@@ -76,5 +78,9 @@ class SamplesController < ApplicationController
     params.require(:sample).permit(
       purge_attachments: []
     )
+  end
+
+  def authorize_sample!
+    authorize(@sample || Sample)
   end
 end

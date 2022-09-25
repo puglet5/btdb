@@ -4,6 +4,8 @@ class ExperimentsController < ApplicationController
   include PurgeAttachment
 
   before_action :set_experiment, only: %i[update destroy]
+  before_action :authorize_experiment!
+  after_action :verify_authorized
 
   def index
     @experiments = Experiment
@@ -90,5 +92,9 @@ class ExperimentsController < ApplicationController
     params.require(:experiment).permit(
       purge_attachments: []
     )
+  end
+
+  def authorize_experiment!
+    authorize(@experiment || Experiment)
   end
 end
