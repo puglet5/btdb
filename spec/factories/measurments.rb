@@ -10,6 +10,8 @@
 #  user_id    :bigint           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  equipment  :string           default(""), not null
+#  category   :integer          default("not_set"), not null
 #
 FactoryBot.define do
   factory :measurment do

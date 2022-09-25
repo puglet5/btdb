@@ -69,6 +69,9 @@ class MeasurmentsController < ApplicationController
   def measurment_params
     params.require(:measurment).permit(
       :title,
+      :category,
+      :equipment,
+      equipment_settings: [],
       spectra: []
     )
   end
