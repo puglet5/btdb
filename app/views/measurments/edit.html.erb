@@ -1,6 +1,30 @@
 <h1>Editing measurment</h1>
 
-<%= render "form", measurment: @measurment %>
+<%= simple_form_for([@sample, @measurment], validate: true) do |f| %>
+
+  <!-- Attachment retention on form resubmit and when adding new attachments -->
+  <% f.object.spectra.each do |spectrum| %>
+    <%= f.hidden_field :spectra, value: spectrum.signed_id, multiple: true if spectrum.persisted? %>
+  <% end %>
+
+  <% f.object.equipment_settings.each do |file| %>
+    <%= f.hidden_field :equipment_settings, value: file.signed_id, multiple: true if file.persisted? %>
+  <% end %>
+  <!--  -->
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :category, collection: Measurment.categories.keys %>
+    <%= f.input :equipment %>
+    <%= f.input :spectra, input_html: { multiple: true } %>
+    <%= f.input :equipment_settings, input_html: { multiple: true } %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
 
 <br>
 

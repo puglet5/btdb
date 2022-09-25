@@ -8,6 +8,16 @@
 
   <%= simple_form_for(@sample, validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4", id: "main-form" }) do |f| %>
 
+    <!-- Attachment retention on form resubmit and when adding new attachments -->
+    <% f.object.images.each do |image| %>
+      <%= f.hidden_field :images, value: image.signed_id, multiple: true if image.persisted? %>
+    <% end %>
+
+    <% f.object.files.each do |file| %>
+      <%= f.hidden_field :files, value: file.signed_id, multiple: true if file.persisted? %>
+    <% end %>
+    <!--  -->
+
     <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
 
     <div class="grid grid-cols-2 space-x-8">
