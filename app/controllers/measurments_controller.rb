@@ -52,6 +52,9 @@ class MeasurmentsController < ApplicationController
   end
 
   def measurment_params
-    params.require(:measurment).permit(:title)
+    params.require(:measurment).permit(
+      :title,
+      spectra: []
+    )
   end
 end
