@@ -12,7 +12,6 @@ class MeasurmentsController < ApplicationController
 
   def new
     @measurment = @sample.measurments.build
-    current_user.measurments << @measurment
   end
 
   def edit; end
