@@ -1,0 +1,9 @@
+<%= render @measurment %>
+
+<div>
+  <%= link_to "Edit this measurment", edit_sample_measurment_path(@sample, @measurment) %> |
+  <%= link_to "Back to measurments", sample_measurments_path %>
+
+  <%= link_to "Delete measurment", sample_measurment_path(@sample, @measurment), data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" } %>
+
+</div>

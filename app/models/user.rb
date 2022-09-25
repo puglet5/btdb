@@ -28,6 +28,8 @@ class User < ApplicationRecord
 
   has_many :experiments, dependent: :nullify
   has_many :samples, dependent: :nullify
+  has_many :measurments, dependent: :nullify
+
   has_one_attached :avatar
 
   def author?(obj)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_22_174448) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_25_190704) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_174448) do
     t.datetime "updated_at", null: false
     t.integer "sample_id"
     t.index ["experiment_id"], name: "index_experiment_samples_on_experiment_id"
+    t.index ["sample_id"], name: "index_experiment_samples_on_sample_id"
   end
 
   create_table "experiments", force: :cascade do |t|
@@ -74,6 +75,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_174448) do
     t.jsonb "metadata", default: "{}", null: false
     t.index ["metadata"], name: "index_experiments_on_metadata", using: :gin
     t.index ["user_id"], name: "index_experiments_on_user_id"
+  end
+
+  create_table "measurments", force: :cascade do |t|
+    t.string "title"
+    t.bigint "sample_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sample_id"], name: "index_measurments_on_sample_id"
+    t.index ["user_id"], name: "index_measurments_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -95,6 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_174448) do
     t.jsonb "metadata", default: "{}", null: false
     t.datetime "survey_date"
     t.index ["metadata"], name: "index_samples_on_metadata", using: :gin
+    t.index ["user_id"], name: "index_samples_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -122,4 +134,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_174448) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "experiment_samples", "experiments"
   add_foreign_key "experiments", "users"
+  add_foreign_key "measurments", "samples"
+  add_foreign_key "measurments", "users"
 end

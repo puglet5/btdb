@@ -64,7 +64,8 @@ class SamplesController < ApplicationController
 
     @sample.destroy
 
-    redirect_to samples_url, notice: 'Sample was successfully destroyed.'
+    flash[:success] = 'Sample was successfully deleted'
+    redirect_to samples_url, status: :see_other
   end
 
   private

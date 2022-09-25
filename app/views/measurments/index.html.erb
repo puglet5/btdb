@@ -1,0 +1,12 @@
+<h1>Measurments</h1>
+
+<div id="measurments">
+  <% @measurments.each do |measurment| %>
+    <%= render measurment %>
+    <p>
+      <%= link_to "Show this measurment", sample_measurment_path(id: measurment.id) %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New measurment", new_sample_measurment_path %>

@@ -18,6 +18,9 @@ class Sample < ApplicationRecord
 
   has_many :experiment_samples, dependent: :destroy
   has_many :experiments, through: :experiment_samples
+  has_many :measurments, dependent: :destroy
+  has_many :spectra_attachments, through: :measurments
+
   belongs_to :user
 
   has_rich_text :description
@@ -30,7 +33,7 @@ class Sample < ApplicationRecord
   validates :title, presence: true
 
   after_commit :parse_json, on: %i[create update]
-  after_commit :process_images
+  after_commit :process_images, on: %i[create update]
 
   private
 
