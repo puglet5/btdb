@@ -22,7 +22,7 @@
     <%= turbo_frame_tag :form do %>
 
       <%= tag.div data: { controller: "sample-form" }, id: "category-selector" do %>
-        <%= f.button :button, "Validate", formaction: new_sample_path, formmethod: :get, data: { sample_form_target: "validate", turbo_frame: :form }, class: "hidden" %>
+        <%= f.button :button, "Validate", formaction: [:new, :sample], formmethod: :get, data: { sample_form_target: "validate", turbo_frame: :form }, class: "hidden" %>
         <div class="input radio_buttons sample_category">
           <%= f.input :category, as: :hidden, input_html: { value: @sample.category } %>
           <ul class="grid w-full gap-6 my-4 md:grid-cols-3" data-action="change->sample-form#submit">
@@ -161,7 +161,7 @@
 
     <div class="ml-4 form-actions">
       <%= f.submit "Create Sample", class: "inline-block px-5 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
-      <%= link_to "Back to samples", samples_path, class: "text-sm text-gray-500 hover:underline" %>
+      <%= link_to "Back to samples", [:samples], class: "text-sm text-gray-500 hover:underline" %>
     </div>
   <% end %>
 
