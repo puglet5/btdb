@@ -4,10 +4,11 @@ class ExperimentsController < ApplicationController
   include PurgeAttachment
 
   before_action :set_experiment, only: %i[update destroy]
-  before_action :authorize_experiment!
   after_action :verify_authorized
 
   def index
+    authorize Experiment
+
     @experiments = Experiment
                    .all
                    .includes([:user, :rich_text_description, :samples, :experiment_samples, { images_attachments: :blob }, { files_attachments: :blob }])
@@ -21,10 +22,13 @@ class ExperimentsController < ApplicationController
     @experiment = Experiment
                   .includes(:samples, :experiment_samples, [{ images_attachments: :blob }, { files_attachments: :blob }])
                   .find(params[:id])
+
+    authorize @experiment
   end
 
   def new
     @experiment = current_user.experiments.build
+    authorize @experiment
   end
 
   def edit
@@ -32,10 +36,14 @@ class ExperimentsController < ApplicationController
                   .with_attached_images
                   .with_attached_files
                   .find(params[:id])
+
+    authorize @experiment
   end
 
   def create
     @experiment = current_user.experiments.build experiment_params
+
+    authorize @experiment
 
     if @experiment.save
       redirect_to experiment_url(@experiment)
@@ -46,6 +54,8 @@ class ExperimentsController < ApplicationController
   end
 
   def update
+    authorize @experiment
+
     if @experiment.update experiment_params
 
       attachment_params[:purge_attachments]&.each do |id|
@@ -60,6 +70,8 @@ class ExperimentsController < ApplicationController
   end
 
   def destroy
+    authorize @experiment
+
     @experiment.destroy
     flash[:success] = 'Experiment was successfully deleted'
     redirect_to experiments_url, status: :see_other
@@ -92,9 +104,5 @@ class ExperimentsController < ApplicationController
     params.require(:experiment).permit(
       purge_attachments: []
     )
-  end
-
-  def authorize_experiment!
-    authorize(@experiment || Experiment)
   end
 end

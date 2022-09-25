@@ -4,10 +4,11 @@ class SamplesController < ApplicationController
   include PurgeAttachment
 
   before_action :set_sample, only: %i[show edit update destroy]
-  before_action :authorize_sample!
   after_action :verify_authorized
 
   def index
+    authorize Sample
+
     @samples = Sample
                .all
                .includes([:user, { thumbnail_attachment: :blob }])
@@ -17,16 +18,24 @@ class SamplesController < ApplicationController
     @samples = @query.result(distinct: true).order('created_at DESC')
   end
 
-  def show; end
+  def show
+    authorize @sample
+  end
 
   def new
     @sample = current_user.samples.build sample_params
+
+    authorize @sample
   end
 
-  def edit; end
+  def edit
+    authorize @sample
+  end
 
   def create
     @sample = current_user.samples.build sample_params
+
+    authorize @sample
 
     if @sample.save
       redirect_to sample_url(@sample), notice: 'Sample was successfully created.'
@@ -36,6 +45,8 @@ class SamplesController < ApplicationController
   end
 
   def update
+    authorize @sample
+
     if @sample.update sample_params
 
       attachment_params[:purge_attachments]&.each do |id|
@@ -49,6 +60,8 @@ class SamplesController < ApplicationController
   end
 
   def destroy
+    authorize @sample
+
     @sample.destroy
 
     redirect_to samples_url, notice: 'Sample was successfully destroyed.'
@@ -78,9 +91,5 @@ class SamplesController < ApplicationController
     params.require(:sample).permit(
       purge_attachments: []
     )
-  end
-
-  def authorize_sample!
-    authorize(@sample || Sample)
   end
 end
