@@ -11,13 +11,15 @@ class MeasurmentsController < ApplicationController
   def show; end
 
   def new
-    @measurment = current_user.measurments.build
+    @measurment = @sample.measurments.build
+    current_user.measurments << @measurment
   end
 
   def edit; end
 
   def create
-    @measurment = current_user.measurments.build measurment_params
+    @measurment = @sample.measurments.build measurment_params
+    current_user.measurments << @measurment
 
     if @measurment.save
       redirect_to sample_measurment_path(id: @measurment.id), notice: 'Measurment was successfully created.'
@@ -51,6 +53,6 @@ class MeasurmentsController < ApplicationController
   end
 
   def measurment_params
-    params.require(:measurment).permit(:title, :sample_id)
+    params.require(:measurment).permit(:title)
   end
 end

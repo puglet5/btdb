@@ -1,23 +1,25 @@
 # frozen_string_literal: true
 
-RSpec.fdescribe '/measurments', type: :request do
+RSpec.describe '/measurments', type: :request do
   let(:user) { create(:user) }
 
   let(:sample) { create(:sample) }
 
+  let(:measurment) { create(:measurment) }
+
   let(:valid_attributes) do
     {
       'title' => 'test title',
-      'sample_id' => sample.id,
-      'user_id' => user.id
+      'user_id' => user.id,
+      'sample_id' => sample.id
     }
   end
 
   let(:invalid_attributes) do
     {
       'title' => nil,
-      'sample_id' => sample.id,
-      'user_id' => user.id
+      'user_id' => user.id,
+      'sample_id' => sample.id
     }
   end
 
@@ -57,7 +59,7 @@ RSpec.fdescribe '/measurments', type: :request do
   end
 
   describe 'POST /create' do
-    context 'with valid parameters' do
+    fcontext 'with valid parameters' do
       it 'creates a new Measurment' do
         expect do
           post sample_measurments_url(sample_id: sample.id), params: { measurment: valid_attributes }

@@ -13,8 +13,8 @@
 #
 FactoryBot.define do
   factory :measurment do
-    title { 'MyString' }
-    sample { nil }
+    title { 'Test Measurment' }
+    association :sample, factory: :sample, strategy: :build
     association :user, factory: :user, strategy: :build
   end
 end
