@@ -22,7 +22,7 @@
               <h3 class="m-auto mt-2 text-xl font-medium">
                 <%= @user.name %>
               </h3>
-              <p class="mx-auto overflow-hidden text-sm italic font-normal text-gray-500 text-ellipsis max-w-1/2 hover:overflow-visible hover:underline">
+              <p class="mx-auto overflow-hidden text-sm font-medium text-gray-500 text-ellipsis max-w-1/2 hover:overflow-visible hover:underline">
                 <a href="<%= "mailto:#{@user.email}" %>">
                   <%= @user.email %>
                 </a>
@@ -51,45 +51,17 @@
           <% if @user == current_user %>
             <div class="mx-4">
               <% if @user.has_role?(:admin) %>
-                <h4 class="mb-4 ml-4 font-medium text-l">Administration</h4>
+                <h4 class="mb-2 ml-0 font-medium text-l">Administration</h4>
 
-                <div role="status" class="max-w-md p-4 space-y-4 divide-y divide-gray-200 rounded animate-pulsemd:p-6 ">
-                  <div class="flex items-center justify-between">
-                    <div>
-                      <div class="w-24 bg-gray-300 rounded-full h-2.5 mb-2.5"></div>
-                      <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
-                    </div>
-                    <div class="w-12 bg-gray-300 rounded-full h-2.5 "></div>
-                  </div>
-                  <div class="flex items-center justify-between pt-4">
-                    <div>
-                      <div class="w-24 bg-gray-300 rounded-full h-2.5 mb-2.5"></div>
-                      <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
-                    </div>
-                    <div class="w-12 bg-gray-300 rounded-full h-2.5 "></div>
-                  </div>
-                  <div class="flex items-center justify-between pt-4">
-                    <div>
-                      <div class="w-24 bg-gray-300 rounded-full h-2.5 mb-2.5"></div>
-                      <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
-                    </div>
-                    <div class="w-12 bg-gray-300 rounded-full h-2.5 "></div>
-                  </div>
-                  <div class="flex items-center justify-between pt-4">
-                    <div>
-                      <div class="w-24 bg-gray-300 rounded-full h-2.5 mb-2.5"></div>
-                      <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
-                    </div>
-                    <div class="w-12 bg-gray-300 rounded-full h-2.5 "></div>
-                  </div>
-                  <div class="flex items-center justify-between pt-4">
-                    <div>
-                      <div class="w-24 bg-gray-300 rounded-full h-2.5 mb-2.5"></div>
-                      <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
-                    </div>
-                    <div class="w-12 bg-gray-300 rounded-full h-2.5 "></div>
-                  </div>
-                  <span class="sr-only">Loading...</span>
+                <div class="flex ml-2 space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 21c1.147 -4.02 1.983 -8.027 2 -12h6c.017 3.973 .853 7.98 2 12"></path>
+                    <path d="M12.5 13h4.5c.025 2.612 .894 5.296 2 8"></path>
+                    <path d="M9 5a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1"></path>
+                    <line x1="3" y1="21" x2="22" y2="21"></line>
+                  </svg>
+                  <%= link_to "Sidekiq", '/admin/sidekiq' %>
                 </div>
 
               <% end %>
