@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include ActiveStorage::SetCurrent
+  include Pundit::Authorization
 
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
