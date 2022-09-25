@@ -36,6 +36,11 @@ module Btdb
 
     config.action_view.image_loading = 'lazy'
 
+    config.active_job.queue_adapter         = :sidekiq
+    config.active_storage.queues.analysis   = nil
+    config.active_storage.queues.purge      = nil
+    config.active_storage.queues.mirror     = nil
+
     config.generators do |g|
       g.view_specs false
       g.helper_specs false

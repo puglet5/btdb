@@ -22,6 +22,7 @@ gem 'rails_semantic_logger', '~> 4.10'
 gem 'ransack', '~> 3.2.1' # object-based searching
 gem 'redis', '~> 5.0'
 gem 'rolify', '~> 6.0' # user roles
+gem 'sidekiq', '~> 6.5'
 gem 'simple_form', '~> 5.1' # form helpers
 gem 'stimulus-rails', '~> 1.1'
 gem 'turbo-rails', '~> 1.1'

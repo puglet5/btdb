@@ -368,6 +368,10 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (5.2.0)
       activesupport (>= 5.2.0)
+    sidekiq (6.5.5)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.5.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -487,6 +491,7 @@ DEPENDENCIES
   rubocop-rails (~> 2.15, >= 2.15.2)
   selenium-webdriver
   shoulda-matchers (~> 5.1)
+  sidekiq (~> 6.5)
   simple_form (~> 5.1)
   simplecov (~> 0.21.2)
   solargraph

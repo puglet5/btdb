@@ -50,6 +50,9 @@ Rails.application.configure do
 
   config.assets.quiet = true
 
+  # setup sidekiq logger to work with semantic logger
+  config.semantic_logger.add_appender(io: $stdout, formatter: :color) if Sidekiq.server?
+
   # rack livereload
   config.middleware.use(Rack::LiveReload, host: 'localhost', source: :vendored)
 end
