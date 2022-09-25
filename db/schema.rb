@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_25_124629) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_25_190704) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_124629) do
     t.datetime "updated_at", null: false
     t.integer "sample_id"
     t.index ["experiment_id"], name: "index_experiment_samples_on_experiment_id"
+    t.index ["sample_id"], name: "index_experiment_samples_on_sample_id"
   end
 
   create_table "experiments", force: :cascade do |t|
@@ -105,6 +106,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_25_124629) do
     t.jsonb "metadata", default: "{}", null: false
     t.datetime "survey_date"
     t.index ["metadata"], name: "index_samples_on_metadata", using: :gin
+    t.index ["user_id"], name: "index_samples_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
