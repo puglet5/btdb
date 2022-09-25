@@ -53,7 +53,7 @@ class MeasurmentsController < ApplicationController
     @measurment.destroy
 
     flash[:success] = 'Measurment was successfully deleted'
-    redirect_to sample_measurments_path, status: :see_other
+    redirect_to [@sample, :measurments], status: :see_other
   end
 
   private
