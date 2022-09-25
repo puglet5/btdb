@@ -17,5 +17,6 @@ FactoryBot.define do
   factory :sample do
     title { 'MyString' }
     category { 1 }
+    association :user, factory: :user, strategy: :build
   end
 end
