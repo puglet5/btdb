@@ -7,7 +7,7 @@ class MeasurmentsController < ApplicationController
   def index
     authorize Measurment
 
-    @measurments = Measurment.all
+    @measurments = @sample.measurments
   end
 
   def show
