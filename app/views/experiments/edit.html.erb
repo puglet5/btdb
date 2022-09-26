@@ -22,7 +22,7 @@
     <% end %>
     <!--  -->
 
-    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
+    <%= render SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
     <div class="grid grid-cols-2 space-x-8">
 
       <div class="mb-4 ml-8 ">
@@ -113,7 +113,7 @@
       </div>
     </div>
 
-    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Metadata") %>
+    <%= render SectionLabelComponent.new(cls: "text-gray-700").with_content("Metadata") %>
     <div class="grid grid-cols-1 space-x-8">
 
       <div class="mb-4 ml-8">
@@ -135,7 +135,7 @@
 
     </div>
 
-    <%= render Forms::SectionLabelComponent.new(cls: "text-gray-700").with_content("Add or delete files") %>
+    <%= render SectionLabelComponent.new(cls: "text-gray-700").with_content("Add or delete files") %>
     <div class="grid grid-cols-2 space-x-8">
 
       <%= tag.div class: "mb-4 ml-8", data: { "uppy": "experiment[images][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "images", "uppy-allowedfiletypes-value": "image/*", "uppy-allowmultiple-value": true } do %>
