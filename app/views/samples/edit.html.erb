@@ -99,7 +99,15 @@
         <%= f.input :files, as: :file, hint: false, label: false, input_html: { class: "block w-full text-sm text-gray-900 bg-white border border-gray-300 rounded-lg cursor-pointer file:mr-4 focus:outline-none file:bg-gray-600 file:text-sm file:text-white file:p-2.5 file:px-4 file:border-none file:focus:outline-none file:outline-none", direct: true, multiple: true } %>
 
       </div>
-      <%= tag.div class: "mb-4 ml-8", data: { "uppy": "sample[images][]", controller: "uppy", "uppy-target": "div", "uppy-filetype-value": "images", "uppy-allowedfiletypes-value": "image/*", "uppy-allowmultiple-value": true } do %>
+      <%= tag.div class: "mb-4 ml-8", data: {
+                                      controller: "uppy",
+                                      uppy: "sample[images][]",
+                                      uppy_target: "div",
+                                      uppy_filetype_value: "images",
+                                      uppy_allowedfiletypes_value: "image/*",
+                                      uppy_allowmultiple_value: true,
+                                      uppy_thumbnails_value: current_user.settings(:uppy).thumbnails
+        } do %>
         <%= render Forms::LabelComponent.new().with_content("Images") %>
         <div class="flex">
 

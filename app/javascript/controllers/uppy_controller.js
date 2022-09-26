@@ -10,7 +10,8 @@ export default class extends Controller {
   static values = {
     filetype: String,
     allowedfiletypes: String,
-    allowmultiple: Boolean
+    allowmultiple: Boolean,
+    thumbnails: Boolean
   }
 
   connect() {
@@ -38,9 +39,8 @@ export default class extends Controller {
       })
 
       uppy.use(Dashboard, {
-        disableThumbnailGenerator: false,
+        disableThumbnailGenerator: !this.thumbnailsValue,
         trigger: trigger,
-        // target: target,
         closeAfterFinish: true,
         inline: false,
         showProgressDetails: true,
