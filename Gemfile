@@ -73,3 +73,5 @@ group :test do
   gem 'simplecov', '~> 0.21.2' # code coverage reports
   gem 'webdrivers'
 end
+
+gem "ledermann-rails-settings", "~> 2.5"
