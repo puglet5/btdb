@@ -3,7 +3,7 @@
 class SamplesController < ApplicationController
   include PurgeAttachment
 
-  before_action :set_sample, only: %i[show edit update destroy]
+  before_action :set_sample, only: %i[show update destroy]
   after_action :verify_authorized
 
   def index
@@ -29,6 +29,10 @@ class SamplesController < ApplicationController
   end
 
   def edit
+    @sample = Sample.with_attached_images
+                    .with_attached_files
+                    .find(params[:id])
+
     authorize @sample
   end
 
