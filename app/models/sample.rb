@@ -15,6 +15,7 @@
 #
 class Sample < ApplicationRecord
   include ParseJson
+  include ProcessImages
 
   has_many :experiment_samples, dependent: :destroy
   has_many :experiments, through: :experiment_samples
@@ -34,10 +35,4 @@ class Sample < ApplicationRecord
 
   after_commit :parse_json, on: %i[create update]
   after_commit :process_images, on: %i[create update]
-
-  private
-
-  def process_images
-    ProcessImagesJob.perform_later(self)
-  end
 end

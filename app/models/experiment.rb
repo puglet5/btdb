@@ -19,6 +19,7 @@
 #
 class Experiment < ApplicationRecord
   include ParseJson
+  include ProcessImages
 
   belongs_to :user
 
@@ -35,4 +36,5 @@ class Experiment < ApplicationRecord
   has_many_attached :files
 
   after_commit :parse_json, on: %i[create update]
+  after_commit :process_images, on: %i[create update]
 end
