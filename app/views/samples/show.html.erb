@@ -1,5 +1,75 @@
 <div class="max-w-screen-xl px-4 py-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
+  <%= tag.div data: { controller: "tabs", tabs_active_class: "active-tab" } do %>
 
-  <%= render @sample %>
-
+    <div class="grid grid-cols-12 space-x-6">
+      <div class="col-span-3">
+        <div class="w-full bg-white border rounded-lg shadow-md h-96">
+          <div class="flex justify-between text-gray-500 border-b border-gray-200 bg-gray-50">
+            <ul class="flex flex-wrap w-full text-sm font-medium text-center">
+              <li class="w-full border">
+                <div class="flex justify-between">
+                  <div class="">
+                    Sample
+                  </div>
+                  <div class="">
+                    controls
+                  </div>
+                </div>
+              </li>
+              <li class="w-full border">
+                <%= tag.div data: { "tabs-target": "tab" }, id: "info-tab", class: "active-tab" do %>
+                  <button type="button" role="tab" aria-controls="info" aria-selected="true" class="inline-block w-full p-4" data-action="click->tabs#switch">Sample info</button>
+                <% end %>
+              </li>
+              <li class="w-full border">
+                <div class="flex justify-between">
+                  <div class="">
+                    Measurments
+                  </div>
+                  <div class="">
+                    controls
+                  </div>
+                </div>
+              </li>
+              <% @sample.measurments.each do |measurment| %>
+                <li class="w-full border">
+                  <%= tag.div data: { "tabs-target": "tab" }, id: "measurment-#{measurment.id}-tab", class: "hover:bg-gray-100" do %>
+                    <button type="button" role="tab" aria-controls="info" aria-selected="true" class="inline-block w-full p-4" data-action="click->tabs#switch"><%= measurment.title %></button>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-9">
+        <div class="w-full bg-white border rounded-lg shadow-md h-96">
+          <div id="sample" class="p-8 border-b border-gray-300">
+            <div class="flex justify-between">
+              <div>
+                info
+              </div>
+              <div class="">
+                controls
+              </div>
+            </div>
+            <h2 class="mb-2 text-2xl font-semibold md:mt-2 "> <%= @sample.title %></h2>
+            <p class="mt-4 text-sm text-gray-500">
+              <%= @sample.description.to_plain_text %>
+            </p>
+          </div>
+          <div id="panels">
+            <%= tag.div data: { "tabs-target": "panel" }, id: "info-panel", class: "p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
+              <%= render "sample_panel", sample: @sample %>
+            <% end %>
+            <% @sample.measurments.each do |measurment| %>
+              <%= tag.div data: { "tabs-target": "panel" }, id: "measurment-#{measurment.id}-panel", class: "hidden p-4 bg-white rounded-lg md:p-8 md:pt-4" do %>
+                <%= render "measurment_panel", measurment: measurment %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>

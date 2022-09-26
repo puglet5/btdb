@@ -11,7 +11,7 @@ class SamplesController < ApplicationController
 
     @samples = Sample
                .all
-               .includes([:user, { thumbnail_attachment: :blob }])
+               .includes([:user, { thumbnail_attachment: :blob }, :experiments, :experiment_samples, :rich_text_description])
                .order('created_at desc')
 
     @query = @samples.ransack(params[:query])

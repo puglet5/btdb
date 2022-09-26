@@ -4,7 +4,7 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   config.after_initialize do
-    Bullet.enable = false
+    Bullet.enable = true
     Bullet.sentry = false
     Bullet.alert = true
     Bullet.bullet_logger = true

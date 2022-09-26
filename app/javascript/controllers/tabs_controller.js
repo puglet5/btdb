@@ -1,10 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["tab", "panel"]
 
-  connect() {
-  }
+  static classes = ["active"]
+
+  static targets = ["tab", "panel"]
 
   switch(e) {
 
@@ -17,12 +17,12 @@ export default class extends Controller {
 
         if (tab === active) {
 
-          tab.classList.remove("active-tab")
+          tab.classList.remove(...this.activeClasses)
           this.panelTargets[index].classList.add("hidden")
 
         } else if (tab === current) {
 
-          current.classList.add("active-tab")
+          current.classList.add(...this.activeClasses)
           this.panelTargets[index].classList.remove("hidden")
 
         }

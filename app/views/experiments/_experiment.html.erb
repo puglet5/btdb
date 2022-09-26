@@ -11,7 +11,7 @@
             <% end %>
           </li>
           <li class="border-r">
-            <%= tag.div data: { "tabs-target": "tab" }, id: "samples-tab !hover:bg-gray-100", class: "hover:bg-gray-100"  do %>
+            <%= tag.div data: { "tabs-target": "tab" }, id: "samples-tab", class: "hover:bg-gray-100"  do %>
               <button type="button" role="tab" aria-controls="samples" aria-selected="false" class="inline-block p-4" data-action="click->tabs#switch">Samples (<%= experiment.samples.count %>)</button>
             <% end %>
           </li>
