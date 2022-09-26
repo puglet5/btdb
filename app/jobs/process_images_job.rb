@@ -7,7 +7,7 @@ class ProcessImagesJob < ApplicationJob
     obj.images.each do |image|
       next unless image&.representable?
 
-      thumbnail = image.representation(resize: '400x300^', crop: '400x300+0+0')
+      thumbnail = image.variant(:thumbnail)
       thumbnail.processed
     end
   end

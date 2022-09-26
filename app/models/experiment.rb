@@ -32,7 +32,11 @@ class Experiment < ApplicationRecord
   enum category: { not_set: 0, processed_meat: 1, phantom: 2, mixed: 3 }, _suffix: :category
 
   has_rich_text :description
-  has_many_attached :images
+
+  has_many_attached :images do |blob|
+    blob.variant :thumbnail, resize: '400x300^', crop: '400x300+0+0'
+  end
+
   has_many_attached :files
 
   after_commit :parse_json, on: %i[create update]

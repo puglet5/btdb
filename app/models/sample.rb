@@ -25,8 +25,15 @@ class Sample < ApplicationRecord
   belongs_to :user
 
   has_rich_text :description
-  has_one_attached :thumbnail
-  has_many_attached :images
+
+  has_one_attached :thumbnail do |blob|
+    blob.variant :thumbnail, resize: '400x300^', crop: '400x300+0+0'
+  end
+
+  has_many_attached :images do |blob|
+    blob.variant :thumbnail, resize: '400x300^', crop: '400x300+0+0'
+  end
+
   has_many_attached :files
 
   enum category: { not_set: 0, processed_meat: 1, phantom: 2, mixed: 3 }, _suffix: :category
