@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   resources :experiments
 
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
-  resources :users, only: ['show']
+  resources :users, only: ['show'] do
+    member do
+      patch :update_settings
+    end
+  end
 end

@@ -17,14 +17,16 @@
 class User < ApplicationRecord
   rolify
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   validates :email, format: URI::MailTo::EMAIL_REGEXP
   validates :password, confirmation: true
   validates :name, :email, presence: true
+
+  has_settings do |s|
+    s.key :uppy, defaults: { thumbnails: false }
+  end
 
   has_many :experiments, dependent: :nullify
   has_many :samples, dependent: :nullify
