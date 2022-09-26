@@ -27,22 +27,6 @@ RSpec.describe '/measurments', type: :request do
     login_as user
   end
 
-  describe 'GET /index' do
-    it 'renders a successful response' do
-      Measurment.create! valid_attributes
-      get sample_measurments_url(sample_id: sample.id)
-      expect(response).to be_successful
-    end
-  end
-
-  describe 'GET /show' do
-    it 'renders a successful response' do
-      measurment = Measurment.create! valid_attributes
-      get sample_measurment_url(sample_id: sample.id, id: measurment.id)
-      expect(response).to be_successful
-    end
-  end
-
   describe 'GET /new' do
     it 'renders a successful response' do
       get new_sample_measurment_url(sample)
@@ -68,7 +52,7 @@ RSpec.describe '/measurments', type: :request do
 
       it 'redirects to the created measurment' do
         post sample_measurments_url(sample_id: sample.id), params: { measurment: valid_attributes }
-        expect(response).to redirect_to(sample_measurment_url(sample.id, Measurment.last.id))
+        expect(response).to redirect_to(sample)
       end
     end
 
@@ -103,7 +87,7 @@ RSpec.describe '/measurments', type: :request do
         measurment = Measurment.create! valid_attributes
         patch sample_measurment_url(sample, measurment), params: { measurment: new_attributes }
         measurment.reload
-        expect(response).to redirect_to(sample_measurment_url(measurment))
+        expect(response).to redirect_to(sample)
       end
     end
 
@@ -127,7 +111,7 @@ RSpec.describe '/measurments', type: :request do
     it 'redirects to the measurments list' do
       measurment = Measurment.create! valid_attributes
       delete sample_measurment_url(sample, measurment)
-      expect(response).to redirect_to(sample_measurments_url)
+      expect(response).to redirect_to(sample)
     end
   end
 end

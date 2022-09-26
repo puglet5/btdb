@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :samples do
-    resources :measurments
+    resources :measurments, only: %w[new edit update create destroy]
   end
 
   resources :experiments

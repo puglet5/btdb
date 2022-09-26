@@ -2,17 +2,7 @@
 
 class MeasurmentsController < ApplicationController
   before_action :set_sample
-  before_action :set_measurment, only: %i[show edit update destroy]
-
-  def index
-    authorize Measurment
-
-    @measurments = @sample.measurments
-  end
-
-  def show
-    authorize @measurment
-  end
+  before_action :set_measurment, only: %i[edit update destroy]
 
   def new
     @measurment = @sample.measurments.build
@@ -31,7 +21,7 @@ class MeasurmentsController < ApplicationController
     authorize @measurment
 
     if @measurment.save
-      redirect_to [@sample, @measurment], notice: 'Measurment was successfully created.'
+      redirect_to [@sample], notice: 'Measurment was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -41,7 +31,7 @@ class MeasurmentsController < ApplicationController
     authorize @measurment
 
     if @measurment.update(measurment_params)
-      redirect_to [@sample, @measurment], notice: 'Measurment was successfully updated.'
+      redirect_to [@sample], notice: 'Measurment was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,7 +43,7 @@ class MeasurmentsController < ApplicationController
     @measurment.destroy
 
     flash[:success] = 'Measurment was successfully deleted'
-    redirect_to [@sample, :measurments], status: :see_other
+    redirect_to [@sample], status: :see_other
   end
 
   private

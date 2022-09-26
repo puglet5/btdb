@@ -1,9 +1,0 @@
-<%= render @measurment %>
-
-<div>
-  <%= link_to "Edit this measurment", [:edit, @sample, @measurment] %> |
-  <%= link_to "Back to measurments", [@sample, :measurments] %>
-
-  <%= link_to "Delete measurment", [@sample, @measurment], data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" } %>
-
-</div>
