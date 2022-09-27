@@ -31,9 +31,7 @@
 
   <div id="experiments">
     <% if @experiments.count > 0 %>
-      <% @experiments.each do |experiment| %>
-        <%= render experiment %>
-      <% end %>
+      <%= render @experiments %>
     <% else %>
       <div class="relative p-8 text-center bg-white border border-gray-200 rounded-lg">
         <h2 class="text-2xl font-medium">

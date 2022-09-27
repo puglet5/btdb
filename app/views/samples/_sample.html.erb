@@ -1,148 +1,152 @@
-<div class="max-w-screen-xl px-4 mx-auto my-auto sm:px-6 lg:px-8">
-  <div class="w-full bg-white border rounded-lg shadow-md">
+      
+<div class="my-8">
 
-    <div class="sm:space-y-0 sm:space-x-4 sm:flex">
-      <div class="flex items-center justify-center bg-gray-300 rounded-lg sm:rounded-r-none sm:w-96">
-        <%= link_to sample, class: "w-full h-full" do %>
-          <% if sample.thumbnail.attached? %>
-            <%= image_tag sample.thumbnail.variant(:thumbnail).processed, class: "object-cover w-full h-full rounded-lg rounded-b-none sm:rounded-r-none sm:rounded-bl-lg" %>
-          <% else %>
-            <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded-lg ">
-              <svg class="w-12 h-12 text-gray-200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512"><path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" /></svg>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="w-full p-8 pt-4 pr-4 md:pl-0">
-        <div class="flex justify-between">
-          <div class="flex">
-            <%= render SampleCategoryBadgeComponent.new(category: sample.category, cls: "my-auto").with_content(sample.category.humanize.downcase) %>
+  <div class="max-w-screen-xl px-4 mx-auto my-auto sm:px-6 lg:px-8">
+    <div class="w-full bg-white border rounded-lg shadow-md">
 
-            <% if sample.experiments.count > 0 %>
-              <div class="my-auto text-xs font-medium text-gray-500">
-                Linked to:
-                <% sample.experiments.each do |experiment| %>
-                  <%= link_to experiment.title.truncate(20), experiment, class: "font-bold hover:underline" %>
-                  <%= "·" unless experiment == sample.experiments.last %>
-                <% end %>
+      <div class="sm:space-y-0 sm:space-x-4 sm:flex">
+        <div class="flex items-center justify-center bg-gray-300 rounded-lg sm:rounded-r-none sm:w-96">
+          <%= link_to sample, class: "w-full h-full" do %>
+            <% if sample.thumbnail.attached? %>
+              <%= image_tag sample.thumbnail.variant(:thumbnail).processed, class: "object-cover w-full h-full rounded-lg rounded-b-none sm:rounded-r-none sm:rounded-bl-lg" %>
+            <% else %>
+              <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded-lg ">
+                <svg class="w-12 h-12 text-gray-200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512"><path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" /></svg>
               </div>
             <% end %>
-          </div>
-          <div id="controls">
-            <div class="flex flex-row items-center justify-center mx-1 space-x-0">
-
-              <%= render TooltipComponent.new(tooltip: "Edit") do %>
-                <%= link_to [:edit, sample] do %>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 my-auto text-gray-400">
-                    <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
-                    <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
-                  </svg>
-                <% end %>
-              <% end %>
-
-              <%= render TooltipComponent.new(tooltip: "Favorite") do %>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400">
-                  <path d="M17 4.517v9.301L5.433 2.252a41.44 41.44 0 019.637.058C16.194 2.45 17 3.414 17 4.517zM3 17.25V6.182l10.654 10.654L10 15.082l-5.925 2.844A.75.75 0 013 17.25zM3.28 2.22a.75.75 0 00-1.06 1.06l14.5 14.5a.75.75 0 101.06-1.06L3.28 2.22z" />
-                </svg>
-              <% end %>
-
-              <%= render TooltipComponent.new(tooltip: "Delete") do %>
-                <%= link_to sample, data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" } do %>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400">
-                    <path fill-rule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clip-rule="evenodd" />
-                  </svg>
-                <% end %>
-              <% end %>
-
-              <%= tag.div data: { controller: "clipboard", action: "click->clipboard#copy" } do %>
-                <%= render TooltipComponent.new(tooltip: "Copy link") do %>
-                  <%= link_to "", sample, class: "hidden" , data: { "clipboard-target": "text" } %>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 transition" data-clipboard-target="svg">
-                    <path d="M7 3.5A1.5 1.5 0 018.5 2h3.879a1.5 1.5 0 011.06.44l3.122 3.12A1.5 1.5 0 0117 6.622V12.5a1.5 1.5 0 01-1.5 1.5h-1v-3.379a3 3 0 00-.879-2.121L10.5 5.379A3 3 0 008.379 4.5H7v-1z" />
-                    <path d="M4.5 6A1.5 1.5 0 003 7.5v9A1.5 1.5 0 004.5 18h7a1.5 1.5 0 001.5-1.5v-5.879a1.5 1.5 0 00-.44-1.06L9.44 6.439A1.5 1.5 0 008.378 6H4.5z" />
-                  </svg>
-                <% end %>
-              <% end %>
-
-            </div>
-
-          </div>
+          <% end %>
         </div>
+        <div class="w-full p-8 pt-4 pr-4 md:pl-0">
+          <div class="flex justify-between">
+            <div class="flex">
+              <%= render SampleCategoryBadgeComponent.new(category: sample.category, cls: "my-auto").with_content(sample.category.humanize.downcase) %>
 
-        <%= link_to sample, class: "" do %>
-          <h2 class="mb-2 text-2xl font-semibold md:mt-2 "> <%= sample.title.truncate(80) %></h2>
-        <% end %>
+              <% if sample.experiments.count > 0 %>
+                <div class="my-auto text-xs font-medium text-gray-500">
+                  Linked to:
+                  <% sample.experiments.each do |experiment| %>
+                    <%= link_to experiment.title.truncate(20), experiment, class: "font-bold hover:underline" %>
+                    <%= "·" unless experiment == sample.experiments.last %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div id="controls">
+              <div class="flex flex-row items-center justify-center mx-1 space-x-0">
 
-        <div class="flex mb-4 ml-2 space-x-2">
+                <%= render TooltipComponent.new(tooltip: "Edit") do %>
+                  <%= link_to [:edit, sample] do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 my-auto text-gray-400">
+                      <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
+                      <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
+                    </svg>
+                  <% end %>
+                <% end %>
 
-          <div class="flex items-center my-auto text-sm text-gray-500 space-x-1.5">
-            <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400 " width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M5 21h14"></path>
-              <path d="M6 18h2"></path>
-              <path d="M7 18v3"></path>
-              <path d="M9 11l3 3l6 -6l-3 -3z"></path>
-              <path d="M10.5 12.5l-1.5 1.5"></path>
-              <path d="M17 3l3 3"></path>
-              <path d="M12 21a6 6 0 0 0 3.715 -10.712"></path>
-            </svg>
-            <div class="hidden sm:inline-block ">
-              <span class="block truncate">
-                <%= sample.measurments.count %> <%= "measurment".pluralize(sample.measurments.count) %>
-              </span>
+                <%= render TooltipComponent.new(tooltip: "Favorite") do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400">
+                    <path d="M17 4.517v9.301L5.433 2.252a41.44 41.44 0 019.637.058C16.194 2.45 17 3.414 17 4.517zM3 17.25V6.182l10.654 10.654L10 15.082l-5.925 2.844A.75.75 0 013 17.25zM3.28 2.22a.75.75 0 00-1.06 1.06l14.5 14.5a.75.75 0 101.06-1.06L3.28 2.22z" />
+                  </svg>
+                <% end %>
+
+                <%= render TooltipComponent.new(tooltip: "Delete") do %>
+                  <%= link_to sample, data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" } do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400">
+                      <path fill-rule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clip-rule="evenodd" />
+                    </svg>
+                  <% end %>
+                <% end %>
+
+                <%= tag.div data: { controller: "clipboard", action: "click->clipboard#copy" } do %>
+                  <%= render TooltipComponent.new(tooltip: "Copy link") do %>
+                    <%= link_to "", sample, class: "hidden" , data: { "clipboard-target": "text" } %>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400 transition" data-clipboard-target="svg">
+                      <path d="M7 3.5A1.5 1.5 0 018.5 2h3.879a1.5 1.5 0 011.06.44l3.122 3.12A1.5 1.5 0 0117 6.622V12.5a1.5 1.5 0 01-1.5 1.5h-1v-3.379a3 3 0 00-.879-2.121L10.5 5.379A3 3 0 008.379 4.5H7v-1z" />
+                      <path d="M4.5 6A1.5 1.5 0 003 7.5v9A1.5 1.5 0 004.5 18h7a1.5 1.5 0 001.5-1.5v-5.879a1.5 1.5 0 00-.44-1.06L9.44 6.439A1.5 1.5 0 008.378 6H4.5z" />
+                    </svg>
+                  <% end %>
+                <% end %>
+
+              </div>
+
             </div>
           </div>
 
-          <div class="my-auto text-sm text-gray-500">
-            ·
-          </div>
+          <%= link_to sample, class: "" do %>
+            <h2 class="mb-2 text-2xl font-semibold md:mt-2 "> <%= sample.title.truncate(80) %></h2>
+          <% end %>
 
-          <div class="flex items-center my-auto text-sm text-gray-500 space-x-1.5">
-            <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
-              <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
-            </svg>
-            <div class="hidden sm:inline-block">
-              <span class="block truncate">
-                <%= sample.files.count %> <%= "file".pluralize(sample.files.count) %>
-              </span>
-            </div>
-          </div>
+          <div class="flex mb-4 ml-2 space-x-2">
 
-          <div class="my-auto text-sm text-gray-500">
-            ·
-          </div>
-
-          <%= link_to sample.user, class: "flex" do %>
             <div class="flex items-center my-auto text-sm text-gray-500 space-x-1.5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+              <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400 " width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M5 21h14"></path>
+                <path d="M6 18h2"></path>
+                <path d="M7 18v3"></path>
+                <path d="M9 11l3 3l6 -6l-3 -3z"></path>
+                <path d="M10.5 12.5l-1.5 1.5"></path>
+                <path d="M17 3l3 3"></path>
+                <path d="M12 21a6 6 0 0 0 3.715 -10.712"></path>
               </svg>
-              <div class="hidden font-medium hover:underline sm:inline-block">
+              <div class="hidden sm:inline-block ">
                 <span class="block truncate">
-                  <%= sample.user.name %>
+                  <%= sample.measurments.count %> <%= "measurment".pluralize(sample.measurments.count) %>
                 </span>
               </div>
             </div>
-          <% end %>
 
-          <div class="my-auto text-sm text-gray-500">
-            ·
+            <div class="my-auto text-sm text-gray-500">
+              ·
+            </div>
+
+            <div class="flex items-center my-auto text-sm text-gray-500 space-x-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
+                <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+              </svg>
+              <div class="hidden sm:inline-block">
+                <span class="block truncate">
+                  <%= sample.files.count %> <%= "file".pluralize(sample.files.count) %>
+                </span>
+              </div>
+            </div>
+
+            <div class="my-auto text-sm text-gray-500">
+              ·
+            </div>
+
+            <%= link_to sample.user, class: "flex" do %>
+              <div class="flex items-center my-auto text-sm text-gray-500 space-x-1.5">
+                <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+                </svg>
+                <div class="hidden font-medium hover:underline sm:inline-block">
+                  <span class="block truncate">
+                    <%= sample.user.name %>
+                  </span>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="my-auto text-sm text-gray-500">
+              ·
+            </div>
+
+            <div class="flex items-center my-auto overflow-hidden text-sm text-gray-500 space-x-1.5">
+              <svg class="flex-shrink-0 w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+              </svg>
+              <span class="block truncate">
+                <%= sample.created_at.to_formatted_s(:long) %>
+              </span>
+            </div>
           </div>
 
-          <div class="flex items-center my-auto overflow-hidden text-sm text-gray-500 space-x-1.5">
-            <svg class="flex-shrink-0 w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-            </svg>
-            <span class="block truncate">
-              <%= sample.created_at.to_formatted_s(:long) %>
-            </span>
-          </div>
+          <p class="mt-4 text-sm text-gray-500">
+            <%= sample.description.to_plain_text.truncate(280) %>
+          </p>
         </div>
-
-        <p class="mt-4 text-sm text-gray-500">
-          <%= sample.description.to_plain_text.truncate(280) %>
-        </p>
       </div>
     </div>
   </div>
