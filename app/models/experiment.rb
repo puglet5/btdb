@@ -39,6 +39,13 @@ class Experiment < ApplicationRecord
 
   has_many_attached :files
 
+  after_save :invalidate_cached_samples
   after_commit :parse_json, on: %i[create update]
   after_commit :process_images, on: %i[create update]
+
+  private
+
+  def invalidate_cached_samples
+    samples.touch_all
+  end
 end

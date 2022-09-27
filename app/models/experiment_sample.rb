@@ -11,6 +11,6 @@
 #  updated_at    :datetime         not null
 #
 class ExperimentSample < ApplicationRecord
-  belongs_to :experiment
-  belongs_to :sample
+  belongs_to :experiment, touch: true
+  belongs_to :sample, touch: true
 end

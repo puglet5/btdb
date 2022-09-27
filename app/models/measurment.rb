@@ -15,7 +15,7 @@
 #  date       :date
 #
 class Measurment < ApplicationRecord
-  belongs_to :sample
+  belongs_to :sample, touch: true
   belongs_to :user
 
   has_many_attached :spectra
