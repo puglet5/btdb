@@ -6,7 +6,6 @@
   <div class="max-w-screen-md mx-auto mt-8">
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, data: { turbo: false } }, validate: true) do |f| %>
 
-      <%= f.input :avatar, input_html: { value: (f.object.avatar.signed_id if f.object.avatar.attached?), class: "hidden", multiple: false, direct: true }, label: false, hint: false %>
       <div class="grid grid-cols-1 space-x-2">
 
         <div class="grid grid-cols-12 space-x-2">
@@ -20,7 +19,7 @@
             uppy_allowmultiple_value: false,
             uppy_thumbnails_value: true } do %>
             <span class="flex w-40 h-40 m-auto mb-4 rounded-full bg-primary-300">
-              <%= tag.div data: { "uppy-target": "avatardiv" } do %>
+              <%= tag.div data: { uppy_target: "avatarDiv" } do %>
                 <% if resource.avatar.attached? %>
                   <%= image_tag resource.avatar, class: "object-cover w-20 h-20 rounded-full md:w-40 md:h-40", data: {"uppy-target": "avatar"} %>
                 <% else %>
@@ -36,9 +35,13 @@
                     </svg>
                   <% end %>
                 </label>
-                <%= f.file_field :avatar, direct_upload: true, id: "avatar-upload", class: "hidden" %>
               </div>
             </span>
+          <% end %>
+
+          <!-- handles form errors and reuploading avatar -->
+          <% if f.object.avatar.attached? && !f.object.avatar.persisted? %>
+            <%= f.input :avatar, as: :hidden, input_html: { value: f.object.avatar.signed_id, class: "hidden", multiple: false, direct: true }, label: false, hint: false %>
           <% end %>
 
           <div class="col-span-8 mb-4">
@@ -49,7 +52,7 @@
           <div class="col-span-8 mb-4">
             <%= render Forms::LabelComponent.new(optional: false).with_content("Email") %>
             <div class="relative">
-              <%= f.input :email, required: false, label: false, autofocus: true, input_html: { autocomplete: "email", class: "w-full p-4 pr-6 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder: "johndoe@example.com" %>
+              <%= f.input :email, required: false, label: false, input_html: { autocomplete: "email", class: "w-full p-4 pr-6 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder: "johndoe@example.com" %>
 
               <span class="absolute inset-y-0 inline-flex items-center right-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -94,7 +97,7 @@
           <%= render Forms::LabelComponent.new(optional: false).with_content("Current password") %>
           <%= tag.div data: { controller: "password" } do %>
             <div class="relative">
-              <%= f.input :current_password, autocomplete: "current-password", type: "password", id: "confirm-password", input_html: { class: "w-full p-4 pr-6 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "password-target": "input" } }, placeholder: "•••••••••", validate: { presence: true }, required: true, label: false %>
+              <%= f.input :current_password, autocomplete: "current-password", type: "password", id: "confirm-password", input_html: { class: "w-full p-4 pr-6 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "password-target": "input" } }, placeholder: "•••••••••", required: true, label: false %>
               <%= tag.span class: "absolute inset-y-0 inline-flex items-center right-4", data: { action: "click->password#toggle"} do %>
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-password-target="svg">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

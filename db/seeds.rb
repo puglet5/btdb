@@ -36,12 +36,12 @@ users.each do |user|
   metadata = Faker::Json.shallow_json(width: 3,
                                       options: { key: 'Science.element',
                                                  value: 'Number.decimal(l_digits: 3, r_digits: 3)' })
-  up = Sample.create!(title: title, description: description, category: category, user_id: user.id, experiment_ids: [[nil, Experiment.all.sample.id].sample])
-  up.update!(metadata: metadata)
+  sample = Sample.create!(title: title, description: description, category: category, user_id: user.id, experiment_ids: [[nil, Experiment.all.sample.id].sample])
+  sample.update!(metadata: metadata)
 
   title = Faker::Lorem.sentence
   equipment = Faker::Lorem.sentence
-  date = Date.today - rand(10_000)
+  date = Date.current - rand(10_000)
   category = Measurment.categories.keys.sample
-  up = Measurment.create!(title: title, date: date, equipment: equipment, category: category, user_id: user.id, sample_id: Sample.all.sample.id)
+  Measurment.create!(title: title, date: date, equipment: equipment, category: category, user_id: user.id, sample_id: Sample.all.sample.id)
 end

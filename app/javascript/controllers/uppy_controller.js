@@ -5,7 +5,7 @@ import ActiveStorageUpload from "uppy-activestorage-upload"
 
 export default class extends Controller {
 
-  static targets = ["div", "trigger", "text", "avatar", "avatardiv", "avatarPlaceholder"]
+  static targets = ["div", "trigger", "text", "avatar", "avatarDiv", "avatarPlaceholder"]
 
   static values = {
     filetype: String,
@@ -61,7 +61,7 @@ export default class extends Controller {
         }
         result.successful.forEach(file => {
           appendUploadedFile(element, file, field_name)
-          if (this.hasAvatardivTarget) {
+          if (this.hasAvatarDivTarget) {
             previewAvatar(element, file)
           }
         })
@@ -84,7 +84,7 @@ export default class extends Controller {
         this.avatarTarget.src = file.preview
       }
       else {
-        const avatarDiv = this.avatardivTarget
+        const avatarDiv = this.avatarDivTarget
         let avatar = document.createElement("img")
         avatar.src = file.preview
         const cls = ["object-cover", "rounded-full", "w-20", "h-20", "md:w-40", "md:h-40"]
