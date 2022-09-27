@@ -1,60 +1,59 @@
-<%= tag.div data: { controller: "toggle" }, class: "relative hidden lg:block" do %>
-  <%= tag.div data: { action: "click->toggle#toggle" } do %>
-    <button type="button" class="flex items-center transition rounded-lg group shrink-0">
-      <% if current_user.avatar.attached? %>
-        <%= image_tag current_user.avatar.variant(:small).processed, class: "object-cover w-10 h-10 rounded-full" %>
-      <% else %>
-      <% end %>
+<%= cache current_user do %>
+  <%= tag.div data: { controller: "toggle" }, class: "relative hidden lg:block" do %>
+    <%= tag.div data: { action: "click->toggle#toggle" } do %>
+      <button type="button" class="flex items-center transition rounded-lg group shrink-0">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar.variant(:small).processed, class: "object-cover w-10 h-10 rounded-full" %>
+        <% else %>
+        <% end %>
 
-      <p class="hidden ml-2 text-xs text-left sm:block">
-        <strong class="block font-medium">
-          <%= current_user.name %>
-        </strong>
+        <p class="hidden ml-2 text-xs text-left sm:block">
+          <strong class="block font-medium">
+            <%= current_user.name %>
+          </strong>
 
-        <span class="text-gray-500">
-          <%= current_user.email %>
-        </span>
-      </p>
+          <span class="text-gray-500">
+            <%= current_user.email %>
+          </span>
+        </p>
 
-      <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5 ml-4 text-gray-500 transition sm:block group-hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor" data-toggle-target="svg">
-        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-      </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5 ml-4 text-gray-500 transition sm:block group-hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor" data-toggle-target="svg">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+        </svg>
 
-    </button>
+      </button>
+    <% end %>
+
+    <%= tag.div data: { toggle_target: "toggle" }, class: "absolute right-0 z-10 hidden bg-white top-14 -mt-[4px]" do %>
+      <nav class="flex flex-col w-48 border rounded-md rounded-t-none">
+
+        <%= link_to current_user, class: "flex items-center px-4 py-3 text-gray-500 border-l-[3px] hover:bg-lime-50 hover:border-lime-500 hover:text-lime-700 #{'!text-lime-700 !border-lime-500 !bg-lime-50 hover:bg-lime-100 hover:text-lime-900' if params[:controller] == 'users' && params[:action] == 'show' }" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 opacity-75">
+            <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
+          </svg>
+
+          <span class="ml-3 text-sm font-medium"> Profile page </span>
+        <% end %>
+
+        <%= link_to [:experiments], class: "flex items-center px-4 py-3 text-gray-500 border-l-[3px] hover:bg-lime-50 hover:border-lime-500 hover:text-lime-700" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 opacity-75">
+            <path fill-rule="evenodd" d="M8.5 3.528v4.644c0 .729-.29 1.428-.805 1.944l-1.217 1.216a8.75 8.75 0 013.55.621l.502.201a7.25 7.25 0 004.178.365l-2.403-2.403a2.75 2.75 0 01-.805-1.944V3.528a40.205 40.205 0 00-3 0zm4.5.084l.19.015a.75.75 0 10.12-1.495 41.364 41.364 0 00-6.62 0 .75.75 0 00.12 1.495L7 3.612v4.56c0 .331-.132.649-.366.883L2.6 13.09c-1.496 1.496-.817 4.15 1.403 4.475C5.961 17.852 7.963 18 10 18s4.039-.148 5.997-.436c2.22-.325 2.9-2.979 1.403-4.475l-4.034-4.034A1.25 1.25 0 0113 8.172v-4.56z" clip-rule="evenodd" />
+          </svg>
+
+          <span class="ml-3 text-sm font-medium"> My stuff </span>
+        <% end %>
+
+        <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: "flex items-center px-4 py-3 text-gray-500 border-l-[3px] hover:bg-lime-50 hover:border-lime-500 hover:text-lime-700" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 opacity-75">
+            <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z" clip-rule="evenodd" />
+            <path fill-rule="evenodd" d="M19 10a.75.75 0 00-.75-.75H8.704l1.048-.943a.75.75 0 10-1.004-1.114l-2.5 2.25a.75.75 0 000 1.114l2.5 2.25a.75.75 0 101.004-1.114l-1.048-.943h9.546A.75.75 0 0019 10z" clip-rule="evenodd" />
+          </svg>
+
+          <span class="ml-3 text-sm font-medium"> Logout </span>
+        <% end %>
+      </nav>
+
+    <% end %>
+
   <% end %>
-
-  <%= tag.div data: { toggle_target: "toggle" }, class: "absolute right-0 z-10 hidden bg-white top-14 -mt-[4px]" do %>
-    <nav class="flex flex-col w-48 border rounded-md rounded-t-none">
-
-      <%= link_to current_user, class: "flex items-center px-4 py-3 text-gray-500 border-l-[3px] hover:bg-lime-50 hover:border-lime-500 hover:text-lime-700 #{'!text-lime-700 !border-lime-500 !bg-lime-50 hover:bg-lime-100 hover:text-lime-900' if params[:controller] == 'users' && params[:action] == 'show' }" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 opacity-75">
-          <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" />
-        </svg>
-
-        <span class="ml-3 text-sm font-medium"> Profile page </span>
-      <% end %>
-
-      <%= link_to [:experiments], class: "flex items-center px-4 py-3 text-gray-500 border-l-[3px] hover:bg-lime-50 hover:border-lime-500 hover:text-lime-700" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 opacity-75">
-          <path fill-rule="evenodd" d="M8.5 3.528v4.644c0 .729-.29 1.428-.805 1.944l-1.217 1.216a8.75 8.75 0 013.55.621l.502.201a7.25 7.25 0 004.178.365l-2.403-2.403a2.75 2.75 0 01-.805-1.944V3.528a40.205 40.205 0 00-3 0zm4.5.084l.19.015a.75.75 0 10.12-1.495 41.364 41.364 0 00-6.62 0 .75.75 0 00.12 1.495L7 3.612v4.56c0 .331-.132.649-.366.883L2.6 13.09c-1.496 1.496-.817 4.15 1.403 4.475C5.961 17.852 7.963 18 10 18s4.039-.148 5.997-.436c2.22-.325 2.9-2.979 1.403-4.475l-4.034-4.034A1.25 1.25 0 0113 8.172v-4.56z" clip-rule="evenodd" />
-        </svg>
-
-        <span class="ml-3 text-sm font-medium"> My stuff </span>
-      <% end %>
-
-      <%= link_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: "flex items-center px-4 py-3 text-gray-500 border-l-[3px] hover:bg-lime-50 hover:border-lime-500 hover:text-lime-700" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 opacity-75">
-          <path fill-rule="evenodd" d="M3 4.25A2.25 2.25 0 015.25 2h5.5A2.25 2.25 0 0113 4.25v2a.75.75 0 01-1.5 0v-2a.75.75 0 00-.75-.75h-5.5a.75.75 0 00-.75.75v11.5c0 .414.336.75.75.75h5.5a.75.75 0 00.75-.75v-2a.75.75 0 011.5 0v2A2.25 2.25 0 0110.75 18h-5.5A2.25 2.25 0 013 15.75V4.25z" clip-rule="evenodd" />
-          <path fill-rule="evenodd" d="M19 10a.75.75 0 00-.75-.75H8.704l1.048-.943a.75.75 0 10-1.004-1.114l-2.5 2.25a.75.75 0 000 1.114l2.5 2.25a.75.75 0 101.004-1.114l-1.048-.943h9.546A.75.75 0 0019 10z" clip-rule="evenodd" />
-        </svg>
-
-        <span class="ml-3 text-sm font-medium"> Logout </span>
-      <% end %>
-    </nav>
-
-  <% end %>
-
 <% end %>
-<div class="flex flex-col hidden mt-1.5">
-
-</div>
