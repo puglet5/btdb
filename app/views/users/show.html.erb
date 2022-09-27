@@ -7,11 +7,14 @@
             <span class="relative flex w-20 h-20 m-auto rounded-full bg-primary-300 lg:w-40 lg:h-40">
               <% if @user.avatar.present? %>
                 <%= image_tag @user.avatar, class: "object-cover w-20 h-20 rounded-full lg:w-40 lg:h-40" %>
+              <% else %>
+                <div class="object-cover w-full h-full bg-gray-300 rounded-full lg:w-40 lg:h-40">
+                </div>
               <% end %>
               <% if @user == current_user %>
-                <%= link_to edit_user_registration_path do %>
+                <%= link_to edit_user_registration_path, class: "absolute top-0 right-0 -mr-4" do %>
                   <%= render TooltipComponent.new(tooltip: "Edit") do %>
-                    <span class="absolute top-0 right-0 -mr-4">
+                    <span class="">
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                       </svg>

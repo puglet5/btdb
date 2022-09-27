@@ -5,7 +5,7 @@ import ActiveStorageUpload from "uppy-activestorage-upload"
 
 export default class extends Controller {
 
-  static targets = ["div", "trigger", "text", "avatar", "avatardiv"]
+  static targets = ["div", "trigger", "text", "avatar", "avatardiv", "avatarPlaceholder"]
 
   static values = {
     filetype: String,
@@ -89,6 +89,7 @@ export default class extends Controller {
         avatar.src = file.preview
         const cls = ["object-cover", "rounded-full", "w-20", "h-20", "md:w-40", "md:h-40"]
         avatar.classList.add(...cls)
+        this.avatarPlaceholderTarget.remove()
         avatarDiv.prepend(avatar)
       }
     }

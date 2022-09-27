@@ -23,6 +23,9 @@
               <%= tag.div data: { "uppy-target": "avatardiv" } do %>
                 <% if resource.avatar.attached? %>
                   <%= image_tag resource.avatar, class: "object-cover w-20 h-20 rounded-full md:w-40 md:h-40", data: {"uppy-target": "avatar"} %>
+                <% else %>
+                  <div class="w-20 h-20 bg-gray-300 rounded-full md:w-40 md:h-40" data-uppy-target="avatarPlaceholder">
+                  </div>
                 <% end %>
               <% end %>
               <div class="">
