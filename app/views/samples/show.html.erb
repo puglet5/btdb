@@ -72,11 +72,11 @@
 
       <div class="w-full col-span-9 bg-white border-l rounded-r-lg">
 
-        <div class="h-40">
-          <% if @sample.thumbnail.attached? %>
+        <% if @sample.thumbnail.attached? %>
+          <div class="h-40">
             <%= image_tag @sample.thumbnail.variant(:thumbnail).processed, class: "object-cover w-full h-full rounded-tr-lg" %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
 
         <div id="sample" class="p-8 pt-4 border-b">
           <div class="flex justify-between">
