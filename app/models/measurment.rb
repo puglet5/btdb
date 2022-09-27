@@ -24,4 +24,5 @@ class Measurment < ApplicationRecord
   enum category: { not_set: 0, spectrum: 1 }, _suffix: :category
 
   validates :title, presence: true
+  validates :date, presence: true
 end

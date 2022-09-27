@@ -59,6 +59,7 @@ class MeasurmentsController < ApplicationController
   def measurment_params
     params.require(:measurment).permit(
       :title,
+      :date,
       :category,
       :equipment,
       equipment_settings: [],
