@@ -9,17 +9,18 @@ RSpec.describe '/measurments', type: :request do
 
   let(:valid_attributes) do
     {
-      'title' => 'test title',
-      'user_id' => user.id,
-      'sample_id' => sample.id
+      title: 'test title',
+      user_id: user.id,
+      sample_id: sample.id,
+      date: DateTime.current.to_date
     }
   end
 
   let(:invalid_attributes) do
     {
-      'title' => nil,
-      'user_id' => user.id,
-      'sample_id' => sample.id
+      title: nil,
+      user_id: user.id,
+      sample_id: sample.id
     }
   end
 
