@@ -33,8 +33,8 @@ class User < ApplicationRecord
   has_many :measurments, dependent: :nullify
 
   has_one_attached :avatar do |blob|
-    blob.variant :small, resize: '50x50^', crop: '50x50+0+0'
-    blob.variant :medium, resize: '100x100^', crop: '100x100+0+0'
+    blob.variant :small, resize: '50x50^', crop: '50x50+0+0', format: :jpg
+    blob.variant :medium, resize: '100x100^', crop: '100x100+0+0', format: :jpg
   end
 
   def author?(obj)

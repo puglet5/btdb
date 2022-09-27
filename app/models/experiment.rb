@@ -34,7 +34,7 @@ class Experiment < ApplicationRecord
   has_rich_text :description
 
   has_many_attached :images do |blob|
-    blob.variant :thumbnail, resize: '400x300^', crop: '400x300+0+0'
+    blob.variant :thumbnail, resize: '400x300^', crop: '400x300+0+0', format: :jpg
   end
 
   has_many_attached :files
