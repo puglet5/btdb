@@ -12,6 +12,7 @@
 #  updated_at :datetime         not null
 #  equipment  :string           default(""), not null
 #  category   :integer          default("not_set"), not null
+#  date       :date
 #
 FactoryBot.define do
   factory :measurment do
