@@ -529,7 +529,7 @@ __metadata:
     postcss-nested: ^5.0.6
     tailwind-config-viewer: ^1.7.2
     tailwindcss: ^3.1.8
-    tom-select: ^2.2.0
+    tom-select: ^2.2.1
     trix: ^2.0.0-beta.0
     uppy-activestorage-upload: "https://github.com/puglet5/uppy-activestorage-upload"
   languageName: unknown
@@ -3939,13 +3939,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tom-select@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "tom-select@npm:2.2.0"
+"tom-select@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "tom-select@npm:2.2.1"
   dependencies:
     "@orchidjs/sifter": ^1.0.1
     "@orchidjs/unicode-variants": ^1.0.2
-  checksum: fa34f5e50c1cb2d87147322bd6ec6477996080ace54730b21c21f7c077cd2f28a8eeadd6b94af91f04c8dfc09de3351a052eebbb985e08fe4dd97c15d35ec026
+  checksum: d51fc44cec81b363aee41dfad0d9ff83414f7521349fd1c422e2ba9b231bc92e6b7e7857e3348bdfa84994c7867f50b2164eae2428a2dac5b1c1102a4a15cbbd
   languageName: node
   linkType: hard
 
