@@ -2,29 +2,28 @@
   <div class="flex space-x-2">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <polyline points="7 8 3 12 7 16"></polyline>
-      <polyline points="17 8 21 12 17 16"></polyline>
-      <line x1="14" y1="4" x2="10" y2="20"></line>
+      <path d="M15 3v4a1 1 0 0 0 1 1h4"></path>
+      <path d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z"></path>
+      <path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2"></path>
     </svg>
-    <span>Metadata</span>
+    <span>Files</span>
   </div>
   <div class="p-2 ml-2 text-sm text-justify text-gray-500">
-    <%= ap sample.metadata || "Not set" %>
+    <%= "Test" %>
   </div>
 </div>
 <div class="ml-2">
   <div class="flex space-x-2">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-      <rect x="4" y="5" width="16" height="16" rx="2"></rect>
-      <line x1="16" y1="3" x2="16" y2="7"></line>
-      <line x1="8" y1="3" x2="8" y2="7"></line>
-      <line x1="4" y1="11" x2="20" y2="11"></line>
-      <rect x="8" y="15" width="2" height="2"></rect>
+      <line x1="15" y1="8" x2="15.01" y2="8"></line>
+      <rect x="4" y="4" width="16" height="16" rx="3"></rect>
+      <path d="M4 15l4 -4a3 5 0 0 1 3 0l5 5"></path>
+      <path d="M14 14l1 -1a3 5 0 0 1 3 0l2 2"></path>
     </svg>
-    <span>Survey date</span>
+    <span>Images</span>
   </div>
   <div class="p-2 ml-2 text-sm text-justify text-gray-500">
-    <%= sample.survey_date || "Not set" %>
+    <%= "Test" %>
   </div>
 </div>

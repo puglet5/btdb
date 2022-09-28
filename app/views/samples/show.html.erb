@@ -56,7 +56,7 @@
                 </div>
               </div>
             </li>
-            <% @sample.measurments.each do |measurment| %>
+            <% @measurments.each do |measurment| %>
               <li class="w-full">
                 <%= tag.div data: { "tabs-target": "tab" }, id: "measurment-#{measurment.id}-tab", class: "hover:bg-gray-100" do %>
                   <div class="inline-block w-full p-4 text-center cursor-pointer" data-action="click->tabs#switch">
@@ -81,9 +81,19 @@
         <div id="sample" class="p-8 pt-4 border-b">
           <div class="flex justify-between">
             <div class="flex">
+
               <%= render SampleCategoryBadgeComponent.new(category: @sample.category, cls: "my-auto").with_content(@sample.category.humanize.downcase) %>
+              <div class="my-auto mr-2 text-sm text-gray-500">
+                ·
+              </div>
+              <span class="my-auto mr-2 text-xs font-medium text-gray-500">
+                id: <%= @sample.id %>
+              </span>
 
               <% if @sample.experiments.count > 0 %>
+                <div class="my-auto mr-2 text-sm text-gray-500">
+                  ·
+                </div>
                 <div class="my-auto text-xs font-medium text-gray-500">
                   Linked to:
                   <% @sample.experiments.each do |experiment| %>
@@ -140,11 +150,10 @@
           <% end %>
 
           <%= tag.div data: { "tabs-target": "panel" }, id: "files-panel", class: "hidden p-4 bg-white rounded-br-lg md:p-8 md:pt-4" do %>
-            <%= render SectionLabelComponent.new().with_content("Images") %>
-            <%= render SectionLabelComponent.new().with_content("Other files") %>
+            <%= render "files_panel", sample: @sample %>
           <% end %>
 
-          <% @sample.measurments.each do |measurment| %>
+          <% @measurments.each do |measurment| %>
             <%= tag.div data: { "tabs-target": "panel" }, id: "measurment-#{measurment.id}-panel", class: "hidden p-4 bg-white rounded-br-lg md:p-8 md:pt-4" do %>
               <%= render "measurment_panel", measurment: measurment %>
             <% end %>

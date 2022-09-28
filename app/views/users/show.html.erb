@@ -36,21 +36,24 @@
           </div>
         </div>
         <div class="col-span-6 border-l">
-          <h4 class="mb-4 ml-4 font-medium text-l">Settings</h4>
-          <% if policy(@user).update_settings? %>
-            <%= simple_form_for @user, url: update_settings_user_path, html: { method: :patch }, validate: true do |f| %>
-              <div class="mx-8 mb-4">
-                <div class="flex items-center">
-                  <%= hidden_field_tag "user[settings[uppy][thumbnails]]", false %>
-                  <% checked =  @user.settings(:uppy).thumbnails ? "checked" : 0 %>
-                  <%= f.check_box "settings[uppy][thumbnails]", { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-500 focus:ring-lime-500 focus:ring-2 text-lime-600", checked: checked }, true, false %>
-                  <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 ">Thumbnails in forms</label>
+          <% if @user == current_user %>
+
+            <h4 class="mb-4 ml-4 font-medium text-l">Settings</h4>
+            <% if policy(@user).update_settings? %>
+              <%= simple_form_for @user, url: update_settings_user_path, html: { method: :patch }, validate: true do |f| %>
+                <div class="mx-8 mb-4">
+                  <div class="flex items-center">
+                    <%= hidden_field_tag "user[settings[uppy][thumbnails]]", false %>
+                    <% checked =  @user.settings(:uppy).thumbnails ? "checked" : 0 %>
+                    <%= f.check_box "settings[uppy][thumbnails]", { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-500 focus:ring-lime-500 focus:ring-2 text-lime-600", checked: checked }, true, false %>
+                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 ">Thumbnails in forms</label>
+                  </div>
+                  <%= render Forms::PHelperComponent.new().with_content("Disable thumbnail generation when uploading images if you experience any problems") %>
                 </div>
-                <%= render Forms::PHelperComponent.new().with_content("Disable thumbnail generation when uploading images if you experience any problems") %>
-              </div>
-              <div class="mb-4 ml-4">
-                <%= f.submit "Update", class: "inline-block p-2 text-xs font-medium text-white border-none rounded-lg bg-lime-600 hover:bg-lime-700" %>
-              </div>
+                <div class="mb-4 ml-4">
+                  <%= f.submit "Update", class: "inline-block p-2 text-xs font-medium text-white border-none rounded-lg bg-lime-600 hover:bg-lime-700" %>
+                </div>
+              <% end %>
             <% end %>
 
           <% end %>
