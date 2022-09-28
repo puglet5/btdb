@@ -20,6 +20,8 @@ class SamplesController < ApplicationController
 
   def show
     authorize @sample
+
+    @measurments = @sample.measurments.order('date DESC')
   end
 
   def new
