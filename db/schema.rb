@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_27_141622) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_30_195549) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -123,6 +123,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_27_141622) do
     t.index ["target_type", "target_id"], name: "index_settings_on_target_type_and_target_id"
   end
 
+  create_table "spectra", force: :cascade do |t|
+    t.bigint "measurment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["measurment_id"], name: "index_spectra_on_measurment_id"
+  end
+
+  create_table "spectrums", force: :cascade do |t|
+    t.bigint "measurment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["measurment_id"], name: "index_spectrums_on_measurment_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -150,4 +164,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_27_141622) do
   add_foreign_key "experiments", "users"
   add_foreign_key "measurments", "samples"
   add_foreign_key "measurments", "users"
+  add_foreign_key "spectra", "measurments"
+  add_foreign_key "spectrums", "measurments"
 end

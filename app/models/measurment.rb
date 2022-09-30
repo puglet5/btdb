@@ -18,7 +18,9 @@ class Measurment < ApplicationRecord
   belongs_to :sample, touch: true
   belongs_to :user
 
-  has_many_attached :spectra
+  has_many :spectra, dependent: :destroy
+  has_many :file_attachments, through: :spectra, dependent: :destroy
+
   has_many_attached :equipment_settings
 
   has_rich_text :description
