@@ -15,7 +15,8 @@ class SamplesController < ApplicationController
                .order('created_at desc')
 
     @query = @samples.ransack(params[:query])
-    @samples = @query.result(distinct: true).order('created_at DESC')
+    result = @query.result(distinct: true).order('created_at DESC')
+    @pagy, @samples = pagy result
   end
 
   def show
