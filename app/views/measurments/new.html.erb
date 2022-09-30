@@ -1,24 +1,90 @@
-<h1>New measurment</h1>
+<%= render "shared/errors", obj: @measurment %>
 
-<%= simple_form_for([@sample, @measurment], validate: true) do |f| %>
+<div class="max-w-screen-xl px-4 py-24 mx-auto sm:px-6 lg:px-8">
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :date, as: :date, html5: true %>
-    <%= f.input :category, collection: Measurment.categories.keys %>
-    <%= f.input :equipment %>
-    <%= f.input :spectra, input_html: { multiple: true } %>
-    <%= f.input :equipment_settings, input_html: { multiple: true } %>
-
+  <div class="flex items-center justify-center">
+    <h1 class="font-bold tracking-widef mb-text-2xl sm:text-3xl">New Measurment</h1>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+  <%= simple_form_for [@sample, @measurment], validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" } do |f| %>
 
-<br>
+    <%= render SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
 
-<div>
-  <%= link_to "Back to measurments", @sample %>
+    <div class="grid grid-cols-2 space-x-8">
+
+      <div class="mb-4 ml-8 ">
+        <%= render Forms::LabelComponent.new(optional: false).with_content("Title/Name") %>
+        <div class="relative">
+          <%= tag.div data: { controller: "input" } do %>
+            <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder: "Measurment" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <%= tag.div data: { controller: "datepicker" } do %>
+          <%= render Forms::LabelComponent.new(optional: false).with_content("Measurment date") %>
+          <%= f.input :date, as: :string, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { datepicker_target: "input" } }, placeholder: "DD/MM/YYYY", validate: { presence: true } %>
+        <% end %>
+      </div>
+
+      <div class="col-span-2 mb-4">
+        <%= render Forms::LabelComponent.new().with_content("Description") %>
+        <%= f.input :description, as: :rich_text_area, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm" }, label: false %>
+        <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("You can edit the content and attach images with buttons above. ") %>
+      </div>
+
+      <div class="mb-4">
+        <%= render Forms::LabelComponent.new() do %>
+          Category/Type
+        <% end %>
+        <%= f.input :category, default: @measurment.category, collection: Measurment.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-6 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
+      </div>
+    </div>
+
+    <%= render SectionLabelComponent.new(cls: "text-gray-700").with_content("Files") %>
+    <div class="grid grid-cols-2 space-x-8">
+
+      <%= tag.div class: "mb-4 ml-8", data: {
+                                      controller: "uppy",
+                                      uppy: "measurment[spectra][]",
+                                      uppy_target: "div",
+                                      uppy_filetype_value: "files",
+                                      uppy_allowedfiletypes_value: nil,
+                                      uppy_allowmultiple_value: true,
+                                      uppy_thumbnails_value: current_user.settings(:uppy).thumbnails
+        } do %>
+        <%= render Forms::LabelComponent.new().with_content("Spectra files") %>
+        <%= tag.div class: "flex items-center justify-center w-full p-2 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
+          <p class="text-center" data-uppy-target="text">
+            Browse...
+          </p>
+        <% end %>
+        <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("Files of any type and size.") %>
+      <% end %>
+
+      <%= tag.div class: "mb-4 ml-8", data: {
+                                      uppy: "measurment[equipment_settings][]",
+                                      controller: "uppy",
+                                      uppy_target: "div",
+                                      uppy_filetype_value: "files",
+                                      uppy_allowedfiletypes_value: nil,
+                                      uppy_allowmultiple_value: true,
+                                      uppy_thumbnails_value: current_user.settings(:uppy).thumbnails
+         } do %>
+        <%= render Forms::LabelComponent.new().with_content("Device/equipment settings") %>
+        <%= tag.div class: "flex items-center justify-center w-full p-2 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
+          <p class="text-center" data-uppy-target="text">
+            Browse...
+          </p>
+        <% end %>
+        <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("Files of any type and size.") %>
+      <% end %>
+    </div>
+
+    <div class="ml-4 form-actions">
+      <%= f.submit "Create Measurment", class: "inline-block px-5 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
+      <%= link_to "Back to sample", [@sample], class: "text-sm text-gray-500 hover:underline" %>
+    </div>
+  <% end %>
 </div>

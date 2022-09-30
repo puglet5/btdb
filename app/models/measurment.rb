@@ -21,6 +21,8 @@ class Measurment < ApplicationRecord
   has_many_attached :spectra
   has_many_attached :equipment_settings
 
+  has_rich_text :description
+
   enum category: { not_set: 0, spectrum: 1 }, _suffix: :category
 
   validates :title, presence: true

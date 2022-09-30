@@ -62,6 +62,7 @@ class MeasurmentsController < ApplicationController
       :date,
       :category,
       :equipment,
+      :description,
       equipment_settings: [],
       spectra: []
     )
