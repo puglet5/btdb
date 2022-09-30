@@ -44,6 +44,7 @@ module Btdb
     config.generators do |g|
       g.view_specs false
       g.helper_specs false
+      g.component_specs false
     end
   end
 end
