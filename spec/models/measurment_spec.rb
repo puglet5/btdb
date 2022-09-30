@@ -14,7 +14,6 @@
 #  category   :integer          default("not_set"), not null
 #  date       :date
 #
-require 'rails_helper'
 
 RSpec.describe Measurment, type: :model do
   context 'associations' do

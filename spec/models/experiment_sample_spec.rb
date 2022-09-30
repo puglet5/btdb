@@ -10,7 +10,6 @@
 #  updated_at    :datetime         not null
 #  sample_id     :integer
 #
-require 'rails_helper'
 
 RSpec.describe ExperimentSample, type: :model do
   describe 'associations' do

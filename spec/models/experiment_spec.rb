@@ -17,7 +17,6 @@
 #  user_id    :bigint
 #  metadata   :jsonb            not null
 #
-require 'rails_helper'
 
 RSpec.describe Experiment, type: :model do
   let(:user) { create(:user) }

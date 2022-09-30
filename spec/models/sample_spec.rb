@@ -13,7 +13,6 @@
 #  metadata    :jsonb            not null
 #  survey_date :datetime
 #
-require 'rails_helper'
 
 RSpec.describe Sample, type: :model do
   it { should have_many(:experiments) }
