@@ -63,8 +63,8 @@ class MeasurmentsController < ApplicationController
       :category,
       :equipment,
       :description,
-      equipment_settings: [],
-      spectra: []
+      spectra_ids: [],
+      equipment_settings: []
     )
   end
 end
