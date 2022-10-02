@@ -45,22 +45,24 @@
     <%= render SectionLabelComponent.new(cls: "text-gray-700").with_content("Files") %>
     <div class="grid grid-cols-2 space-x-8">
 
-      <%= tag.div class: "mb-4 ml-8", data: {
+      <%= f.simple_fields_for :spectra do |image_form| %>
+        <%= tag.div class: "mb-4 ml-8", data: {
                                       controller: "uppy",
-                                      uppy: "measurment[spectra][]",
+                                      uppy: "measurment[spectra_attributes][][file]",
                                       uppy_target: "div",
                                       uppy_filetype_value: "files",
                                       uppy_allowedfiletypes_value: nil,
                                       uppy_allowmultiple_value: true,
                                       uppy_thumbnails_value: current_user.settings(:uppy).thumbnails
         } do %>
-        <%= render Forms::LabelComponent.new().with_content("Spectra files") %>
-        <%= tag.div class: "flex items-center justify-center w-full p-2 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
-          <p class="text-center" data-uppy-target="text">
-            Browse...
-          </p>
+          <%= render Forms::LabelComponent.new().with_content("Spectra files") %>
+          <%= tag.div class: "flex items-center justify-center w-full p-2 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
+            <p class="text-center" data-uppy-target="text">
+              Browse...
+            </p>
+          <% end %>
+          <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("Files of any type and size.") %>
         <% end %>
-        <%= render Forms::PHelperComponent.new(cls: "!ml-2").with_content("Files of any type and size.") %>
       <% end %>
 
       <%= tag.div class: "mb-4 ml-8", data: {
