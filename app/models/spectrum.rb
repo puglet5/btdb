@@ -10,7 +10,7 @@
 #  updated_at    :datetime         not null
 #
 class Spectrum < ApplicationRecord
-  belongs_to :measurment
+  belongs_to :measurment, inverse_of: :spectra
 
   has_one_attached :file
 end

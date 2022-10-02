@@ -6,6 +6,7 @@ class MeasurmentsController < ApplicationController
 
   def new
     @measurment = @sample.measurments.build
+    @measurment.spectra.build
 
     authorize @measurment
   end
@@ -21,8 +22,10 @@ class MeasurmentsController < ApplicationController
     authorize @measurment
 
     if @measurment.save
-      redirect_to [@sample], notice: 'Measurment was successfully created.'
+      flash[:success] = 'Measurment was successfully created.'
+      redirect_to @sample
     else
+      @measurment.spectra.build
       render :new, status: :unprocessable_entity
     end
   end
@@ -63,6 +66,7 @@ class MeasurmentsController < ApplicationController
       :category,
       :equipment,
       :description,
+      spectra_attributes: %i[id file],
       spectra_ids: [],
       equipment_settings: []
     )
