@@ -98,7 +98,9 @@
                   Linked to:
                   <% @sample.experiments.each do |experiment| %>
                     <%= link_to experiment.title.truncate(20), experiment, class: "font-bold hover:underline" %>
-                    <%= "&middot;" unless experiment == @sample.experiments.last %>
+                    <% unless experiment == @sample.experiments.last %>
+                      &middot;
+                    <% end %>
                   <% end %>
                 </div>
               <% end %>
