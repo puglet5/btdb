@@ -84,7 +84,7 @@
 
               <%= render SampleCategoryBadgeComponent.new(category: @sample.category, cls: "my-auto").with_content(@sample.category.humanize.downcase) %>
               <div class="my-auto mr-2 text-sm text-gray-500">
-                ·
+                &middot;
               </div>
               <span class="my-auto mr-2 text-xs font-medium text-gray-500">
                 id: <%= @sample.id %>
@@ -92,13 +92,13 @@
 
               <% if @sample.experiments.count > 0 %>
                 <div class="my-auto mr-2 text-sm text-gray-500">
-                  ·
+                  &middot;
                 </div>
                 <div class="my-auto text-xs font-medium text-gray-500">
                   Linked to:
                   <% @sample.experiments.each do |experiment| %>
                     <%= link_to experiment.title.truncate(20), experiment, class: "font-bold hover:underline" %>
-                    <%= "·" unless experiment == @sample.experiments.last %>
+                    <%= "&middot;" unless experiment == @sample.experiments.last %>
                   <% end %>
                 </div>
               <% end %>
