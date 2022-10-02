@@ -35,7 +35,9 @@
       <%= cache @samples do %>
         <%= render @samples %>
       <% end %>
-      <%== pagy_nav(@pagy) %>
+      <% if @pagy.pages > 1 %>
+        <%== pagy_nav(@pagy) %>
+      <% end %>
     <% else %>
       <div class="relative p-8 text-center bg-white border border-gray-200 rounded-lg">
         <h2 class="text-2xl font-medium">

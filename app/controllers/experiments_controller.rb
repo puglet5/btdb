@@ -15,7 +15,8 @@ class ExperimentsController < ApplicationController
                    .order('created_at desc')
 
     @query = @experiments.ransack(params[:query])
-    @experiments = @query.result(distinct: true).order('created_at DESC')
+    result = @query.result(distinct: true).order('created_at DESC')
+    @pagy, @experiments = pagy result
   end
 
   def show
