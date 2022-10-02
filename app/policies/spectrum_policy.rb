@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SamplePolicy < ApplicationPolicy
+class SpectrumPolicy < ApplicationPolicy
   def create?
     true
   end
