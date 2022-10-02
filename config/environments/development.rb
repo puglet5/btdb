@@ -57,7 +57,7 @@ Rails.application.configure do
   config.rails_semantic_logger.started    = false
   config.rails_semantic_logger.processing = true
   config.rails_semantic_logger.rendered   = false
-  config.log_level = :info
+  config.log_level = :debug
   config.rails_semantic_logger.quiet_assets = true
   config.rails_semantic_logger.ap_options = { multiline: true }
   config.rails_semantic_logger.format = :color
