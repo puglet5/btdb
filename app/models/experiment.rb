@@ -28,8 +28,8 @@ class Experiment < ApplicationRecord
 
   validates :title, :author, presence: true
 
-  enum status: { not_set: 0, ongoing: 1, cancelled: 2, finished: 3 }
-  enum category: { not_set: 0, processed_meat: 1, phantom: 2, mixed: 3 }, _suffix: :category
+  enum status: { not_set: 0, ongoing: 1, cancelled: 2, finished: 3 }, _default: :not_set
+  enum category: { not_set: 0, processed_meat: 1, phantom: 2, mixed: 3 }, _suffix: :category, _default: :not_set
 
   has_rich_text :description
 

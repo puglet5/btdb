@@ -25,7 +25,7 @@ class Measurment < ApplicationRecord
 
   has_rich_text :description
 
-  enum category: { not_set: 0, spectrum: 1 }, _suffix: :category
+  enum category: { not_set: 0, spectrum: 1 }, _suffix: :category, _default: :not_set
 
   validates :title, presence: true
   validates :date, presence: true

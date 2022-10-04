@@ -37,7 +37,7 @@ class Sample < ApplicationRecord
 
   has_many_attached :files
 
-  enum category: { not_set: 0, processed_meat: 1, phantom: 2, mixed: 3 }, _suffix: :category
+  enum category: { not_set: 0, processed_meat: 1, phantom: 2, mixed: 3 }, _suffix: :category, _default: :not_set
 
   validates :title, presence: true
 
