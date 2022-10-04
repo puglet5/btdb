@@ -21,7 +21,7 @@
       </span>
     </div>
     <div id="controls" class="flex flex-row items-center justify-center mx-1 space-x-0">
-      <%= render TooltipComponent.new(tooltip: "Edit") do %>
+      <%= render TooltipComponent.new(tooltip: "Edit", user: current_user) do %>
         <%= link_to [:edit, @sample, measurment] do %>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 my-auto text-gray-400">
             <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
@@ -30,7 +30,7 @@
         <% end %>
       <% end %>
 
-      <%= render TooltipComponent.new(tooltip: "Delete") do %>
+      <%= render TooltipComponent.new(tooltip: "Delete", user: current_user) do %>
         <%= link_to [@sample, measurment], data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" } do %>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400">
             <path fill-rule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clip-rule="evenodd" />
@@ -79,9 +79,19 @@
       <path d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z"></path>
       <path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2"></path>
     </svg>
-    <span>Files</span>
+    <span>Spectra</span>
   </div>
-  <div class="p-2 ml-2 text-sm text-justify text-gray-500">
-    The last Case saw of Chiba were the dark angles of the car’s floor. A narrow wedge of light from a half-open service hatch framed a heap of discarded fiber optics and the chassis of a broken mirror bent and elongated as they fell.
-  </div>
+  <ul class="grid w-full gap-6 mt-4 md:grid-cols-3">
+    <% measurment.spectra.each do |spectrum| %>
+      <li>
+        <div class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer hover:text-gray-600 ">
+          <div class="block">
+            <div class="w-full text-lg font-semibold">Spectrum</div>
+            <div class="w-full text-sm">id: <%= spectrum.id %></div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
 </div>

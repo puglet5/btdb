@@ -31,7 +31,7 @@
           <%= tag.div data: { controller: "input" } do %>
             <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "Here be dragons" %>
             <span class="absolute inset-y-0 inline-flex items-center right-4">
-              <%= render TooltipComponent.new(tooltip: "required") do %>
+              <%= render TooltipComponent.new(tooltip: "required", user: current_user) do %>
                 <svg data-input-target="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
@@ -47,7 +47,7 @@
           <%= tag.div data: { controller: "input" } do %>
             <%= f.input :author, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "John Doe" %>
             <span class="absolute inset-y-0 inline-flex items-center right-4">
-              <%= render TooltipComponent.new(tooltip: "required") do %>
+              <%= render TooltipComponent.new(tooltip: "required", user: current_user) do %>
                 <svg data-input-target="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
@@ -92,7 +92,7 @@
         <%= tag.div data: { controller: "datepicker" } do %>
           <%= render Forms::LabelComponent.new() do %>
             Close date
-            <%= render PopoverComponent.new(text: "These are the generations of the LORD God said, See, I have given every green plant for food. Thorns and thistles it shall bring forth children, yet your desire shall be for signs and for seasons and for seasons and for days and years.", cls: "!py-0") do %>
+            <%= render PopoverComponent.new(text: "These are the generations of the LORD God said, See, I have given every green plant for food. Thorns and thistles it shall bring forth children, yet your desire shall be for signs and for seasons and for seasons and for days and years.", cls: "!py-0", user: current_user) do %>
               <svg class="w-4 h-4 text-gray-400 hover:text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path>
               </svg>
               <span class="sr-only">Show information</span>
@@ -156,7 +156,7 @@
           <% end %>
           <% if @experiment.images&.count > 0 %>
             <%= tag.div data: { controller: "modal" } do %>
-              <%= render TooltipComponent.new(tooltip: "Show attached images", cls: "hover:bg-gray-100 !p-0 !ml-2") do %>
+              <%= render TooltipComponent.new(tooltip: "Show attached images", cls: "hover:bg-gray-100 !p-0 !ml-2", user: current_user) do %>
                 <%= tag.div class: "w-10 h-full p-2 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg cursor-pointer c hover:bg-gray-100 py-auto", data: { action: "click->modal#toggle" } do %>
 
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 m-auto">
@@ -190,7 +190,7 @@
             </p>
           <% end %>
           <% if @experiment.files&.count > 0 %>
-            <%= render TooltipComponent.new(tooltip: "Show attached documents", cls: "hover:bg-gray-100 !p-0 !ml-2") do %>
+            <%= render TooltipComponent.new(tooltip: "Show attached documents", cls: "hover:bg-gray-100 !p-0 !ml-2", user: current_user) do %>
               <div class="w-10 h-full p-2 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 py-auto">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 m-auto">
                   <path d="M7 3.5A1.5 1.5 0 018.5 2h3.879a1.5 1.5 0 011.06.44l3.122 3.12A1.5 1.5 0 0117 6.622V12.5a1.5 1.5 0 01-1.5 1.5h-1v-3.379a3 3 0 00-.879-2.121L10.5 5.379A3 3 0 008.379 4.5H7v-1z" />

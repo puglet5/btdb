@@ -14,6 +14,8 @@ class UsersController < ApplicationController
       case key
       when 'uppy'
         value['thumbnails'] = ActiveModel::Type::Boolean.new.cast(value['thumbnails'])
+      when 'ui'
+        value['tooltips'] = ActiveModel::Type::Boolean.new.cast(value['tooltips'])
       end
 
       @user.settings(key.to_sym).update! value
@@ -25,7 +27,8 @@ class UsersController < ApplicationController
   def setting_params
     params.require(:user).permit(settings:
                                   {
-                                    uppy: :thumbnails
+                                    uppy: :thumbnails,
+                                    ui: :tooltips
                                   })
   end
 end
