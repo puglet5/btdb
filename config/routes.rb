@@ -10,13 +10,13 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :samples do
-    resources :measurments, only: %w[new edit update create destroy]
+    resources :measurments, only: %i[new edit update create destroy]
   end
 
   resources :experiments
 
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
-  resources :users, only: ['show'] do
+  devise_for :users, path: '', path_names: { sign_in: :login, sign_out: :logout, sign_up: :register }
+  resources :users, only: %i[show] do
     member do
       patch :update_settings
     end
