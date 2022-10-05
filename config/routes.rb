@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   authenticate :user, ->(user) { user.has_role?('admin') } do
-    mount Sidekiq::Web => 'admin/sidekiq'
+    mount Sidekiq::Web => '/admin/sidekiq'
+    mount Rswag::Ui::Engine => '/admin/api-docs'
+    mount Rswag::Api::Engine => '/admin/api-docs'
   end
 
   resources :samples do
