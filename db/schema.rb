@@ -207,7 +207,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_000837) do
   add_foreign_key "measurments", "samples"
   add_foreign_key "measurments", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
   add_foreign_key "spectra", "measurments"
   add_foreign_key "spectrums", "measurments"
 end

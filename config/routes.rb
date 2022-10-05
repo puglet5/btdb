@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   authenticate :user, ->(user) { user.has_role?('admin') } do
-    use_doorkeeper
     mount Sidekiq::Web => 'admin/sidekiq'
   end
 
@@ -34,7 +33,7 @@ Rails.application.routes.draw do
   scope :api do
     scope :v1 do
       use_doorkeeper do
-        skip_controllers :authorization, :applications, :authorized_applications
+        skip_controllers :authorization, :authorized_applications
       end
     end
   end
