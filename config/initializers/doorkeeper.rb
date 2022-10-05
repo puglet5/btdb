@@ -1,16 +1,10 @@
 # frozen_string_literal: true
 
 Doorkeeper.configure do
-  # Change the ORM that doorkeeper will use (requires ORM extensions installed).
-  # Check the list of supported ORMs here: https://github.com/doorkeeper-gem/doorkeeper#orms
   orm :active_record
 
-  # This block will be called to check whether the resource owner is authenticated or not.
   # resource_owner_authenticator do
-  #   raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
-  #   # Put your resource owner authentication logic here.
-  #   # Example implementation:
-  #   #   User.find_by(id: session[:user_id]) || redirect_to(new_user_session_url)
+  #   current_user || warden.authenticate!(scope: :user)
   # end
 
   resource_owner_from_credentials do
@@ -19,16 +13,11 @@ Doorkeeper.configure do
 
   grant_flows %w[password]
 
-  # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
-  # file then you need to declare this block in order to restrict access to the web interface for
-  # adding oauth authorized applications. In other case it will return 403 Forbidden response
-  # every time somebody will try to access the admin web interface.
-  #
   admin_authenticator do
     if current_user
-      head :forbidden unless current_user.has_role? :admin
+      redirect_to root_path, notice: 'You are not authorized to access this resource.' unless current_user.has_role?(:admin)
     else
-      redirect_to root_path
+      redirect_to sign_in_url
     end
   end
 
@@ -129,10 +118,9 @@ Doorkeeper.configure do
 
   # Reuse access token for the same resource owner within an application (disabled by default).
   #
-  # This option protects your application from creating new tokens before old **valid** one becomes
-  # expired so your database doesn't bloat. Keep in mind that when this option is enabled Doorkeeper
-  # doesn't update existing token expiration time, it will create a new token instead if no active matching
-  # token found for the application, resources owner and/or set of scopes.
+  # This option protects your application from creating new tokens before old valid one becomes
+  # expired so your database doesn't bloat. Keep in mind that when this option is `on` Doorkeeper
+  # doesn't updates existing token expiration time, it will create a new token instead.
   # Rationale: https://github.com/doorkeeper-gem/doorkeeper/issues/383
   #
   # You can not enable this option together with +hash_token_secrets+.
