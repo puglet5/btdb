@@ -33,6 +33,18 @@ class User < ApplicationRecord
   has_many :samples, dependent: :nullify
   has_many :measurments, dependent: :nullify
 
+  # rubocop:disable Rails/InverseOf
+  has_many :access_grants,
+           class_name: 'Doorkeeper::AccessGrant',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all
+
+  has_many :access_tokens,
+           class_name: 'Doorkeeper::AccessToken',
+           foreign_key: :resource_owner_id,
+           dependent: :delete_all
+  # rubocop:enable Rails/InverseOf
+
   has_one_attached :avatar do |blob|
     blob.variant :small, resize: '50x50^', crop: '50x50+0+0', format: :jpg
     blob.variant :medium, resize: '100x100^', crop: '100x100+0+0', format: :jpg
@@ -40,5 +52,10 @@ class User < ApplicationRecord
 
   def author?(obj)
     obj.user == self
+  end
+
+  def self.authenticate(email, password)
+    user = User.find_for_authentication(email: email)
+    user&.valid_password?(password) ? user : nil
   end
 end

@@ -9,6 +9,7 @@ gem 'amazing_print', '~> 1.4'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise', '~> 4.8', '>= 4.8.1'
+gem 'doorkeeper', '~> 5.6'
 gem 'dotenv-rails', '~> 2.8'
 gem 'image_processing', '~> 1.12', '>= 1.12.1'
 gem 'jsbundling-rails'
