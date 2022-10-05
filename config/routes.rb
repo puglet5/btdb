@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   scope :api do
     scope :v1 do
       use_doorkeeper do
-        skip_controllers :authorization, :authorized_applications
+        skip_controllers :authorizations, :authorized_applications
       end
     end
   end
