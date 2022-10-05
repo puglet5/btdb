@@ -76,7 +76,7 @@
               <% if @user.has_role?(:admin) %>
                 <h4 class="mb-2 ml-0 font-medium text-l">Administration</h4>
 
-                <div class="flex ml-2 space-x-2">
+                <div class="flex ml-2 space-x-2 mb-1">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M4 21c1.147 -4.02 1.983 -8.027 2 -12h6c.017 3.973 .853 7.98 2 12"></path>
@@ -84,10 +84,10 @@
                     <path d="M9 5a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1"></path>
                     <line x1="3" y1="21" x2="22" y2="21"></line>
                   </svg>
-                  <%= link_to "Sidekiq", '/admin/sidekiq' %>
+                  <%= link_to "Sidekiq", '/admin/sidekiq', class: "hover:underline" %>
                 </div>
 
-                <div class="flex ml-2 space-x-2">
+                <div class="flex ml-2 space-x-2 mb-1">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <rect x="4" y="4" width="6" height="6" rx="1"></rect>
@@ -98,6 +98,19 @@
                   </svg>
                   <%= link_to oauth_applications_path do %>
                     <p class="hover:underline">Apps</p>
+                  <% end %>
+                </div>
+
+                <div class="flex ml-2 space-x-2 mb-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 13h5"></path>
+                    <path d="M12 16v-8h3a2 2 0 0 1 2 2v1a2 2 0 0 1 -2 2h-3"></path>
+                    <path d="M20 8v8"></path>
+                    <path d="M9 16v-5.5a2.5 2.5 0 0 0 -5 0v5.5"></path>
+                  </svg>
+                  <%= link_to rswag_ui_path do %>
+                    <p class="hover:underline">API docs</p>
                   <% end %>
                 </div>
 
