@@ -15,6 +15,8 @@
 #  name                   :string           default(""), not null
 #
 class User < ApplicationRecord
+  include ProcessImage
+
   rolify
 
   devise :database_authenticatable, :registerable,
@@ -49,6 +51,8 @@ class User < ApplicationRecord
     blob.variant :small, resize: '50x50^', crop: '50x50+0+0', format: :jpg
     blob.variant :medium, resize: '100x100^', crop: '100x100+0+0', format: :jpg
   end
+
+  after_commit -> { process_image self, avatar&.id }, on: %i[create update]
 
   def author?(obj)
     obj.user == self

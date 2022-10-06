@@ -15,7 +15,7 @@
 #
 class Sample < ApplicationRecord
   include ParseJson
-  include ProcessImages
+  include ProcessImage
 
   has_many :experiment_samples, dependent: :destroy
   has_many :measurments, dependent: :destroy
@@ -29,6 +29,7 @@ class Sample < ApplicationRecord
 
   has_one_attached :thumbnail do |blob|
     blob.variant :thumbnail, resize: '400x300^', crop: '400x300+0+0', format: :jpg
+    blob.variant :banner, resize: '1600x900^', crop: '1600x900+0+0', format: :jpg
   end
 
   has_many_attached :images do |blob|
@@ -42,5 +43,6 @@ class Sample < ApplicationRecord
   validates :title, presence: true
 
   after_commit :parse_json, on: %i[create update]
-  after_commit :process_images, on: %i[create update]
+  after_commit -> { process_image self, thumbnail&.id }, on: %i[create update]
+  after_commit -> { images.each { |image| process_image self, image&.id } }, on: %i[create update]
 end
