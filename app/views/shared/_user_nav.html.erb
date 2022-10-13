@@ -1,7 +1,7 @@
 <%= cache current_user do %>
   <%= tag.div data: { controller: "toggle" }, class: "relative hidden lg:block" do %>
     <%= tag.div data: { action: "click->toggle#toggle" } do %>
-      <button type="button" class="flex items-center transition rounded-lg group shrink-0">
+      <button type="button" class="flex items-center rounded-lg transition group shrink-0">
         <% if current_user.avatar.attached? %>
           <%= image_tag current_user.avatar.variant(:small).processed, class: "object-cover w-10 h-10 rounded-full" %>
         <% else %>
@@ -17,7 +17,7 @@
           </span>
         </p>
 
-        <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5 ml-4 text-gray-500 transition sm:block group-hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor" data-toggle-target="svg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="hidden ml-4 w-5 h-5 text-gray-500 transition sm:block group-hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor" data-toggle-target="svg">
           <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
         </svg>
 
@@ -25,7 +25,7 @@
     <% end %>
 
     <%= tag.div data: { toggle_target: "toggle" }, class: "absolute right-0 z-10 hidden bg-white top-14 -mt-[4px]" do %>
-      <nav class="flex flex-col w-48 border rounded-md rounded-t-none">
+      <nav class="flex flex-col w-48 rounded-md rounded-t-none border">
 
         <%= link_to current_user, class: "flex items-center px-4 py-3 text-gray-500 border-l-[3px] hover:bg-lime-50 hover:border-lime-500 hover:text-lime-700 #{'!text-lime-700 !border-lime-500 !bg-lime-50 hover:bg-lime-100 hover:text-lime-900' if params[:controller] == 'users' && params[:action] == 'show' }" do %>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 opacity-75">

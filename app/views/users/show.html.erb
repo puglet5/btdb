@@ -1,10 +1,10 @@
-<div class="max-w-screen-xl px-4 pt-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
+<div class="px-4 pt-24 mx-auto max-w-screen-xl text-gray-700 sm:px-6 lg:px-8">
   <div class="container mx-auto">
-    <div class="p-4 bg-white border rounded-lg shadow-md sm:p-6">
+    <div class="p-4 bg-white rounded-lg border shadow-md sm:p-6">
       <div class="grid grid-cols-12">
         <div class="col-span-3">
           <div class="flex flex-col justify-center">
-            <span class="relative flex w-20 h-20 m-auto rounded-full bg-lime-300 lg:w-40 lg:h-40">
+            <span class="flex relative m-auto w-20 h-20 bg-lime-300 rounded-full lg:w-40 lg:h-40">
               <% if @user.avatar.present? %>
                 <%= image_tag @user.avatar, class: "object-cover w-20 h-20 rounded-full lg:w-40 lg:h-40" %>
               <% else %>
@@ -27,7 +27,7 @@
               <h3 class="m-auto mt-2 text-xl font-medium">
                 <%= @user.name %>
               </h3>
-              <p class="mx-auto overflow-hidden text-sm font-medium text-gray-500 text-ellipsis max-w-1/2 hover:overflow-visible hover:underline">
+              <p class="overflow-hidden mx-auto text-sm font-medium text-gray-500 hover:overflow-visible hover:underline text-ellipsis max-w-1/2">
                 <a href="<%= "mailto:#{@user.email}" %>">
                   <%= @user.email %>
                 </a>
@@ -46,7 +46,7 @@
                     <%= hidden_field_tag "user[settings[uppy][thumbnails]]", false %>
                     <% checked =  @user.settings(:uppy).thumbnails ? "checked" : 0 %>
                     <%= f.check_box "settings[uppy][thumbnails]", { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded  focus:ring-lime-600 focus:ring-2 text-lime-600", checked: checked }, true, false %>
-                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 ">Thumbnails in forms</label>
+                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900">Thumbnails in forms</label>
                   </div>
                   <%= render Forms::PHelperComponent.new().with_content("Disable thumbnail generation when uploading images if you experience any problems") %>
                 </div>
@@ -56,7 +56,7 @@
                     <%= hidden_field_tag "user[settings[ui][tooltips]]", false %>
                     <% checked =  @user.settings(:ui).tooltips ? "checked" : 0 %>
                     <%= f.check_box "settings[ui][tooltips]", { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-lime-600 focus:ring-lime-600 focus:ring-2 ", checked: checked }, true, false %>
-                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 ">Informational tooltips</label>
+                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900">Informational tooltips</label>
                   </div>
                   <%= render Forms::PHelperComponent.new().with_content("Toggles tooltips and popovers") %>
                 </div>
@@ -76,7 +76,7 @@
               <% if @user.has_role?(:admin) %>
                 <h4 class="mb-2 ml-0 font-medium text-l">Administration</h4>
 
-                <div class="flex ml-2 space-x-2 mb-1">
+                <div class="flex mb-1 ml-2 space-x-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M4 21c1.147 -4.02 1.983 -8.027 2 -12h6c.017 3.973 .853 7.98 2 12"></path>
@@ -87,7 +87,7 @@
                   <%= link_to "Sidekiq", '/admin/sidekiq', class: "hover:underline" %>
                 </div>
 
-                <div class="flex ml-2 space-x-2 mb-1">
+                <div class="flex mb-1 ml-2 space-x-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <rect x="4" y="4" width="6" height="6" rx="1"></rect>
@@ -101,7 +101,7 @@
                   <% end %>
                 </div>
 
-                <div class="flex ml-2 space-x-2 mb-1">
+                <div class="flex mb-1 ml-2 space-x-2">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M4 13h5"></path>

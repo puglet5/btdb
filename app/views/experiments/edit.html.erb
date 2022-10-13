@@ -1,13 +1,13 @@
 <%= render "shared/errors", obj: @experiment %>
 
-<div class="max-w-screen-xl px-4 py-24 mx-auto sm:px-6 lg:px-8">
+<div class="py-24 px-4 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
 
-  <div class="flex items-center justify-center">
+  <div class="flex justify-center items-center">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="my-auto mr-4 w-7 h-7 text-lime-600">
       <path fill-rule="evenodd" d="M8.5 3.528v4.644c0 .729-.29 1.428-.805 1.944l-1.217 1.216a8.75 8.75 0 013.55.621l.502.201a7.25 7.25 0 004.178.365l-2.403-2.403a2.75 2.75 0 01-.805-1.944V3.528a40.205 40.205 0 00-3 0zm4.5.084l.19.015a.75.75 0 10.12-1.495 41.364 41.364 0 00-6.62 0 .75.75 0 00.12 1.495L7 3.612v4.56c0 .331-.132.649-.366.883L2.6 13.09c-1.496 1.496-.817 4.15 1.403 4.475C5.961 17.852 7.963 18 10 18s4.039-.148 5.997-.436c2.22-.325 2.9-2.979 1.403-4.475l-4.034-4.034A1.25 1.25 0 0113 8.172v-4.56z" clip-rule="evenodd" />
     </svg>
 
-    <h1 class="font-bold tracking-widef mb-text-2xl sm:text-3xl">Editing Experiment</h1>
+    <h1 class="font-bold sm:text-3xl tracking-widef mb-text-2xl">Editing Experiment</h1>
   </div>
 
   <%= simple_form_for @experiment, validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" } do |f| %>
@@ -25,12 +25,12 @@
     <%= render SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
     <div class="grid grid-cols-2 space-x-8">
 
-      <div class="mb-4 ml-8 ">
+      <div class="mb-4 ml-8">
         <%= render Forms::LabelComponent.new(optional: false).with_content("Title/Name") %>
         <div class="relative">
           <%= tag.div data: { controller: "input" } do %>
             <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "Here be dragons" %>
-            <span class="absolute inset-y-0 inline-flex items-center right-4">
+            <span class="inline-flex absolute inset-y-0 right-4 items-center">
               <%= render TooltipComponent.new(tooltip: "required", user: current_user) do %>
                 <svg data-input-target="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -46,7 +46,7 @@
         <div class="relative">
           <%= tag.div data: { controller: "input" } do %>
             <%= f.input :author, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "John Doe" %>
-            <span class="absolute inset-y-0 inline-flex items-center right-4">
+            <span class="inline-flex absolute inset-y-0 right-4 items-center">
               <%= render TooltipComponent.new(tooltip: "required", user: current_user) do %>
                 <svg data-input-target="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -159,7 +159,7 @@
               <%= render TooltipComponent.new(tooltip: "Show attached images", cls: "hover:bg-gray-100 !p-0 !ml-2", user: current_user) do %>
                 <%= tag.div class: "w-10 h-full p-2 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg cursor-pointer c hover:bg-gray-100 py-auto", data: { action: "click->modal#toggle" } do %>
 
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 m-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="m-auto w-5 h-5">
                     <path fill-rule="evenodd" d="M1 5.25A2.25 2.25 0 013.25 3h13.5A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17H3.25A2.25 2.25 0 011 14.75v-9.5zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 00.75-.75v-2.69l-2.22-2.219a.75.75 0 00-1.06 0l-1.91 1.909.47.47a.75.75 0 11-1.06 1.06L6.53 8.091a.75.75 0 00-1.06 0l-2.97 2.97zM12 7a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd" />
                   </svg>
                 <% end %>
@@ -191,8 +191,8 @@
           <% end %>
           <% if @experiment.files&.count > 0 %>
             <%= render TooltipComponent.new(tooltip: "Show attached documents", cls: "hover:bg-gray-100 !p-0 !ml-2", user: current_user) do %>
-              <div class="w-10 h-full p-2 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 py-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 m-auto">
+              <div class="p-2 w-10 h-full text-sm text-gray-500 bg-white rounded-lg border border-gray-300 cursor-pointer hover:bg-gray-100 py-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="m-auto w-5 h-5">
                   <path d="M7 3.5A1.5 1.5 0 018.5 2h3.879a1.5 1.5 0 011.06.44l3.122 3.12A1.5 1.5 0 0117 6.622V12.5a1.5 1.5 0 01-1.5 1.5h-1v-3.379a3 3 0 00-.879-2.121L10.5 5.379A3 3 0 008.379 4.5H7v-1z" />
                   <path d="M4.5 6A1.5 1.5 0 003 7.5v9A1.5 1.5 0 004.5 18h7a1.5 1.5 0 001.5-1.5v-5.879a1.5 1.5 0 00-.44-1.06L9.44 6.439A1.5 1.5 0 008.378 6H4.5z" />
                 </svg>

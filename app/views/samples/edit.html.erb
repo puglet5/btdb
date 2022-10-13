@@ -1,9 +1,9 @@
 <%= render "shared/errors", obj: @sample %>
 
-<div class="max-w-screen-xl px-4 py-24 mx-auto text-gray-700 sm:px-6 lg:px-8">
+<div class="py-24 px-4 mx-auto max-w-screen-xl text-gray-700 sm:px-6 lg:px-8">
 
-  <div class="flex items-center justify-center">
-    <h1 class="font-bold tracking-widef mb-text-2xl sm:text-3xl">Editing Sample</h1>
+  <div class="flex justify-center items-center">
+    <h1 class="font-bold sm:text-3xl tracking-widef mb-text-2xl">Editing Sample</h1>
   </div>
 
   <%= simple_form_for(@sample, validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4", id: "main-form" }) do |f| %>
@@ -27,7 +27,7 @@
         <div class="relative">
           <%= tag.div data: { controller: "input" } do %>
             <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "input-target": "input", action: "input->input#checkEmpty" } }, placeholder: "Sample Text Sample Text" %>
-            <span class="absolute inset-y-0 inline-flex items-center right-4">
+            <span class="inline-flex absolute inset-y-0 right-4 items-center">
               <%= render TooltipComponent.new(tooltip: "required", user: current_user) do %>
                 <svg data-input-target="svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-amber-600">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
@@ -122,7 +122,7 @@
               <%= render TooltipComponent.new(tooltip: "Show attached images", cls: "hover:bg-gray-100 !p-0 !ml-2", user: current_user) do %>
                 <%= tag.div class: "w-10 h-full p-2 text-sm text-gray-500 bg-white border border-gray-300 rounded-lg cursor-pointer c hover:bg-gray-100 py-auto", data: { action: "click->modal#toggle" } do %>
 
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 m-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="m-auto w-5 h-5">
                     <path fill-rule="evenodd" d="M1 5.25A2.25 2.25 0 013.25 3h13.5A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17H3.25A2.25 2.25 0 011 14.75v-9.5zm1.5 5.81v3.69c0 .414.336.75.75.75h13.5a.75.75 0 00.75-.75v-2.69l-2.22-2.219a.75.75 0 00-1.06 0l-1.91 1.909.47.47a.75.75 0 11-1.06 1.06L6.53 8.091a.75.75 0 00-1.06 0l-2.97 2.97zM12 7a1 1 0 11-2 0 1 1 0 012 0z" clip-rule="evenodd" />
                   </svg>
                 <% end %>

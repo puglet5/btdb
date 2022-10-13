@@ -1,9 +1,9 @@
 <%= render "shared/errors", obj: @measurment %>
 
-<div class="max-w-screen-xl px-4 py-24 mx-auto sm:px-6 lg:px-8">
+<div class="py-24 px-4 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
 
-  <div class="flex items-center justify-center">
-    <h1 class="font-bold tracking-widef mb-text-2xl sm:text-3xl">Edit Measurment</h1>
+  <div class="flex justify-center items-center">
+    <h1 class="font-bold sm:text-3xl tracking-widef mb-text-2xl">Edit Measurment</h1>
   </div>
 
   <%= simple_form_for [@sample, @measurment], validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" } do |f| %>
@@ -18,7 +18,7 @@
 
     <div class="grid grid-cols-2 space-x-8">
 
-      <div class="mb-4 ml-8 ">
+      <div class="mb-4 ml-8">
         <%= render Forms::LabelComponent.new(optional: false).with_content("Title/Name") %>
         <div class="relative">
           <%= tag.div data: { controller: "input" } do %>

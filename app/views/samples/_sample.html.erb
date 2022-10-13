@@ -1,21 +1,21 @@
 <div class="my-8">
 
-  <div class="max-w-screen-xl px-4 mx-auto my-auto sm:px-6 lg:px-8">
-    <div class="w-full bg-white border rounded-lg shadow-md">
+  <div class="px-4 my-auto mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+    <div class="w-full bg-white rounded-lg border shadow-md">
 
-      <div class="sm:space-y-0 sm:space-x-4 sm:flex">
-        <div class="flex items-center justify-center bg-gray-300 rounded-lg sm:rounded-r-none sm:w-96">
+      <div class="sm:flex sm:space-y-0 sm:space-x-4">
+        <div class="flex justify-center items-center bg-gray-300 rounded-lg sm:w-96 sm:rounded-r-none">
           <%= link_to sample, class: "w-full h-full" do %>
             <% if sample.thumbnail.attached? %>
               <%= image_tag sample.thumbnail.variant(:thumbnail).processed, class: "object-cover w-full h-full rounded-lg rounded-b-none sm:rounded-r-none sm:rounded-bl-lg" %>
             <% else %>
-              <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded-lg ">
+              <div class="flex justify-center items-center w-full h-full bg-gray-300 rounded-lg">
                 <svg class="w-12 h-12 text-gray-200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="currentColor" viewBox="0 0 640 512"><path d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z" /></svg>
               </div>
             <% end %>
           <% end %>
         </div>
-        <div class="w-full p-8 pt-4 pr-4 md:pl-0">
+        <div class="p-8 pt-4 pr-4 w-full md:pl-0">
           <div class="flex justify-between">
             <div class="flex">
               <%= render SampleCategoryBadgeComponent.new(category: sample.category, cls: "my-auto").with_content(sample.category.humanize.downcase) %>
@@ -31,11 +31,11 @@
               <% end %>
             </div>
             <div id="controls">
-              <div class="flex flex-row items-center justify-center mx-1 space-x-0">
+              <div class="flex flex-row justify-center items-center mx-1 space-x-0">
 
                 <%= render TooltipComponent.new(tooltip: "Edit", user: current_user) do %>
                   <%= link_to [:edit, sample] do %>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 my-auto text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 my-auto w-5 h-5 text-gray-400">
                       <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
                       <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
                     </svg>
@@ -72,13 +72,13 @@
           </div>
 
           <%= link_to sample, class: "" do %>
-            <h2 class="mb-2 text-2xl font-semibold md:mt-2 "> <%= sample.title.truncate(80) %></h2>
+            <h2 class="mb-2 text-2xl font-semibold md:mt-2"> <%= sample.title.truncate(80) %></h2>
           <% end %>
 
           <div class="flex mb-4 ml-2 space-x-2">
 
-            <div class="flex items-center my-auto text-sm text-gray-500 space-x-1.5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400 " width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <div class="flex items-center my-auto space-x-1.5 text-sm text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M5 21h14"></path>
                 <path d="M6 18h2"></path>
@@ -88,7 +88,7 @@
                 <path d="M17 3l3 3"></path>
                 <path d="M12 21a6 6 0 0 0 3.715 -10.712"></path>
               </svg>
-              <div class="hidden sm:inline-block ">
+              <div class="hidden sm:inline-block">
                 <span class="block truncate">
                   <%= sample.measurments.count %> <%= "measurment".pluralize(sample.measurments.count) %>
                 </span>
@@ -99,7 +99,7 @@
               &middot;
             </div>
 
-            <div class="flex items-center my-auto text-sm text-gray-500 space-x-1.5">
+            <div class="flex items-center my-auto space-x-1.5 text-sm text-gray-500">
               <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z" />
                 <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
@@ -116,11 +116,11 @@
             </div>
 
             <%= link_to sample.user, class: "flex" do %>
-              <div class="flex items-center my-auto text-sm text-gray-500 space-x-1.5">
+              <div class="flex items-center my-auto space-x-1.5 text-sm text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                   <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
                 </svg>
-                <div class="hidden font-medium hover:underline sm:inline-block">
+                <div class="hidden font-medium sm:inline-block hover:underline">
                   <span class="block truncate">
                     <%= sample.user.name %>
                   </span>
@@ -132,7 +132,7 @@
               &middot;
             </div>
 
-            <div class="flex items-center my-auto overflow-hidden text-sm text-gray-500 space-x-1.5">
+            <div class="flex overflow-hidden items-center my-auto space-x-1.5 text-sm text-gray-500">
               <svg class="flex-shrink-0 w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
               </svg>
