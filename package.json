@@ -12,7 +12,7 @@
     "@uppy/core": "^3.0.2",
     "@uppy/dashboard": "^3.1.0",
     "autoprefixer": "^10.4.12",
-    "esbuild": "^0.15.10",
+    "esbuild": "^0.15.11",
     "esbuild-rails": "^1.0.3",
     "flowbite-datepicker": "^1.2.2",
     "jquery": "^3.6.1",
