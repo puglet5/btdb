@@ -18,7 +18,7 @@ gem 'mini_magick', '~> 4.11' # image processing
 gem 'pagy', '~> 5.10.1' # pagination
 gem 'pg', '~> 1.1'
 gem 'propshaft', '~> 0.6' # asset delivery
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 6.0'
 gem 'pundit', '~> 2.2'
 gem 'rails', '~> 7.0.4'
 gem 'rails_semantic_logger', '~> 4.10'
