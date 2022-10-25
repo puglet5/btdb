@@ -48,7 +48,7 @@ class ExperimentsController < ApplicationController
 
     if @experiment.save
       redirect_to experiment_url(@experiment)
-      flash[:success] = 'Experiment was successfully created'
+      flash.now[:success] = 'Experiment was successfully created'
     else
       render :new, status: :unprocessable_entity
     end
@@ -64,7 +64,7 @@ class ExperimentsController < ApplicationController
       end
 
       redirect_to experiment_url(@experiment)
-      flash[:success] = 'Experiment was successfully updated'
+      flash.now[:success] = 'Experiment was successfully updated'
     else
       render :edit, status: :unprocessable_entity
     end

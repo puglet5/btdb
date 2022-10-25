@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       @user.settings(key.to_sym).update! value
     end
     redirect_to @user
-    flash[:success] = 'Settings updated!'
+    flash.keep[:success] = 'Settings updated!'
   end
 
   def setting_params
