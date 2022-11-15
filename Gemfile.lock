@@ -281,7 +281,7 @@ GEM
       ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
-    rails_semantic_logger (4.10.0)
+    rails_semantic_logger (4.11.0)
       rack
       railties (>= 5.1)
       semantic_logger (~> 4.9)
@@ -348,7 +348,7 @@ GEM
     rswag-ui (2.7.0)
       actionpack (>= 3.1, < 7.1)
       railties (>= 3.1, < 7.1)
-    rubocop (1.38.0)
+    rubocop (1.39.0)
       json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.2.1)
@@ -454,7 +454,7 @@ GEM
     websocket-extensions (0.1.5)
     yard (0.9.28)
       webrick (~> 1.7.0)
-    zeitwerk (2.6.5)
+    zeitwerk (2.6.6)
 
 PLATFORMS
   x86_64-linux
