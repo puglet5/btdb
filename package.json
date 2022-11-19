@@ -12,6 +12,8 @@
     "@uppy/core": "^3.0.4",
     "@uppy/dashboard": "^3.2.0",
     "autoprefixer": "^10.4.13",
+    "chart.js": "^4.0.1",
+    "d3": "^7.6.1",
     "esbuild": "^0.15.14",
     "esbuild-rails": "^1.0.3",
     "flowbite-datepicker": "^1.2.2",
