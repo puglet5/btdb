@@ -8,7 +8,8 @@ export default class extends Controller {
   static values = {
     url: String,
     data: Array,
-    filename: String
+    filename: String,
+    id: String
   }
 
   async import(url) {
@@ -40,9 +41,11 @@ export default class extends Controller {
 
   async visualize() {
 
+    let canvasId = `canvas-${this.idValue}`
+
     const makeChart = (data, filename) => {
 
-      window.scatterChart = new Chart("canvas", {
+      window.scatterChart = new Chart(canvasId, {
         type: "scatter",
         data: {
           datasets: [{
@@ -112,20 +115,5 @@ export default class extends Controller {
       this.dataValue = this.parse(raw)
       makeChart(this.dataValue, this.filenameValue)
     }
-  }
-
-  getRange(data) {
-    const y = data
-      .map(e => Object.values(e))
-      .map(e => e[1])
-
-    const x = data
-      .map(e => Object.values(e))
-      .map(e => e[0])
-
-    return [
-      [Math.min(...x), Math.max(...x)],
-      [Math.min(...y), Math.max(...y)]
-    ]
   }
 }
