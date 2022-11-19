@@ -84,12 +84,17 @@
   <ul class="grid gap-6 mt-4 w-full md:grid-cols-3">
     <% measurment.spectra.each do |spectrum| %>
       <li>
-        <div class="inline-flex justify-between items-center p-5 w-full text-gray-500 bg-white rounded-lg border-2 border-gray-200 cursor-pointer hover:text-gray-600">
-          <div class="block">
-            <div class="w-full text-lg font-semibold">Spectrum</div>
-            <div class="w-full text-sm">id: <%= spectrum.id %></div>
-          </div>
-        </div>
+        <%= tag.div data: { controller: "modal" } do %>
+          <%= tag.div data: {action: "click->modal#toggle"} do %>
+            <div class="inline-flex justify-between items-center p-5 w-full text-gray-500 bg-white rounded-lg border-2 border-gray-200 cursor-pointer hover:text-gray-600">
+              <div class="block">
+                <div class="w-full text-lg font-semibold">Spectrum</div>
+                <div class="w-full text-sm">id: <%= spectrum.id %></div>
+              </div>
+            </div>
+          <% end %>
+          <%= render "spectrum_modal" %>
+        <% end %>
       </li>
     <% end %>
   </ul>
