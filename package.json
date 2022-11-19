@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "cssnano": "^5.1.14",
-    "eslint": "^8.27.0",
+    "eslint": "^8.28.0",
     "postcss": "^8.4.19",
     "postcss-cli": "^10.0.0",
     "postcss-nested": "^6.0.0",
