@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_05_000837) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_06_141902) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,7 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_000837) do
     t.index ["user_id"], name: "index_experiments_on_user_id"
   end
 
-  create_table "measurments", force: :cascade do |t|
+  create_table "measurements", force: :cascade do |t|
     t.string "title"
     t.bigint "sample_id", null: false
     t.bigint "user_id", null: false
@@ -86,8 +86,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_000837) do
     t.string "equipment", default: "", null: false
     t.integer "category", default: 0, null: false
     t.date "date"
-    t.index ["sample_id"], name: "index_measurments_on_sample_id"
-    t.index ["user_id"], name: "index_measurments_on_user_id"
+    t.index ["sample_id"], name: "index_measurements_on_sample_id"
+    t.index ["user_id"], name: "index_measurements_on_user_id"
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -172,13 +172,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_000837) do
     t.index ["measurment_id"], name: "index_spectra_on_measurment_id"
   end
 
-  create_table "spectrums", force: :cascade do |t|
-    t.bigint "measurment_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["measurment_id"], name: "index_spectrums_on_measurment_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -204,12 +197,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_05_000837) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "experiment_samples", "experiments"
   add_foreign_key "experiments", "users"
-  add_foreign_key "measurments", "samples"
-  add_foreign_key "measurments", "users"
+  add_foreign_key "measurements", "samples"
+  add_foreign_key "measurements", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
-  add_foreign_key "spectra", "measurments"
-  add_foreign_key "spectrums", "measurments"
+  add_foreign_key "spectra", "measurements", column: "measurment_id"
 end
