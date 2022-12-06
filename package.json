@@ -3,7 +3,7 @@
   "dependencies": {
     "@client-side-validations/client-side-validations": "^0.3.0",
     "@client-side-validations/simple-form": "^0.3.1",
-    "@hotwired/stimulus": "^3.1.1",
+    "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.2.4",
     "@popperjs/core": "^2.11.6",
     "@rails/actiontext": "^7.0.4",
@@ -13,14 +13,14 @@
     "@uppy/dashboard": "^3.2.0",
     "autoprefixer": "^10.4.13",
     "chart.js": "^4.0.1",
-    "d3": "^7.6.1",
-    "esbuild": "^0.15.15",
+    "d3": "^7.7.0",
+    "esbuild": "^0.15.18",
     "esbuild-rails": "^1.0.3",
     "flowbite-datepicker": "^1.2.2",
     "jquery": "^3.6.1",
     "tailwindcss": "^3.2.4",
     "tom-select": "^2.2.2",
-    "trix": "^2.0.1",
+    "trix": "^2.0.3",
     "uppy-activestorage-upload": "https://github.com/puglet5/uppy-activestorage-upload"
   },
   "version": "0.1.0",
@@ -39,9 +39,9 @@
   },
   "devDependencies": {
     "cssnano": "^5.1.14",
-    "eslint": "^8.28.0",
+    "eslint": "^8.29.0",
     "postcss": "^8.4.19",
-    "postcss-cli": "^10.0.0",
+    "postcss-cli": "^10.1.0",
     "postcss-nested": "^6.0.0",
     "tailwind-config-viewer": "^1.7.2"
   },

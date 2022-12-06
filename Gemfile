@@ -26,7 +26,7 @@ gem 'ransack', '~> 3.2.1' # object-based searching
 gem 'redis', '~> 5.0'
 gem 'rolify', '~> 6.0' # user roles
 gem 'rswag', '~> 2.6'
-gem 'sidekiq', '< 7.0'
+gem 'sidekiq', '~> 7.0'
 gem 'simple_form', '~> 5.1' # form helpers
 gem 'stimulus-rails', '~> 1.1'
 gem 'turbo-rails', '~> 1.1'
