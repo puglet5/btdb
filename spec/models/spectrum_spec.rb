@@ -4,10 +4,10 @@
 #
 # Table name: spectra
 #
-#  id            :bigint           not null, primary key
+#  id             :bigint           not null, primary key
 #  measurement_id :bigint           not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 RSpec.describe Spectrum, type: :model do
