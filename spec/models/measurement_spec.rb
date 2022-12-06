@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: measurments
+# Table name: measurements
 #
 #  id         :bigint           not null, primary key
 #  title      :string
@@ -15,7 +15,7 @@
 #  date       :date
 #
 
-RSpec.describe Measurment, type: :model do
+RSpec.describe Measurement, type: :model do
   context 'associations' do
     it { should belong_to(:sample) }
     it { should belong_to(:user) }

@@ -1,12 +1,18 @@
-<%= render "shared/errors", obj: @measurment %>
+<%= render "shared/errors", obj: @measurement %>
 
 <div class="py-24 px-4 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
 
   <div class="flex justify-center items-center">
-    <h1 class="font-bold sm:text-3xl tracking-widef mb-text-2xl">New Measurment</h1>
+    <h1 class="font-bold sm:text-3xl tracking-widef mb-text-2xl">Edit Measurement</h1>
   </div>
 
-  <%= simple_form_for [@sample, @measurment], validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" } do |f| %>
+  <%= simple_form_for [@sample, @measurement], validate: true, html: { class: "max-w-screen-lg mx-auto mt-8 mb-0 space-y-4" } do |f| %>
+
+    <!-- Attachment retention on form resubmit and when adding new attachments -->
+    <% f.object.equipment_settings.each do |equipment_setting| %>
+      <%= f.hidden_field :equipment_settings, value: equipment_setting.signed_id, multiple: true if equipment_setting.persisted? %>
+    <% end %>
+    <!--  -->
 
     <%= render SectionLabelComponent.new(cls: "text-gray-700").with_content("Info") %>
 
@@ -16,15 +22,15 @@
         <%= render Forms::LabelComponent.new(optional: false).with_content("Title/Name") %>
         <div class="relative">
           <%= tag.div data: { controller: "input" } do %>
-            <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder: "Measurment" %>
+            <%= f.input :title, label: false, hint: false, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder: "Measurement" %>
           <% end %>
         </div>
       </div>
 
       <div class="mb-4">
         <%= tag.div data: { controller: "datepicker" } do %>
-          <%= render Forms::LabelComponent.new(optional: false).with_content("Measurment date") %>
-          <%= f.input :date, as: :string, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { datepicker_target: "input" } }, placeholder: "DD/MM/YYYY", validate: false %>
+          <%= render Forms::LabelComponent.new(optional: false).with_content("Measurement date") %>
+          <%= f.input :date, as: :string, label: false, hint: false, required: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { datepicker_target: "input" }, value: @measurement.date&.strftime("%d/%m/%Y") }, placeholder: "DD/MM/YYYY", validate: false %>
         <% end %>
       </div>
 
@@ -38,7 +44,7 @@
         <%= render Forms::LabelComponent.new() do %>
           Category/Type
         <% end %>
-        <%= f.input :category, default: @measurment.category, collection: Measurment.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-6 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
+        <%= f.input :category, default: @measurement.category, collection: Measurement.categories.keys.map { |s| [s.humanize, s] }, input_html: {class: "block w-full p-4 px-0 pr-6 text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none py-2.5 focus:outline-none focus:ring-0 focus:border-gray-300 peer"}, hint: false, label: false %>
       </div>
     </div>
 
@@ -47,7 +53,7 @@
 
       <%= tag.div class: "mb-4 ml-8", data: {
                                       controller: "uppy",
-                                      uppy: "measurment[spectra_attributes][][file]",
+                                      uppy: "measurement[spectra_attributes][][file]",
                                       uppy_target: "div",
                                       uppy_filetype_value: "files",
                                       uppy_allowedfiletypes_value: nil,
@@ -64,7 +70,7 @@
       <% end %>
 
       <%= tag.div class: "mb-4 ml-8", data: {
-                                      uppy: "measurment[equipment_settings][]",
+                                      uppy: "measurement[equipment_settings][]",
                                       controller: "uppy",
                                       uppy_target: "div",
                                       uppy_filetype_value: "files",
@@ -83,7 +89,7 @@
     </div>
 
     <div class="ml-4 form-actions">
-      <%= f.submit "Create Measurment", class: "inline-block px-5 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
+      <%= f.submit "Save Measurement", class: "inline-block px-5 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
       <%= link_to "Back to sample", [@sample], class: "text-sm text-gray-500 hover:underline" %>
     </div>
   <% end %>

@@ -46,9 +46,9 @@
                     <path d="M12 21a6 6 0 0 0 3.715 -10.712"></path>
                   </svg>
                   <span>
-                    Measurments
+                    Measurements
                   </span>
-                  <%= link_to [:new, @sample, :measurment], class: "my-auto" do %>
+                  <%= link_to [:new, @sample, :measurement], class: "my-auto" do %>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-lime-600">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -56,12 +56,12 @@
                 </div>
               </div>
             </li>
-            <% @measurments.each do |measurment| %>
+            <% @measurements.each do |measurement| %>
               <li class="w-full">
-                <%= tag.div data: { "tabs-target": "tab" }, id: "measurment-#{measurment.id}-tab", class: "hover:bg-gray-100" do %>
+                <%= tag.div data: { "tabs-target": "tab" }, id: "measurement-#{measurement.id}-tab", class: "hover:bg-gray-100" do %>
                   <div class="inline-block p-4 w-full text-center cursor-pointer" data-action="click->tabs#switch">
-                    <%= measurment.date&.strftime("%d/%m/%Y") %>
-                    <%= measurment.title %>
+                    <%= measurement.date&.strftime("%d/%m/%Y") %>
+                    <%= measurement.title %>
                   </div>
                 <% end %>
               </li>
@@ -155,9 +155,9 @@
             <%= render "files_panel", sample: @sample %>
           <% end %>
 
-          <% @measurments.each do |measurment| %>
-            <%= tag.div data: { "tabs-target": "panel" }, id: "measurment-#{measurment.id}-panel", class: "hidden p-4 bg-white rounded-br-lg md:p-8 md:pt-4" do %>
-              <%= render "measurment_panel", measurment: measurment %>
+          <% @measurements.each do |measurement| %>
+            <%= tag.div data: { "tabs-target": "panel" }, id: "measurement-#{measurement.id}-panel", class: "hidden p-4 bg-white rounded-br-lg md:p-8 md:pt-4" do %>
+              <%= render "measurement_panel", measurement: measurement %>
             <% end %>
           <% end %>
         </div>

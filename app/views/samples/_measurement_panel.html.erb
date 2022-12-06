@@ -11,18 +11,18 @@
         <path d="M18 16.496v1.504l1 1"></path>
       </svg>
       <span class="my-auto text-gray-700">
-        <%= measurment.date&.strftime("%d/%m/%Y") %>
+        <%= measurement.date&.strftime("%d/%m/%Y") %>
       </span>
       <div class="my-auto">
         &middot;
       </div>
       <span class="my-auto">
-        <%= measurment.title %>
+        <%= measurement.title %>
       </span>
     </div>
     <div id="controls" class="flex flex-row justify-center items-center mx-1 space-x-0">
       <%= render TooltipComponent.new(tooltip: "Edit", user: current_user) do %>
-        <%= link_to [:edit, @sample, measurment] do %>
+        <%= link_to [:edit, @sample, measurement] do %>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 my-auto w-5 h-5 text-gray-400">
             <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
             <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
@@ -31,7 +31,7 @@
       <% end %>
 
       <%= render TooltipComponent.new(tooltip: "Delete", user: current_user) do %>
-        <%= link_to [@sample, measurment], data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" } do %>
+        <%= link_to [@sample, measurement], data: { turbo_method: :delete, turbo_confirm: "Are you sure ?" } do %>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="flex-shrink-0 w-5 h-5 text-gray-400">
             <path fill-rule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clip-rule="evenodd" />
           </svg>
@@ -40,7 +40,7 @@
     </div>
   </div>
 <% end %>
-<div id="<%= dom_id measurment %>" class="ml-2">
+<div id="<%= dom_id measurement %>" class="ml-2">
   <div class="flex space-x-2">
     <svg xmlns="http://www.w3.org/2000/svg" class="my-auto w-5 h-5 text-gray-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -82,7 +82,7 @@
     <span>Spectra</span>
   </div>
   <ul class="grid gap-6 mt-4 w-full md:grid-cols-3">
-    <% measurment.spectra.each do |spectrum| %>
+    <% measurement.spectra.each do |spectrum| %>
       <li>
         <%= tag.div data: { controller: "modal chart", chart_url_value: spectrum.file.url, chart_filename_value: spectrum.file.filename, chart_id_value: spectrum.id } do %>
           <%= tag.div data: { action: "click->modal#toggle click->chart#visualize" } do %>

@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: measurments
+# Table name: measurements
 #
 #  id         :bigint           not null, primary key
 #  title      :string
@@ -14,10 +14,10 @@
 #  category   :integer          default("not_set"), not null
 #  date       :date
 #
-class Measurment < ApplicationRecord
+class Measurement < ApplicationRecord
   belongs_to :sample, touch: true
   belongs_to :user
-  has_many :spectra, inverse_of: :measurment, dependent: :destroy
+  has_many :spectra, inverse_of: :measurement, dependent: :destroy
   has_many :file_attachments, through: :spectra, dependent: :destroy
   accepts_nested_attributes_for :spectra, reject_if: proc { |attributes| attributes['file'].blank? }
 

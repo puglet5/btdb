@@ -18,8 +18,8 @@ class Sample < ApplicationRecord
   include ProcessImage
 
   has_many :experiment_samples, dependent: :destroy
-  has_many :measurments, dependent: :destroy
-  has_many :spectra, through: :measurments, dependent: :destroy
+  has_many :measurements, dependent: :destroy
+  has_many :spectra, through: :measurements, dependent: :destroy
   # https://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Delete+or+destroy-3F
   has_many :experiments, through: :experiment_samples, dependent: :destroy
 

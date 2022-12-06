@@ -6,11 +6,11 @@ class SpectrumPolicy < ApplicationPolicy
   end
 
   def update?
-    policy(record.measurment).update?
+    policy(record.measurement).update?
   end
 
   def destroy?
-    policy(record.measurment).destroy?
+    policy(record.measurement).destroy?
   end
 
   def index?

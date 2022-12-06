@@ -42,6 +42,6 @@ users.each do |user|
   title = Faker::Lorem.sentence
   equipment = Faker::Lorem.sentence
   date = Date.current - rand(10_000)
-  category = Measurment.categories.keys.sample
-  Measurment.create!(title: title, date: date, equipment: equipment, category: category, user_id: user.id, sample_id: Sample.all.sample.id)
+  category = Measurement.categories.keys.sample
+  Measurement.create!(title: title, date: date, equipment: equipment, category: category, user_id: user.id, sample_id: Sample.all.sample.id)
 end

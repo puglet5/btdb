@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MeasurmentPolicy < ApplicationPolicy
+class MeasurementPolicy < ApplicationPolicy
   def create?
     true
   end

@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: measurments
+# Table name: measurements
 #
 #  id         :bigint           not null, primary key
 #  title      :string
@@ -15,8 +15,8 @@
 #  date       :date
 #
 FactoryBot.define do
-  factory :measurment do
-    title { 'Test Measurment' }
+  factory :measurement do
+    title { 'Test Measurement' }
     association :sample, factory: :sample, strategy: :build
     association :user, factory: :user, strategy: :build
   end

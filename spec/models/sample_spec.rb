@@ -17,6 +17,6 @@
 RSpec.describe Sample, type: :model do
   it { should have_many(:experiments) }
   it { should have_many(:experiment_samples) }
-  it { should have_many(:measurments) }
+  it { should have_many(:measurements) }
   it { should belong_to(:user) }
 end

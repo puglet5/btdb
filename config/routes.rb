@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :samples do
-    resources :measurments, only: %i[new edit update create destroy]
+    resources :measurements, only: %i[new edit update create destroy]
   end
 
   resources :experiments
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :samples
-      resources :measurments
+      resources :measurements
       resources :spectra
     end
   end
