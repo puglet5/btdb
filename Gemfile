@@ -15,7 +15,7 @@ gem 'image_processing', '~> 1.12', '>= 1.12.1'
 gem 'jsbundling-rails'
 gem 'ledermann-rails-settings', '~> 2.5'
 gem 'mini_magick', '~> 4.11' # image processing
-gem 'pagy', '~> 5.10.1' # pagination
+gem 'pagy', '~> 6.0' # pagination
 gem 'pg', '~> 1.1'
 gem 'propshaft', '~> 0.6' # asset delivery
 gem 'puma', '~> 6.0'
@@ -63,7 +63,7 @@ group :development do
   gem 'rubocop', '~> 1.35', '>= 1.35.1', require: false
   gem 'rubocop-performance', '~> 1.14', '>= 1.14.3', require: false
   gem 'rubocop-rails', '~> 2.15', '>= 2.15.2', require: false
-  gem 'solargraph', '~> 0.44.2' # ruby language server
+  gem 'solargraph', '~> 0.8' # ruby language server
   gem 'solargraph-rails', '~> 1.0'
   gem 'stackprof' # for call-stack profiling flamegraphs
   gem 'web-console'
@@ -73,6 +73,6 @@ group :test do
   gem 'pundit-matchers', '~> 1.7' # policy matchers
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.1' # rails matchers for common tasks
-  gem 'simplecov', '~> 0.21.2' # code coverage reports
+  gem 'simplecov', '~> 0.22' # code coverage reports
   gem 'webdrivers'
 end
