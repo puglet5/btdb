@@ -46,6 +46,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_model_serializers (0.10.13)
+      actionpack (>= 4.1, < 7.1)
+      activemodel (>= 4.1, < 7.1)
+      case_transform (>= 0.2)
+      jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
     active_record_doctor (1.10.0)
       activerecord (>= 4.2.0)
     activejob (7.0.4)
@@ -95,6 +100,8 @@ GEM
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
+    case_transform (0.2)
+      activesupport
     character_set (1.6.0)
       sorted_set (~> 1.0)
     choice (0.2.0)
@@ -189,6 +196,7 @@ GEM
     json (2.6.3)
     json-schema (3.0.0)
       addressable (>= 2.8)
+    jsonapi-renderer (0.2.2)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -463,6 +471,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_model_serializers (~> 0.10.13)
   active_record_doctor (~> 1.10)
   amazing_print (~> 1.4)
   annotate (~> 3.2)

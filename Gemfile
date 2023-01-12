@@ -76,3 +76,5 @@ group :test do
   gem 'simplecov', '~> 0.22' # code coverage reports
   gem 'webdrivers'
 end
+
+gem "active_model_serializers", "~> 0.10.13"
