@@ -3,6 +3,7 @@
 require File.expand_path('../config/environment', __dir__)
 require 'spec_helper'
 require 'rspec/rails'
+require 'sidekiq/testing'
 require 'database_cleaner/active_record'
 require 'devise'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
@@ -16,6 +17,9 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+Sidekiq::Testing.fake!
+
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
