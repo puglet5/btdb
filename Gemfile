@@ -7,11 +7,13 @@ ruby '3.1.3'
 
 gem 'active_model_serializers', '~> 0.10.13'
 gem 'amazing_print', '~> 1.4'
+gem 'ar_transaction_changes', '~> 1.1'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'doorkeeper', '~> 5.6'
 gem 'dotenv-rails', '~> 2.8'
+gem 'has_scope', '~> 0.8.0'
 gem 'image_processing', '~> 1.12', '>= 1.12.1'
 gem 'jsbundling-rails'
 gem 'ledermann-rails-settings', '~> 2.5'
@@ -77,6 +79,3 @@ group :test do
   gem 'simplecov', '~> 0.22' # code coverage reports
   gem 'webdrivers'
 end
-
-gem "ar_transaction_changes", "~> 1.1"
-gem "has_scope", "~> 0.8.0"
