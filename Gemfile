@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.3'
 
+gem 'active_model_serializers', '~> 0.10.13'
 gem 'amazing_print', '~> 1.4'
 gem 'bootsnap', require: false
 gem 'cssbundling-rails'
@@ -77,4 +78,5 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'active_model_serializers', '~> 0.10.13'
+gem "ar_transaction_changes", "~> 1.1"
+gem "has_scope", "~> 0.8.0"
