@@ -21,6 +21,7 @@
 #
 class User < ApplicationRecord
   include ProcessImage
+  include ArTransactionChanges
 
   rolify
 
@@ -57,7 +58,7 @@ class User < ApplicationRecord
     blob.variant :medium, resize: '100x100^', crop: '100x100+0+0', format: :jpg
   end
 
-  after_commit -> { process_image self, avatar&.id }, on: %i[create update]
+  after_commit -> { process_image self, avatar&.id }, on: %i[create update], unless: -> { transaction_changed_attributes.keys == ['updated_at'] }
 
   def author?(obj)
     obj.user == self

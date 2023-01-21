@@ -21,6 +21,7 @@
 class Sample < ApplicationRecord
   include ParseJson
   include ProcessImage
+  include ArTransactionChanges
 
   has_many :experiment_samples, dependent: :destroy
   has_many :measurements, dependent: :destroy
@@ -48,6 +49,6 @@ class Sample < ApplicationRecord
   validates :title, presence: true
 
   after_commit :parse_json, on: %i[create update]
-  after_commit -> { process_image self, thumbnail&.id }, on: %i[create update]
-  after_commit -> { images.each { |image| process_image self, image&.id } }, on: %i[create update]
+  after_commit -> { process_image self, thumbnail&.id }, on: %i[create update], unless: -> { transaction_changed_attributes.keys == ['updated_at'] }
+  after_commit -> { images.each { |image| process_image self, image&.id } }, on: %i[create update], unless: -> { transaction_changed_attributes.keys == ['updated_at'] }
 end
