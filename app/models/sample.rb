@@ -23,6 +23,12 @@ class Sample < ApplicationRecord
   include ProcessImage
   include ArTransactionChanges
 
+  scope :by_category, ->(category) { where(category: category) }
+
+  # dates are passed in ISO 8601 format, i.e. YYYY-MM-DD.
+  scope :by_survey_period, ->(start_date, end_date) { where('survey_date BETWEEN ? and ?', start_date, end_date) }
+  scope :by_created_at_period, ->(start_date, end_date) { where('created_at BETWEEN ? and ?', start_date, end_date) }
+
   has_many :experiment_samples, dependent: :destroy
   has_many :measurements, dependent: :destroy
   has_many :spectra, through: :measurements, dependent: :destroy

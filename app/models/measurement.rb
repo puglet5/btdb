@@ -20,6 +20,14 @@
 #  index_measurements_on_user_id    (user_id)
 #
 class Measurement < ApplicationRecord
+  scope :by_category, ->(category) { where(category: category) }
+  scope :by_sample, ->(id) { where(sample_id: id) }
+
+  # dates are passed in ISO 8601 format, i.e. YYYY-MM-DD.
+  scope :by_created_at_period, ->(start_date, end_date) { where('created_at BETWEEN ? and ?', start_date, end_date) }
+  scope :by_date, ->(date) { where(date: date) }
+  scope :by_date_period, ->(start_date, end_date) { where('date BETWEEN ? and ?', start_date, end_date) }
+
   belongs_to :sample, touch: true
   belongs_to :user
   has_many :spectra, inverse_of: :measurement, dependent: :destroy
