@@ -12,19 +12,19 @@
 
           <ul class="flex gap-6 items-center text-sm">
             <li>
-              <%= link_to "Home", [:root], class: "text-gray-500 transition hover:text-lime-700 #{ '!text-lime-700 !font-medium' if controller.controller_name == 'pages' }" %>
+              <%= link_to "Home", [:root], class: "text-gray-500 transition hover:text-lime-700 hover:underline #{ '!text-lime-700 !font-medium' if controller.controller_name == 'pages' }" %>
             </li>
 
             <li>
-              <%= link_to "Experiments", [:experiments], class: "text-gray-500 transition hover:text-lime-700 #{ '!text-lime-700 !font-medium' if controller.controller_name == 'experiments' }" %>
+              <%= link_to "Experiments", [:experiments], class: "text-gray-500 transition hover:text-lime-700 hover:underline #{ '!text-lime-700 !font-medium' if controller.controller_name == 'experiments' }" %>
             </li>
 
             <li>
-              <%= link_to "Samples", [:samples], class: "text-gray-500 transition hover:text-lime-700 #{ '!text-lime-700 !font-medium' if controller.controller_name == 'samples' }" %>
+              <%= link_to "Samples", [:samples], class: "text-gray-500 transition hover:text-lime-700 hover:underline #{ '!text-lime-700 !font-medium' if controller.controller_name == 'samples' }" %>
             </li>
 
             <li>
-              <a class="text-gray-500 transition hover:text-lime-700" href="/">
+              <a class="text-gray-500 transition hover:text-lime-700 hover:underline" href="/">
                 Forum
               </a>
             </li>
