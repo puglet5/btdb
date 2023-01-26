@@ -23,6 +23,8 @@ class Sample < ApplicationRecord
   include ProcessImage
   include ArTransactionChanges
 
+  acts_as_favoritable
+
   scope :by_category, ->(category) { where(category: category) }
 
   # dates are passed in ISO 8601 format, i.e. YYYY-MM-DD.

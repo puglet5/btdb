@@ -54,6 +54,18 @@ class ExperimentsController < ApplicationController
     end
   end
 
+  def favorite
+    @experiment = Experiment.find params[:id]
+    authorize @experiment
+
+    if current_user.favorited? @experiment
+      current_user.unfavorite @experiment
+    else
+      current_user.favorite @experiment
+    end
+    redirect_to request.referer
+  end
+
   def update
     authorize @experiment
 

@@ -23,6 +23,8 @@ class User < ApplicationRecord
   include ProcessImage
   include ArTransactionChanges
 
+  acts_as_favoritor
+
   rolify
 
   devise :database_authenticatable, :registerable,

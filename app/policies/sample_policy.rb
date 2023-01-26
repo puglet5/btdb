@@ -20,4 +20,8 @@ class SamplePolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def favorite?
+    true
+  end
 end

@@ -73,6 +73,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts_as_favoritor (6.0.0)
+      activerecord (>= 5.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     amazing_print (1.4.0)
@@ -478,6 +480,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.13)
   active_record_doctor (~> 1.10)
+  acts_as_favoritor (~> 6.0)
   amazing_print (~> 1.4)
   annotate (~> 3.2)
   ar_transaction_changes (~> 1.1)

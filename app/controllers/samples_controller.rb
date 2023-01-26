@@ -75,6 +75,18 @@ class SamplesController < ApplicationController
     redirect_to samples_url, status: :see_other
   end
 
+  def favorite
+    @sample = Sample.find params[:id]
+    authorize @sample
+
+    if current_user.favorited? @sample
+      current_user.unfavorite @sample
+    else
+      current_user.favorite @sample
+    end
+    redirect_to request.referer
+  end
+
   private
 
   def set_sample

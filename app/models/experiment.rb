@@ -27,6 +27,8 @@ class Experiment < ApplicationRecord
   include ProcessImage
   include ArTransactionChanges
 
+  acts_as_favoritable
+
   belongs_to :user
 
   has_many :experiment_samples, dependent: :destroy

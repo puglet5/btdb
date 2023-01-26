@@ -13,9 +13,16 @@ Rails.application.routes.draw do
 
   resources :samples do
     resources :measurements, only: %i[new edit update create destroy]
+    member do
+      patch :favorite
+    end
   end
 
-  resources :experiments
+  resources :experiments do
+    member do
+      patch :favorite
+    end
+  end
 
   devise_for :users, path: '', path_names: { sign_in: :login, sign_out: :logout, sign_up: :register }
   resources :users, only: %i[show] do
