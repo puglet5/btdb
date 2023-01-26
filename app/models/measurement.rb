@@ -37,6 +37,7 @@ class Measurement < ApplicationRecord
   has_many_attached :equipment_settings
 
   has_rich_text :description
+  has_rich_text :equipment
 
   enum category: { not_set: 0, spectrum: 1 }, _suffix: :category, _default: :not_set
 

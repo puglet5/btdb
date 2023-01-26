@@ -157,9 +157,9 @@
             </div>
           </div>
           <h2 class="mb-2 text-2xl font-semibold md:mt-2"> <%= @sample.title %></h2>
-          <p class="mt-4 text-sm text-gray-500">
-            <%= @sample.description.to_plain_text %>
-          </p>
+          <div class="!mt-4 !text-sm !text-gray-500">
+            <%= @sample.description %>
+          </div>
         </div>
 
         <div id="panels" class="rounded-br-lg">
