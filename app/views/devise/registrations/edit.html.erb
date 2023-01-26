@@ -18,7 +18,7 @@
             uppy_allowedfiletypes_value: "image/*",
             uppy_allowmultiple_value: false,
             uppy_thumbnails_value: true } do %>
-            <span class="flex m-auto mb-4 w-40 h-40 rounded-full bg-primary-300">
+            <span class="flex m-auto mb-4 w-40 h-40 rounded-full bg-lime-300">
               <%= tag.div data: { uppy_target: "avatarDiv" } do %>
                 <% if resource.avatar.attached? %>
                   <%= image_tag resource.avatar, class: "object-cover w-20 h-20 rounded-full md:w-40 md:h-40", data: {"uppy-target": "avatar"} %>
@@ -109,7 +109,7 @@
           <% end %>
         </div>
 
-        <div class="flex items-center">
+      <div class="flex items-center">
           <%= f.submit "Save", class: "inline-block px-8 py-3 mr-3 text-sm font-medium text-white rounded-lg bg-lime-600 hover:bg-lime-700" %>
           <p class="ml-3 text-sm text-gray-500">
             <%= link_to "Back", current_user, class: "hover:underline" %>

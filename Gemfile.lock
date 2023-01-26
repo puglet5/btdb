@@ -213,6 +213,8 @@ GEM
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    loaf (0.10.0)
+      railties (>= 3.2)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -508,6 +510,7 @@ DEPENDENCIES
   image_processing (~> 1.12, >= 1.12.1)
   jsbundling-rails
   ledermann-rails-settings (~> 2.5)
+  loaf (~> 0.10.0)
   memory_profiler
   mini_magick (~> 4.11)
   pagy (~> 6.0)

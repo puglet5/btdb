@@ -6,6 +6,9 @@ class ExperimentsController < ApplicationController
   before_action :set_experiment, only: %i[update destroy]
   after_action :verify_authorized
 
+  breadcrumb 'Home', :root
+  breadcrumb 'Experiments', :experiments, match: :exact
+
   def index
     authorize Experiment
 
@@ -25,11 +28,15 @@ class ExperimentsController < ApplicationController
                   .find(params[:id])
 
     authorize @experiment
+
+    breadcrumb @experiment.title, @experiment, match: :exclusive
   end
 
   def new
     @experiment = current_user.experiments.build
     authorize @experiment
+
+    breadcrumb 'New Experiment', %i[new experiment], match: :exclusive
   end
 
   def edit
@@ -39,6 +46,9 @@ class ExperimentsController < ApplicationController
                   .find(params[:id])
 
     authorize @experiment
+
+    breadcrumb @experiment.title, @experiment, match: :exclusive
+    breadcrumb 'Edit', [:edit, @experiment], match: :exclusive
   end
 
   def create

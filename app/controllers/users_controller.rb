@@ -16,6 +16,8 @@ class UsersController < ApplicationController
         value['thumbnails'] = ActiveModel::Type::Boolean.new.cast(value['thumbnails'])
       when 'ui'
         value['tooltips'] = ActiveModel::Type::Boolean.new.cast(value['tooltips'])
+        value['breadcrumbs'] = ActiveModel::Type::Boolean.new.cast(value['breadcrumbs'])
+        value['dark'] = ActiveModel::Type::Boolean.new.cast(value['dark'])
       end
 
       @user.settings(key.to_sym).update! value
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(settings:
                                   {
                                     uppy: :thumbnails,
-                                    ui: :tooltips
+                                    ui: %i[tooltips breadcrumbs]
                                   })
   end
 end

@@ -18,6 +18,7 @@ gem 'has_scope', '~> 0.8.0'
 gem 'image_processing', '~> 1.12', '>= 1.12.1'
 gem 'jsbundling-rails'
 gem 'ledermann-rails-settings', '~> 2.5'
+gem 'loaf', '~> 0.10.0'
 gem 'mini_magick', '~> 4.11' # image processing
 gem 'pagy', '~> 6.0' # pagination
 gem 'pg', '~> 1.1'

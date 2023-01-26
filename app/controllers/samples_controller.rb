@@ -6,6 +6,9 @@ class SamplesController < ApplicationController
   before_action :set_sample, only: %i[show update destroy]
   after_action :verify_authorized
 
+  breadcrumb 'Home', :root
+  breadcrumb 'Samples', :samples, match: :exact
+
   def index
     authorize Sample
 
@@ -23,12 +26,16 @@ class SamplesController < ApplicationController
     authorize @sample
 
     @measurements = @sample.measurements.order('date DESC')
+
+    breadcrumb @sample.title, @sample, match: :exclusive
   end
 
   def new
     @sample = current_user.samples.build sample_params
 
     authorize @sample
+
+    breadcrumb 'New Sample', %i[new sample], match: :exclusive
   end
 
   def edit
@@ -37,6 +44,9 @@ class SamplesController < ApplicationController
                     .find(params[:id])
 
     authorize @sample
+
+    breadcrumb @sample.title, @sample, match: :exclusive
+    breadcrumb 'Edit', [:edit, @sample], match: :exclusive
   end
 
   def create

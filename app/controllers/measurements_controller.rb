@@ -4,15 +4,25 @@ class MeasurementsController < ApplicationController
   before_action :set_sample
   before_action :set_measurement, only: %i[edit update destroy]
 
+  breadcrumb 'Home', :root
+  breadcrumb 'Samples', :samples, match: :exact
+
   def new
     @measurement = @sample.measurements.build
     @measurement.spectra.build
 
     authorize @measurement
+
+    breadcrumb @sample.title, @sample, match: :exclusive
+    breadcrumb 'New Measurement', [:new, @sample, :measurement], match: :exclusive
   end
 
   def edit
     authorize @measurement
+
+    breadcrumb @sample.title, @sample, match: :exclusive
+    breadcrumb "#{@measurement.date&.strftime('%d/%m/%Y')} #{@measurement.title}", @sample, match: :exclusive
+    breadcrumb 'Edit', [:edit, @sample, @measurement], match: :exclusive
   end
 
   def create

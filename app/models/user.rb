@@ -36,7 +36,7 @@ class User < ApplicationRecord
 
   has_settings do |s|
     s.key :uppy, defaults: { thumbnails: false }
-    s.key :ui, defaults: { tooltips: true }
+    s.key :ui, defaults: { tooltips: true, breadcrumbs: true, dark: false }
   end
 
   has_many :experiments, dependent: :nullify
