@@ -118,3 +118,11 @@ trix-toolbar .trix-button--icon.trix-active::before {
   max-width: 100% !important;
 }
 
+.attachment--preview img {
+  @apply w-[300px]
+}
+
+.attachment--preview {
+  @apply flex items-center justify-center flex-col
+}
+
