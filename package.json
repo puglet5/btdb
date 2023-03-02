@@ -4,7 +4,7 @@
     "@client-side-validations/client-side-validations": "^0.3.0",
     "@client-side-validations/simple-form": "^0.3.1",
     "@hotwired/stimulus": "^3.2.1",
-    "@hotwired/turbo-rails": "^7.2.5",
+    "@hotwired/turbo-rails": "^7.3.0",
     "@popperjs/core": "^2.11.6",
     "@rails/actiontext": "^7.0.4",
     "@rails/activestorage": "^7.0.4",
@@ -14,7 +14,7 @@
     "autoprefixer": "^10.4.13",
     "chart.js": "^4.2.1",
     "d3": "^7.8.2",
-    "esbuild": "^0.17.8",
+    "esbuild": "^0.17.10",
     "esbuild-rails": "^1.0.3",
     "flowbite-datepicker": "^1.2.2",
     "jquery": "^3.6.3",
@@ -39,10 +39,10 @@
   },
   "devDependencies": {
     "cssnano": "^5.1.15",
-    "eslint": "^8.34.0",
+    "eslint": "^8.35.0",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
-    "postcss-nested": "^6.0.0",
+    "postcss-nested": "^6.0.1",
     "tailwind-config-viewer": "^1.7.2"
   },
   "packageManager": "yarn@3.2.3"
