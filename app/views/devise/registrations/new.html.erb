@@ -1,28 +1,57 @@
-<h2>Sign up</h2>
+<%= render "shared/errors", obj: resource %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+<div class="py-24 px-4 mx-auto max-w-screen-sm text-gray-700 sm:px-6 lg:px-8">
+  <h1 class="text-2xl font-bold sm:text-3xl text-center mb-12">Sign up</h1>
 
-  <div class="form-inputs">
-    <%= f.input :name,
-                required: true,
-                autofocus: false %>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-  </div>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f| %>
+    <div class="">
+      <div class="mb-6 col-span-2">
+        <%= render Forms::LabelComponent.new(optional: false).with_content("First name") %>
+        <%= f.input :name, autofocus: true, input_html: { class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder: "John", label: false, required: false %>
+      </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+      <div class="mb-6 col-span-2">
+        <%= render Forms::LabelComponent.new(optional: false).with_content("Email address") %>
+        <div class="relative">
+          <%= f.input :email, required: false, label: false, autofocus: false, input_html: { autocomplete: "email", class: "w-full p-4 pr-6 text-sm border-gray-300 rounded-md shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder: "Enter email", label: false, required: false %>
 
-<%= render "devise/shared/links" %>
+          <span class="absolute inset-y-0 inline-flex items-center right-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label for="password" class="sr-only">Password</label>
+        <%= render Forms::LabelComponent.new(optional: false).with_content("Password") %>
+
+        <%= tag.div class: "relative", data: { controller: "password" } do %>
+
+          <%= f.input :password, required: false, input_html: { autocomplete: "current-password", class: "w-full p-4 pr-6 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600", data: { "password-target": "input" } },  placeholder:"•••••••••", validate: false, label: false %>
+
+          <%= tag.span class: "absolute inset-y-0 inline-flex items-center right-4", data: { action: "click->password#toggle"} do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-password-target="svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          <% end %>
+
+        <% end %>
+      </div>
+
+      <div class="mb-6">
+        <%= render Forms::LabelComponent.new(optional: false).with_content("Confirm password") %>
+        <%= f.input :password_confirmation, autocomplete: "new-password", input_html: { class: "w-full p-4 pr-6 text-sm border-gray-200 rounded-lg shadow-sm focus:ring-1 focus:ring-lime-600 focus:border-lime-600" }, placeholder:"•••••••••", validate: false, label: false, required: false %>
+      </div>
+
+      <div class="flex col-span-2">
+        <%= f.submit "Sign up", class: "w-full px-5 text-sm font-medium text-center text-white rounded-md bg-lime-600 hover:bg-lime-600 focus:ring-lime-200 sm:w-auto py-2.5" %>
+        <%= link_to new_user_session_path, class: "block my-auto ml-4 text-sm font-bold text-gray-500 hover:underline" do %>
+          Back to login
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

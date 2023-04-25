@@ -50,7 +50,7 @@
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
         <p class="ml-3 text-sm text-gray-500">
           No account?
-          <%= link_to "Sign up", new_registration_path(resource_name), class: "underline" %>
+          <%= link_to "Sign up", new_registration_path(resource_name), class: "font-bold hover:underline" %>
         </p>
       <% end %>
     </div>
