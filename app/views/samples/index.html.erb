@@ -32,9 +32,7 @@
 
   <div id="samples">
     <% if @samples.count > 0 %>
-      <%= cache @samples do %>
-        <%= render @samples %>
-      <% end %>
+      <%= render @samples %>
       <% if @pagy.pages > 1 %>
         <%== pagy_nav(@pagy) %>
       <% end %>

@@ -31,9 +31,7 @@
 
   <div id="experiments">
     <% if @experiments.count > 0 %>
-      <% cache @experiments do %>
-        <%= render @experiments %>
-      <% end %>
+      <%= render @experiments %>
       <% if @pagy.pages > 1 %>
         <%== pagy_nav(@pagy) %>
       <% end %>
