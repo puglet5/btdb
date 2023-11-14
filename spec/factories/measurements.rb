@@ -27,6 +27,7 @@
 FactoryBot.define do
   factory :measurement do
     title { 'Test Measurement' }
+    date { DateTime.now }
     association :sample, factory: :sample, strategy: :build
     association :user, factory: :user, strategy: :build
   end
