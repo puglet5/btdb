@@ -71,7 +71,5 @@ dump.rdb
 /vendor/bundle
 coverage
 
-/db/migrate
-
 erd.pdf
 erd.png
