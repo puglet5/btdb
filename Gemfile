@@ -15,6 +15,7 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'doorkeeper', '~> 5.6'
 gem 'dotenv-rails', '~> 2.8'
 gem 'has_scope', '~> 0.8.0'
+gem 'hotwire-livereload', '~> 1.3'
 gem 'image_processing', '~> 1.12', '>= 1.12.1'
 gem 'jsbundling-rails'
 gem 'ledermann-rails-settings', '~> 2.5'
@@ -59,10 +60,8 @@ group :development do
   gem 'bundler-audit', '~> 0.9.1'
   gem 'foreman', '~> 0.87.2'
   gem 'fuubar', '~> 2.5'
-  gem 'guard-livereload' # reload browser on file changes
   gem 'htmlbeautifier' # erb formatter
   gem 'memory_profiler' # For memory profiling
-  gem 'rack-livereload'
   gem 'rack-mini-profiler', '~> 3.0'
   gem 'rails-erd' # generate er diagrams
   gem 'rubocop', '~> 1.35', '>= 1.35.1', require: false

@@ -62,7 +62,4 @@ Rails.application.configure do
   config.rails_semantic_logger.ap_options = { multiline: true }
   config.rails_semantic_logger.format = :color
   config.log_tags = nil
-
-  # rack livereload
-  config.middleware.use(Rack::LiveReload, host: 'localhost', source: :vendored)
 end
