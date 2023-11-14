@@ -13,7 +13,6 @@ class SamplesController < ApplicationController
     authorize Sample
 
     @samples = Sample
-               .all
                .includes([:user, { thumbnail_attachment: :blob }, :experiments, :experiment_samples, :rich_text_description])
                .order('created_at desc')
 

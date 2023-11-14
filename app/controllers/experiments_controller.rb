@@ -13,7 +13,6 @@ class ExperimentsController < ApplicationController
     authorize Experiment
 
     @experiments = Experiment
-                   .all
                    .includes([:user, :rich_text_description, :samples, :experiment_samples, { images_attachments: :blob }, { files_attachments: :blob }])
                    .order('created_at desc')
 
