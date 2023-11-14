@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.0'
+ruby '3.2.2'
 
 gem 'active_model_serializers', '~> 0.10.13'
 gem 'acts_as_favoritor', '~> 6.0'
