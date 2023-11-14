@@ -1,0 +1,7 @@
+import "trix"
+import "@rails/actiontext"
+import "@client-side-validations/client-side-validations/src"
+import "@client-side-validations/simple-form/src"
+import "./controllers"
+import "./packs/turbo_submit_handler.js"
+import "./packs/turbo_confirm_modal.ts"

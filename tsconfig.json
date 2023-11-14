@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "NodeNext",
+    "allowJs": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "alwaysStrict": false,
+    "useDefineForClassFields": false,
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "baseUrl": "./",
+    "outDir": "app/assets/builds",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable",
+    ]
+  },
+  "include": [
+    "app/javascript/**/*"
+  ],
+  "exclude": [
+    "app/assets/builds",
+    "node_modules",
+    "coverage",
+    "lib"
+  ]
+}
