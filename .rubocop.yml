@@ -1,5 +1,9 @@
 inherit_from: .rubocop_todo.yml
 
+inherit_mode:
+  merge:
+    - Exclude
+
 require:
   - rubocop-performance
   - rubocop-rails
@@ -8,6 +12,8 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.0
   SuggestExtensions: false
+  Exclude:
+    - "spec/fixtures/*"
 
 Style/Documentation:
   Enabled: false
@@ -25,8 +31,7 @@ Naming:
   Enabled: false
 
 Lint/MissingSuper:
-  Exclude:
-    - 'app/components/**/*'
+  Enabled: false
 
 Rails/I18nLocaleTexts:
   Enabled: false
