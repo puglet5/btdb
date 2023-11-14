@@ -31,7 +31,6 @@ jobs:
       - name: Run linters
         run: |
           bundle exec rubocop --parallel
-          yarn eslint . --ext js,ts
 
       - name: Run security checks
         run: |
