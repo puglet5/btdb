@@ -41,36 +41,39 @@
             <h4 class="mb-4 ml-4 font-medium text-l">Settings</h4>
             <% if policy(@user).update_settings? %>
               <%= simple_form_for @user, url: update_settings_user_path, html: { method: :patch }, validate: true do |f| %>
-                <div class="mx-8 mb-4">
-                  <div class="flex items-center">
-                    <%= hidden_field_tag "user[settings[uppy][thumbnails]]", false %>
-                    <% checked =  @user.settings(:uppy).thumbnails ? "checked" : 0 %>
-                    <%= f.check_box "settings[uppy][thumbnails]", { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded  focus:ring-lime-600 focus:ring-2 text-lime-600", checked: checked }, true, false %>
-                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900">Thumbnails in forms</label>
+                <%= f.fields_for :settings do |fs|%>
+                  <div class="mx-8 mb-4">
+                    <div class="flex items-center">
+                      <%= fs.fields_for :uppy do |fsup|%>
+                        <% checked = @user.settings(:uppy).thumbnails ? "checked" : 0 %>
+                        <%= fsup.check_box :thumbnails, { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded  focus:ring-lime-600 focus:ring-2 text-lime-600", checked: checked } %>
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900">Thumbnails in forms</label>
+                      <% end %>
+                    </div>
+                    <%= render Forms::PHelperComponent.new().with_content("Disable thumbnail generation when uploading images if you experience any problems") %>
                   </div>
-                  <%= render Forms::PHelperComponent.new().with_content("Disable thumbnail generation when uploading images if you experience any problems") %>
-                </div>
 
-                <div class="mx-8 mb-4">
-                  <div class="flex items-center">
-                    <%= hidden_field_tag "user[settings[ui][tooltips]]", false %>
-                    <% checked =  @user.settings(:ui).tooltips ? "checked" : 0 %>
-                    <%= f.check_box "settings[ui][tooltips]", { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-lime-600 focus:ring-lime-600 focus:ring-2 ", checked: checked }, true, false %>
-                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900">Informational tooltips</label>
-                  </div>
-                  <%= render Forms::PHelperComponent.new().with_content("Toggles tooltips and popovers") %>
-                </div>
+                  <%= fs.fields_for :ui do |fsui|%>
 
-                <div class="mx-8 mb-4">
-                  <div class="flex items-center">
-                    <%= hidden_field_tag "user[settings[ui][breadcrumbs]]", false %>
-                    <% checked =  @user.settings(:ui).breadcrumbs ? "checked" : 0 %>
-                    <%= f.check_box "settings[ui][breadcrumbs]", { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-lime-600 focus:ring-lime-600 focus:ring-1 ", checked: checked }, true, false %>
-                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-700">Breadcrumbs</label>
-                  </div>
-                  <%= render Forms::PHelperComponent.new().with_content("Toggles navigation breadcrumbs") %>
-                </div>
+                    <div class="mx-8 mb-4">
+                      <div class="flex items-center">
+                        <% checked =  @user.settings(:ui).tooltips ? "checked" : 0 %>
+                        <%= fsui.check_box :tooltips, { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-lime-600 focus:ring-lime-600 focus:ring-2 ", checked: checked } %>
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900">Informational tooltips</label>
+                      </div>
+                      <%= render Forms::PHelperComponent.new().with_content("Toggles tooltips and popovers") %>
+                    </div>
 
+                    <div class="mx-8 mb-4">
+                      <div class="flex items-center">
+                        <% checked =  @user.settings(:ui).breadcrumbs ? "checked" : 0 %>
+                        <%= fsui.check_box :breadcrumbs, { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-lime-600 focus:ring-lime-600 focus:ring-1 ", checked: checked } %>
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-700">Breadcrumbs</label>
+                      </div>
+                      <%= render Forms::PHelperComponent.new().with_content("Toggles navigation breadcrumbs") %>
+                    </div>
+                  <% end %>
+                <% end %>
                 <div class="mb-4 ml-4">
                   <%= f.submit "Update", class: "inline-block p-2 text-xs font-medium text-white border-none rounded-lg bg-lime-600 hover:bg-lime-700" %>
                 </div>
