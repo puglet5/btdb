@@ -19,6 +19,7 @@ module Api
 
       def create
         @spectrum = Spectrum.new(spectrum_params)
+        @spectrum.user = current_user
 
         if @spectrum.save!
           render json: @spectrum, status: :ok
@@ -41,7 +42,7 @@ module Api
 
       def spectrum_params
         params.require(:spectrum).permit(
-          :measurement_id, :file
+          :measurement_id, :status, :metadata, :processed_file, :processing_message
         )
       end
     end

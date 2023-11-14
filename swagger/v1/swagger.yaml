@@ -19,6 +19,161 @@ paths:
           description: ok
         '401':
           description: unauthorized
+  "/api/v1/spectra":
+    get:
+      summary: Lists spectra
+      tags:
+      - Spectra
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ok
+        '401':
+          description: unauthorized
+    post:
+      summary: Creates spectrum
+      tags:
+      - Spectra
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: spectrum created
+        '400':
+          description: bad request
+        '422':
+          description: unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                measurement_id:
+                  type: integer
+                  nullable: false
+              required:
+              - measurement_id
+  "/api/v1/spectra/{id}":
+    get:
+      summary: Retrieves spectrum
+      tags:
+      - Spectra
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  format:
+                    type: string
+                    nullable: true
+                  status:
+                    type: string
+                    nullable: true
+                  metadata:
+                    type: object
+                    nullable: false
+                  file_url:
+                    type: string
+                    nullable: true
+                  filename:
+                    type: string
+                    nullable: true
+                  measurement:
+                    type: object
+                    nullable: false
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  format:
+                    type: string
+                    nullable: true
+                  status:
+                    type: string
+                    nullable: true
+                  metadata:
+                    type: object
+                    nullable: false
+                  file_url:
+                    type: string
+                    nullable: true
+                  filename:
+                    type: string
+                    nullable: true
+                  measurement:
+                    type: object
+                    nullable: false
+        '401':
+          description: unauthorized
+        '404':
+          description: not found
+    patch:
+      summary: Updates spectrum
+      tags:
+      - Spectra
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: spectrum updated
+        '404':
+          description: not found
+        '400':
+          description: bad request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                format:
+                  type: string
+                  nullable: true
+                status:
+                  type: string
+                  nullable: true
+                metadata:
+                  type: object
+                  nullable: true
+                file_url:
+                  type: string
+                  nullable: true
+                filename:
+                  type: string
+                  nullable: true
 servers:
 - url: https://{defaultHost}
   variables:
