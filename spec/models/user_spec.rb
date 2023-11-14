@@ -4,22 +4,21 @@
 #
 # Table name: users
 #
-#  id                     :bigint           not null, primary key
+#  created_at             :datetime         not null
 #  email                  :string           default(""), not null, indexed
 #  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string           indexed
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  id                     :bigint           not null, primary key
 #  name                   :string           default(""), not null
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string           indexed
+#  updated_at             :datetime         not null
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 

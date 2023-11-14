@@ -4,14 +4,14 @@
 #
 # Table name: samples
 #
-#  id          :bigint           not null, primary key
-#  title       :string
 #  category    :integer          default("not_set"), not null
 #  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  user_id     :integer          indexed
+#  id          :bigint           not null, primary key
 #  metadata    :jsonb            not null, indexed
 #  survey_date :datetime
+#  title       :string
+#  updated_at  :datetime         not null
+#  user_id     :integer          indexed
 #
 # Indexes
 #
