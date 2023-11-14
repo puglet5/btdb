@@ -38,12 +38,17 @@
     "tailwind-config-viewer": "tailwind-config-viewer -o"
   },
   "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@yarnpkg/sdks": "^3.0.0",
     "cssnano": "^6.0.1",
     "eslint": "^8.53.0",
     "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
     "postcss-nested": "^6.0.1",
-    "tailwind-config-viewer": "^1.7.3"
+    "tailwind-config-viewer": "^1.7.3",
+    "typescript": "^5.2.2"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "yarn@4.0.2"
 }
