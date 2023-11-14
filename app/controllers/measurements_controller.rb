@@ -27,6 +27,8 @@ class MeasurementsController < ApplicationController
 
   def create
     @measurement = @sample.measurements.build measurement_params
+    @measurement.spectra.each { |s| s.user = current_user }
+
     current_user.measurements << @measurement
 
     authorize @measurement
@@ -43,8 +45,16 @@ class MeasurementsController < ApplicationController
   def update
     authorize @measurement
 
-    if @measurement.update(measurement_params)
-      redirect_to [@sample], notice: 'Measurement was successfully updated.'
+    unless measurement_params[:spectra_attributes].nil?
+      @spectra = @measurement.spectra.build(measurement_params[:spectra_attributes])
+      @spectra.each { |s| s.user = current_user }
+    end
+
+    if @measurement.update(measurement_params.except(:spectra_attributes))
+      @spectra&.each(&:save!)
+
+      redirect_to @sample
+      flash[:success] = 'Measurement updated!'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -76,7 +86,7 @@ class MeasurementsController < ApplicationController
       :category,
       :equipment,
       :description,
-      spectra_attributes: %i[id file],
+      spectra_attributes: %i[id file user_id],
       spectra_ids: [],
       equipment_settings: []
     )

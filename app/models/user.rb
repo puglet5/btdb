@@ -42,6 +42,7 @@ class User < ApplicationRecord
   has_many :experiments, dependent: :nullify
   has_many :samples, dependent: :nullify
   has_many :measurements, dependent: :nullify
+  has_many :spectra, dependent: :nullify
 
   # rubocop:disable Rails/InverseOf
   has_many :access_grants,
