@@ -26,8 +26,7 @@ gem 'pg', '~> 1.1'
 gem 'propshaft', '~> 0.6' # asset delivery
 gem 'puma', '~> 6.0'
 gem 'pundit', '~> 2.2'
-gem 'rails', '~> 7.0.4'
-gem 'rails_semantic_logger', '~> 4.10'
+gem 'rails', '~> 7.1.2'
 gem 'ransack', '~> 3.2.1' # object-based searching
 gem 'redis', '~> 5.0'
 gem 'rolify', '~> 6.0' # user roles
@@ -37,10 +36,10 @@ gem 'simple_form', '~> 5.1' # form helpers
 gem 'stimulus-rails', '~> 1.1'
 gem 'turbo-rails', '~> 1.1'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'view_component', '~> 2.72'
+gem 'view_component', '~> 3.7.0'
 
-gem 'client_side_validations', '~> 21.0'
-gem 'client_side_validations-simple_form', '~> 15.0'
+gem 'client_side_validations', '~> 22.0'
+gem 'client_side_validations-simple_form', '~> 16.0'
 
 group :development, :test do
   gem 'better_errors', '~> 2.9'
@@ -55,7 +54,7 @@ end
 group :development do
   gem 'active_record_doctor', '~> 1.10'
   gem 'annotate', '~> 3.2' # db schema annotations for models and tests
-  gem 'brakeman', '~> 5.3'
+  gem 'brakeman', '~> 6.0.1'
   gem 'bullet', '~> 7.0', '>= 7.0.3' # detect ineffective db queries
   gem 'bundler-audit', '~> 0.9.1'
   gem 'foreman', '~> 0.87.2'
@@ -74,7 +73,7 @@ group :development do
 end
 
 group :test do
-  gem 'pundit-matchers', '~> 1.7' # policy matchers
+  gem 'pundit-matchers', '~> 3.1' # policy matchers
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.1' # rails matchers for common tasks
   gem 'simplecov', '~> 0.22' # code coverage reports

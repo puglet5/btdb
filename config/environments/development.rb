@@ -49,17 +49,4 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
   config.assets.quiet = true
-
-  # setup sidekiq logger to work with semantic logger
-  config.semantic_logger.add_appender(io: $stdout, formatter: :color) if Sidekiq.server?
-
-  config.rails_semantic_logger.semantic = true
-  config.rails_semantic_logger.started    = false
-  config.rails_semantic_logger.processing = true
-  config.rails_semantic_logger.rendered   = false
-  config.log_level = :debug
-  config.rails_semantic_logger.quiet_assets = true
-  config.rails_semantic_logger.ap_options = { multiline: true }
-  config.rails_semantic_logger.format = :color
-  config.log_tags = nil
 end
