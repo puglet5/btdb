@@ -5588,9 +5588,9 @@ __metadata:
   linkType: hard
 
 "yaml@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "yaml@npm:2.1.1"
-  checksum: ed5e61560229fa7108c8528ba772ed5ec4113f297666376b7e07144dcb24fb5a02af40b1c5ac1c922d3e5bed979b6994ffeee6224671a37c0800058216564ed6
+  version: 2.3.4
+  resolution: "yaml@npm:2.3.4"
+  checksum: f8207ce43065a22268a2806ea6a0fa3974c6fde92b4b2fa0082357e487bc333e85dc518910007e7ac001b532c7c84bd3eccb6c7757e94182b564028b0008f44b
   languageName: node
   linkType: hard
 
