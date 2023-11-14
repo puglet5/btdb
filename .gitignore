@@ -72,3 +72,6 @@ dump.rdb
 coverage
 
 /db/migrate
+
+erd.pdf
+erd.png
