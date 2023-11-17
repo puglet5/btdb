@@ -310,7 +310,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.1.0)
-    ransack (3.2.1)
+    ransack (4.1.1)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
@@ -517,7 +517,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 3.0)
   rails (~> 7.1.2)
   rails-erd
-  ransack (~> 3.2.1)
+  ransack (~> 4.1)
   redis (~> 5.0)
   rolify (~> 6.0)
   rspec-rails (~> 6.0)

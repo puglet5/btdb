@@ -27,7 +27,7 @@ gem 'propshaft', '~> 0.6' # asset delivery
 gem 'puma', '~> 6.0'
 gem 'pundit', '~> 2.2'
 gem 'rails', '~> 7.1.2'
-gem 'ransack', '~> 3.2.1' # object-based searching
+gem 'ransack', '~> 4.1' # object-based searching
 gem 'redis', '~> 5.0'
 gem 'rolify', '~> 6.0' # user roles
 gem 'rswag', '~> 2.6'

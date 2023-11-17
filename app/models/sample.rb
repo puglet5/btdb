@@ -59,4 +59,12 @@ class Sample < ApplicationRecord
   after_commit :parse_json, on: %i[create update]
   after_commit -> { process_image self, thumbnail&.id }, on: %i[create update], unless: -> { transaction_changed_attributes.keys == ['updated_at'] }
   after_commit -> { images.each { |image| process_image self, image&.id } }, on: %i[create update], unless: -> { transaction_changed_attributes.keys == ['updated_at'] }
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[category created_at metadata survey_date title updated_at user_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[experiment_samples experiments favorited files_attachmentsimages_attachments measurements rich_text_description spectra thumbnail_attachment user]
+  end
 end
