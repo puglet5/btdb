@@ -22,7 +22,7 @@ export default class extends Controller {
     setTimeout(function () {
       svg.classList.remove("text-lime-600")
       svg.classList.add("text-gray-400")
-   }, 500)
+    }, 500)
   }
 
   message() {

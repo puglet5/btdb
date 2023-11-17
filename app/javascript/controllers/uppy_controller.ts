@@ -17,14 +17,14 @@ export default class extends Controller {
   connect() {
 
     const setupUppy = (element) => {
-      let trigger = this.triggerTarget
+      const trigger = this.triggerTarget
 
-      let direct_upload_url = document.querySelector("meta[name='direct-upload-url']").getAttribute("content")
-      let field_name = element.dataset.uppy
+      const direct_upload_url = document.querySelector("meta[name='direct-upload-url']").getAttribute("content")
+      const field_name = element.dataset.uppy
 
       trigger.addEventListener("click", (e) => e.preventDefault())
 
-      let uppy = new Uppy({
+      const uppy = new Uppy({
         autoProceed: false,
         allowMultipleUploads: this.allowmultipleValue,
         allowMultipleUploadBatches: this.allowmultipleValue,
@@ -48,7 +48,7 @@ export default class extends Controller {
         proudlyDisplayPoweredByUppy: false
       })
 
-      let dashboard = document.querySelector(".uppy-Dashboard-inner")
+      const dashboard = document.querySelector(".uppy-Dashboard-inner")
       dashboard.removeAttribute("style")
 
       let files_uploaded = 0
@@ -85,7 +85,7 @@ export default class extends Controller {
       }
       else {
         const avatarDiv = this.avatarDivTarget
-        let avatar = document.createElement("img")
+        const avatar = document.createElement("img")
         avatar.src = file.preview
         const cls = ["object-cover", "rounded-full", "w-20", "h-20", "md:w-40", "md:h-40"]
         avatar.classList.add(...cls)

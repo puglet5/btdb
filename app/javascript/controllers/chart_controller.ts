@@ -18,20 +18,20 @@ export default class extends Controller {
 
   parse(raw) {
 
-    let xValue = raw.map((d) => {
+    const xValue = raw.map((d) => {
       return parseFloat(Object.values(d)[0])
     })
 
-    let yValue = raw.map((d) => {
+    const yValue = raw.map((d) => {
       return parseFloat(Object.values(d)[1])
     })
 
-    let data = xValue
+    const data = xValue
       .map((v, i) => {
         return [v, yValue[i]]
       })
       .map((v) => {
-        let [x, y] = v
+        const [x, y] = v
         return { x, y }
       })
 
@@ -41,7 +41,7 @@ export default class extends Controller {
 
   async visualize() {
 
-    let canvasId = `canvas-${this.idValue}`
+    const canvasId = `canvas-${this.idValue}`
 
     const makeChart = (data, filename) => {
 

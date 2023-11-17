@@ -4,7 +4,7 @@ import TomSelect from "tom-select/dist/js/tom-select.complete.js"
 export default class extends Controller {
 
   connect() {
-    var config = {
+    const config = {
       plugins: [],
       persist: false,
     }
