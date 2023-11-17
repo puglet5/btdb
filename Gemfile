@@ -46,7 +46,7 @@ group :development, :test do
   gem 'binding_of_caller', '~> 1.0' # for better_errors
   gem 'database_cleaner-active_record'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '<= 6.2'
   gem 'faker', '~> 3.0'
   gem 'rspec-rails', '~> 6.0'
 end
@@ -66,16 +66,11 @@ group :development do
   gem 'rubocop', '~> 1.35', '>= 1.35.1', require: false
   gem 'rubocop-performance', '~> 1.14', '>= 1.14.3', require: false
   gem 'rubocop-rails', '~> 2.15', '>= 2.15.2', require: false
-  gem 'solargraph', '~> 0.8' # ruby language server
-  gem 'solargraph-rails', '~> 1.0'
-  gem 'stackprof' # for call-stack profiling flamegraphs
   gem 'web-console'
 end
 
 group :test do
   gem 'pundit-matchers', '~> 3.1' # policy matchers
-  gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.1' # rails matchers for common tasks
   gem 'simplecov', '~> 0.22' # code coverage reports
-  gem 'webdrivers'
 end
