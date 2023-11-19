@@ -23,7 +23,7 @@ Bundler.require(*Rails.groups)
 
 module Btdb
   class Application < Rails::Application
-    config.load_defaults 7.0
+    config.load_defaults 7.1
 
     config.time_zone = 'Moscow'
 
