@@ -129,7 +129,7 @@
         } do %>
         <%= render Forms::LabelComponent.new().with_content("Images") %>
         <%= tag.div class: "flex items-center justify-center w-full p-2 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
-          <p class="text-center" data-uppy-target="text">
+          <p class="text-center" data-uppy-target="text" id="text-images">
             Browse...
           </p>
         <% end %>
@@ -147,7 +147,7 @@
          } do %>
         <%= render Forms::LabelComponent.new().with_content("Other files") %>
         <%= tag.div class: "flex items-center justify-center w-full p-2 pr-6 text-sm bg-white border border-gray-300 rounded-lg cursor-pointer w-fullbg-white hover:bg-gray-100 py-auto", data: {"uppy-target": "trigger"} do %>
-          <p class="text-center" data-uppy-target="text">
+          <p class="text-center" data-uppy-target="text" id="text-other">
             Browse...
           </p>
         <% end %>
