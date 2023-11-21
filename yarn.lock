@@ -600,6 +600,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/papaparse@npm:^5":
+  version: 5.3.12
+  resolution: "@types/papaparse@npm:5.3.12"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: ee0549717d895be645a6f5633855b8782bceeaee23e32bdec6bd794753436bee8b78387c49bbcef02376b9a5609c39c752313d8f503809433ed73f6a2b19da43
+  languageName: node
+  linkType: hard
+
 "@types/responselike@npm:^1.0.0":
   version: 1.0.3
   resolution: "@types/responselike@npm:1.0.3"
@@ -1075,6 +1084,7 @@ __metadata:
     "@rails/activestorage": "npm:^7.1.2"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@types/node": "npm:^20.9.2"
+    "@types/papaparse": "npm:^5"
     "@typescript-eslint/eslint-plugin": "npm:^6.11.0"
     "@typescript-eslint/parser": "npm:^6.11.0"
     "@uppy/core": "npm:^3.7.1"
@@ -1082,6 +1092,8 @@ __metadata:
     "@yarnpkg/sdks": "npm:^3.1.0"
     autoprefixer: "npm:^10.4.16"
     chart.js: "npm:^4.4.0"
+    chartjs-plugin-datalabels: "npm:^2.2.0"
+    chartjs-plugin-zoom: "npm:^2.0.1"
     cssnano: "npm:^6.0.1"
     d3: "npm:^7.8.5"
     esbuild: "npm:^0.19.6"
@@ -1089,6 +1101,7 @@ __metadata:
     eslint: "npm:^8.54.0"
     flowbite-datepicker: "npm:^1.2.4"
     jquery: "npm:^3.7.1"
+    papaparse: "npm:^5.4.1"
     postcss: "npm:^8.4.31"
     postcss-cli: "npm:^10.1.0"
     postcss-nesting: "npm:^12.0.1"
@@ -1371,6 +1384,26 @@ __metadata:
   dependencies:
     "@kurkle/color": "npm:^0.3.0"
   checksum: 5d60ae67e2ad7ba1026531be3c965a83f4b4213146b131aa041fcac846bd98bdfc38aeadc0d19c58f3a3ef689fb6acc014b8687665d38d4776b38351bf991de1
+  languageName: node
+  linkType: hard
+
+"chartjs-plugin-datalabels@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "chartjs-plugin-datalabels@npm:2.2.0"
+  peerDependencies:
+    chart.js: ">=3.0.0"
+  checksum: e87c2f30d4f6f84b4b1a28c00d1b032d0100f87f8f296a498507047bd2f7fe98eced583a2c09f30e55806e79a0ca7e0db027cc3bed9b27688980e55701a6945f
+  languageName: node
+  linkType: hard
+
+"chartjs-plugin-zoom@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "chartjs-plugin-zoom@npm:2.0.1"
+  dependencies:
+    hammerjs: "npm:^2.0.8"
+  peerDependencies:
+    chart.js: ">=3.2.0"
+  checksum: ac823f9a0fff148c3763f1436f85e25bb34a6a928200901a8805e4f1a8bf9c81cf7ad0d64125f3909679ef656d0ff4134c01cf40809111d2d332f938dd836581
   languageName: node
   linkType: hard
 
@@ -2798,6 +2831,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hammerjs@npm:^2.0.8":
+  version: 2.0.8
+  resolution: "hammerjs@npm:2.0.8"
+  checksum: 9155d056f252ef35e8ca258dbb5ee2c9d8794f6805d083da7d1d9763d185e3e149459ecc2b36ccce584e3cd5f099fd9fa55056e3bcc7724046390f2e5ae25815
+  languageName: node
+  linkType: hard
+
 "has-flag@npm:^4.0.0":
   version: 4.0.0
   resolution: "has-flag@npm:4.0.0"
@@ -3668,6 +3708,13 @@ __metadata:
   version: 2.2.0
   resolution: "p-try@npm:2.2.0"
   checksum: f8a8e9a7693659383f06aec604ad5ead237c7a261c18048a6e1b5b85a5f8a067e469aa24f5bc009b991ea3b058a87f5065ef4176793a200d4917349881216cae
+  languageName: node
+  linkType: hard
+
+"papaparse@npm:^5.4.1":
+  version: 5.4.1
+  resolution: "papaparse@npm:5.4.1"
+  checksum: 5e6dc978187182ad2efa1d264ffe73d2042cd23b8fb1dcb0b0f5c8c7c772c11e3eb4e166fb0893880ed24529a96abe9065d704cc5b4cb96abf037413cfe43788
   languageName: node
   linkType: hard
 

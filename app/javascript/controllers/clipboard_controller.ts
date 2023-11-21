@@ -1,13 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
-
-export default class extends Controller {
-
-  static targets = ["text", "svg"]
-
-
-  connect() {
-
-  }
+import { Typed } from "stimulus-typescript"
+const targets = {
+  text: HTMLAnchorElement,
+  svg: HTMLElement
+}
+export default class extends Typed(Controller, { targets }) {
 
   async copy() {
     await navigator.clipboard.writeText(this.textTarget.href)

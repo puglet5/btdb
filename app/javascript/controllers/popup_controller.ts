@@ -1,10 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 import { createPopper } from "@popperjs/core"
+import { Typed } from "stimulus-typescript"
 
-export default class extends Controller {
 
-  static targets = ["trigger", "tooltip", "arrow"]
+const targets = {
+  trigger: HTMLElement,
+  tooltip: HTMLElement,
+  arrow: HTMLElement,
+}
 
+
+export default class extends Typed(Controller, { targets }) {
   show() {
     this.tooltipTarget.classList.remove("hidden")
     createPopper(this.triggerTarget, this.tooltipTarget, {
@@ -21,6 +27,8 @@ export default class extends Controller {
   }
 
   hide() {
-    this.tooltipTarget.classList.add("hidden")
+    if (this.hasTooltipTarget) {
+      this.tooltipTarget.classList.add("hidden")
+    }
   }
 }

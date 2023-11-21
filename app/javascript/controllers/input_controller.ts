@@ -1,8 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
+import { Typed } from "stimulus-typescript"
 
-export default class extends Controller {
+const targets = {
+  input: HTMLInputElement,
+  svg: HTMLElement
+}
 
-  static targets = ["input", "svg"]
+export default class extends Typed(Controller, { targets }) {
+
+
 
   connect() {
     if (!this.inputTarget.value) {

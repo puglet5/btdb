@@ -1,11 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 import Datepicker from "flowbite-datepicker/Datepicker"
+import { Typed } from "stimulus-typescript"
 
-export default class extends Controller {
+const targets = {
+  input: HTMLElement
+}
 
-  static targets = ["input"]
-
-
+export default class extends Typed(Controller, { targets }) {
   connect() {
     new Datepicker(this.inputTarget, {
       autohide: true,

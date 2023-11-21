@@ -1,10 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 import $ from "jquery"
 import "@client-side-validations/client-side-validations/src"
+import { Typed } from "stimulus-typescript"
 
-export default class extends Controller {
+const targets = {
+  validate: HTMLElement
+}
 
-  static targets = ["validate"]
+export default class extends Typed(Controller, { targets }) {
 
   connect() {
     this.validateTarget.hidden = true

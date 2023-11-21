@@ -1,14 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
+import { Typed } from "stimulus-typescript"
 
-export default class extends Controller {
+const targets = {
+  input: HTMLInputElement,
+  svg: HTMLElement
+}
 
-  static targets = ["input", "svg"]
-
+export default class extends Typed(Controller, { targets }) {
   toggle() {
     const input = this.inputTarget
 
     input.type = input.type === "password" ? "text" : "password"
 
-    this.svgTarget.classList.toggle("!text-lime-700")
+    this.svgTarget.classList.toggle("!text-primary-500")
   }
 }

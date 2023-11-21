@@ -1,8 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
+import { Typed } from "stimulus-typescript"
 
-export default class extends Controller {
+const targets = {
+  element: HTMLElement
+}
 
-  static targets = ["element"]
+export default class extends Typed(Controller, { targets }) {
+
 
   connect() {
   }
