@@ -1,7 +1,7 @@
 <%= tag.div class: "block my-auto text-xs text-gray-900 cursor-pointer tooltip p-1.5 #{@cls}", data: {controller: "popup", "popup-target": "trigger", action: "mouseover->popup#show mouseout->popup#hide"} do %>
   <%= content %>
   <% unless hidden? %>
-    <%= tag.div class: "absolute z-10 invisible inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 rounded-lg shadow-sm opacity-0 bg-neutral-700", data: {"popup-target": "tooltip"}, role: "tooltip", id: "popper" do %>
+    <%= tag.div class: "hidden absolute z-10 inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 rounded-lg shadow-sm bg-neutral-700", data: {"popup-target": "tooltip"}, role: "tooltip", id: "popper" do %>
       <%= @tooltip %>
       <div id="arrow" data-popup-target="arrow" class="arrow"></div>
     <% end %>
