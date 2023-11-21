@@ -39,7 +39,7 @@ export default class extends Typed(Controller, { values, targets }) {
       closeModalOnClickOutside: true,
       animateOpenClose: false,
       disableInformer: true,
-      theme: "auto",
+      theme: "light",
       hidePauseResumeButton: true,
       closeAfterFinish: false,
       inline: false,
@@ -55,6 +55,7 @@ export default class extends Typed(Controller, { values, targets }) {
 
       const uppy = new Uppy(uppyOptions)
 
+      //@ts-ignore
       uppy.use(ActiveStorageUpload, {
         directUploadUrl
       } as PluginOptions)
