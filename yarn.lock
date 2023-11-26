@@ -647,12 +647,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.9.3":
+"@types/node@npm:*":
   version: 20.9.3
   resolution: "@types/node@npm:20.9.3"
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 5d2a3a6b2b900814eab8c5093dabb7aa10895928719ec0074b9ac5584bcc83f5b680e2d2cb6c8b9751511b7b1b7fdd8586d2fc827b156f0263fdb65c4741bdef
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.10.0":
+  version: 20.10.0
+  resolution: "@types/node@npm:20.10.0"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: c7d5ddbdbf3491e2363135c9611eb6bfae90eda2957279237fa232bcb29cd0df1cc3ee149d6de9915b754262a531ee2d57d33c9ecd58d763e8ad4856113822f3
   languageName: node
   linkType: hard
 
@@ -663,12 +672,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/papaparse@npm:^5.3.12":
-  version: 5.3.12
-  resolution: "@types/papaparse@npm:5.3.12"
+"@types/papaparse@npm:^5.3.13":
+  version: 5.3.13
+  resolution: "@types/papaparse@npm:5.3.13"
   dependencies:
     "@types/node": "npm:*"
-  checksum: ee0549717d895be645a6f5633855b8782bceeaee23e32bdec6bd794753436bee8b78387c49bbcef02376b9a5609c39c752313d8f503809433ed73f6a2b19da43
+  checksum: e0697a412fa31acfadb8a72cccd0297db5000edbfd433f2d6dfa678a96dfa1436ecd9ac5401dae12172adf026af4d49285457033685dec8e20e3ce0633864bf6
   languageName: node
   linkType: hard
 
@@ -1237,8 +1246,8 @@ __metadata:
     "@rails/actiontext": "npm:^7.1.2"
     "@rails/activestorage": "npm:^7.1.2"
     "@tailwindcss/forms": "npm:^0.5.7"
-    "@types/node": "npm:^20.9.3"
-    "@types/papaparse": "npm:^5.3.12"
+    "@types/node": "npm:^20.10.0"
+    "@types/papaparse": "npm:^5.3.13"
     "@typescript-eslint/eslint-plugin": "npm:^6.12.0"
     "@typescript-eslint/parser": "npm:^6.12.0"
     "@uppy/core": "npm:^3.7.1"
