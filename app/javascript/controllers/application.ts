@@ -2,13 +2,13 @@ import { Application } from "@hotwired/stimulus"
 
 declare global {
   interface Window {
-    Stimulus: any
+    stimulus: Application
   }
 }
 
 const application = Application.start()
 
 application.debug = false
-window.Stimulus = application
+window.stimulus = application
 
 export { application }
