@@ -36,7 +36,7 @@ gem 'simple_form', '~> 5.1' # form helpers
 gem 'stimulus-rails', '~> 1.1'
 gem 'turbo-rails', '~> 1.1'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'view_component', '~> 3.7.0'
+gem 'view_component', '~> 3.8'
 
 gem 'client_side_validations', '~> 22.0'
 gem 'client_side_validations-simple_form', '~> 16.0'
@@ -46,7 +46,7 @@ group :development, :test do
   gem 'binding_of_caller', '~> 1.0' # for better_errors
   gem 'database_cleaner-active_record'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails', '<= 6.2'
+  gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 3.0'
   gem 'rspec-rails', '~> 6.0'
 end
