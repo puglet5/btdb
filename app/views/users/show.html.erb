@@ -46,11 +46,22 @@
                     <div class="flex items-center">
                       <%= fs.fields_for :uppy do |fsup|%>
                         <% checked = @user.settings(:uppy).thumbnails ? "checked" : 0 %>
-                        <%= fsup.check_box :thumbnails, { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded  focus:ring-lime-600 focus:ring-2 text-lime-600", checked: checked } %>
+                        <%= fsup.check_box :thumbnails, { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded  focus:ring-lime-600 focus:ring-1 text-lime-600", checked: checked } %>
                         <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900">Thumbnails in forms</label>
                       <% end %>
                     </div>
                     <%= render Forms::PHelperComponent.new().with_content("Disable thumbnail generation when uploading images if you experience any problems") %>
+                  </div>
+
+                  <div class="mx-8 mb-4">
+                    <div class="flex items-center">
+                      <%= fs.fields_for :processing do |sp| %>
+                        <% checked = @user.settings(:processing).enabled ? "checked" : 0 %>
+                        <%= sp.check_box :enabled, { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-lime-600 focus:ring-lime-600 focus:ring-1", checked: checked } %>
+                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-700">Automatic spectra processing</label>
+                      <% end %>
+                    </div>
+                    <%= render Forms::PHelperComponent.new().with_content("Enables automatic processing for uploaded spectra files. Disabled by default.") %>
                   </div>
 
                   <%= fs.fields_for :ui do |fsui|%>
@@ -58,7 +69,7 @@
                     <div class="mx-8 mb-4">
                       <div class="flex items-center">
                         <% checked =  @user.settings(:ui).tooltips ? "checked" : 0 %>
-                        <%= fsui.check_box :tooltips, { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-lime-600 focus:ring-lime-600 focus:ring-2 ", checked: checked } %>
+                        <%= fsui.check_box :tooltips, { multiple: false, class: "w-4 h-4 bg-gray-100 border-gray-300 rounded text-lime-600 focus:ring-lime-600 focus:ring-1", checked: checked } %>
                         <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900">Informational tooltips</label>
                       </div>
                       <%= render Forms::PHelperComponent.new().with_content("Toggles tooltips and popovers") %>
