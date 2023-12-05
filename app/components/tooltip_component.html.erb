@@ -3,6 +3,9 @@
   <% unless hidden? %>
     <%= tag.div class: "hidden absolute z-10 inline-block px-3 py-2 text-xs font-medium text-white transition-opacity duration-300 rounded-lg shadow-sm bg-neutral-700", data: {"popup-target": "tooltip"}, role: "tooltip", id: "popper" do %>
       <%= @tooltip %>
+      <div class="text-xs text-gray-400 break-words max-w-[10em]">
+        <%= @text %>
+      </div>
       <div id="arrow" data-popup-target="arrow" class="arrow"></div>
     <% end %>
   <% end %>
