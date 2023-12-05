@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_19_181506) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_05_111836) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -104,6 +104,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181506) do
     t.string "equipment", default: "", null: false
     t.integer "category", default: 0, null: false
     t.date "date"
+    t.text "plain_text_equipment"
+    t.text "plain_text_description"
     t.index ["sample_id"], name: "index_measurements_on_sample_id"
     t.index ["user_id"], name: "index_measurements_on_user_id"
   end
@@ -195,6 +197,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181506) do
     t.string "filename"
     t.jsonb "metadata", default: "{}", null: false
     t.bigint "user_id", null: false
+    t.integer "category"
     t.index ["measurement_id"], name: "index_spectra_on_measurement_id"
     t.index ["metadata"], name: "index_spectra_on_metadata", using: :gin
     t.index ["user_id"], name: "index_spectra_on_user_id"

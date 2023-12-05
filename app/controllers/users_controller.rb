@@ -12,6 +12,8 @@ class UsersController < ApplicationController
 
     setting_params[:settings].each do |key, value|
       case key
+      when 'processing'
+        value['enabled'] = ActiveModel::Type::Boolean.new.cast(value['enabled'])
       when 'uppy'
         value['thumbnails'] = ActiveModel::Type::Boolean.new.cast(value['thumbnails'])
       when 'ui'
@@ -23,12 +25,13 @@ class UsersController < ApplicationController
       @user.settings(key.to_sym).update! value
     end
     redirect_to @user
-    flash.keep[:success] = 'Settings updated!'
+    flash.keep[:success] = 'Settings updated!' if user_url(@user) == request.referer
   end
 
   def setting_params
     params.require(:user).permit(settings:
                                   {
+                                    processing: :enabled,
                                     uppy: :thumbnails,
                                     ui: %i[tooltips breadcrumbs]
                                   })

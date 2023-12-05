@@ -44,6 +44,9 @@ class Measurement < ApplicationRecord
   has_rich_text :description
   has_rich_text :equipment
 
+  before_save { self.plain_text_description = description&.body&.to_plain_text }
+  before_save { self.plain_text_equipment = equipment&.body&.to_plain_text }
+
   enum category: { not_set: 0, spectrum: 1 }, _suffix: :category, _default: :not_set
 
   validates :title, presence: true
