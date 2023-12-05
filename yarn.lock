@@ -1263,6 +1263,7 @@ __metadata:
     esbuild-rails: "npm:^1.0.7"
     eslint: "npm:^8.55.0"
     flowbite-datepicker: "npm:^1.2.4"
+    hotkeys-js: "npm:^3.12.2"
     jquery: "npm:^3.7.1"
     papaparse: "npm:^5.4.1"
     postcss: "npm:^8.4.32"
@@ -3495,6 +3496,13 @@ __metadata:
   dependencies:
     lru-cache: "npm:^6.0.0"
   checksum: 4dc67022b7ecb12829966bd731fb9a5f14d351547aafc6520ef3c8e7211f4f0e69452d24e29eae3d9b17df924d660052e53d8ca321cf3008418fb7e6c7c47d6f
+  languageName: node
+  linkType: hard
+
+"hotkeys-js@npm:^3.12.2":
+  version: 3.12.2
+  resolution: "hotkeys-js@npm:3.12.2"
+  checksum: 7bdb33a48de63ec8149b60fdb09e4529c5ff5afb7f3c34ce35dfa1cae87acb75970e59074f1c2c57ae1c5a347b1b743b70a13415f8ac611828cc1c20c1b2350e
   languageName: node
   linkType: hard
 
