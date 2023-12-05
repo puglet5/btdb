@@ -99,6 +99,7 @@ class SamplesController < ApplicationController
   private
 
   def set_sample
+    Rails.logger.debug(params)
     @sample = Sample.find(params[:id])
   end
 

@@ -12,7 +12,16 @@ Rails.application.routes.draw do
   end
 
   resources :samples do
-    resources :measurements, only: %i[new edit update create destroy]
+    resources :measurements, only: %i[new edit update create destroy] do
+      resources :spectra do
+        member do
+          get :request_processing
+          get :show_processing_indicator
+          get :show_request_processing_button
+          get :show_chart_area
+        end
+      end
+    end
     member do
       patch :favorite
     end

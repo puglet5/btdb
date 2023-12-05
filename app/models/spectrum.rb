@@ -84,7 +84,15 @@ class Spectrum < ApplicationRecord
   enum status: { none: 0, successful: 1, pending: 2, ongoing: 3, error: 4, other: 5 }, _prefix: :processing, _default: :none
   enum category: { not_set: 0, ftir: 3, raman: 5, thz: 6, other: 99 }, _default: :not_set, _suffix: :type
 
+  after_update_commit :broadcast_later
+
   private
+
+  def broadcast_later
+    broadcast_update_later_to('processing', target: "spectrum_#{id}", partial: 'samples/spectrum_processing_indicator_frame', locals: { spectrum: self, measurement: measurement, sample: measurement.sample })
+    broadcast_update_later_to('processing', target: "spectrum_#{id}_request_processing_button", partial: 'samples/spectrum_request_processing_button_frame', locals: { spectrum: self, measurement: measurement, sample: measurement.sample })
+    broadcast_update_later_to('processing', target: "spectrum_#{id}_chart_area", partial: 'samples/spectrum_chart_area_frame', locals: { spectrum: self, measurement: measurement, sample: measurement.sample })
+  end
 
   def parse_processing_message
     return unless processing_message
