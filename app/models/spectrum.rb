@@ -4,6 +4,7 @@
 #
 # Table name: spectra
 #
+#  category           :integer
 #  created_at         :datetime         not null
 #  filename           :string
 #  format             :integer          default("not_set"), not null

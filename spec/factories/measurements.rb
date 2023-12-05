@@ -4,15 +4,17 @@
 #
 # Table name: measurements
 #
-#  category   :integer          default("not_set"), not null
-#  created_at :datetime         not null
-#  date       :date
-#  equipment  :string           default(""), not null
-#  id         :bigint           not null, primary key
-#  sample_id  :bigint           not null, indexed
-#  title      :string
-#  updated_at :datetime         not null
-#  user_id    :bigint           not null, indexed
+#  category               :integer          default("not_set"), not null
+#  created_at             :datetime         not null
+#  date                   :date
+#  equipment              :string           default(""), not null
+#  id                     :bigint           not null, primary key
+#  plain_text_description :text
+#  plain_text_equipment   :text
+#  sample_id              :bigint           not null, indexed
+#  title                  :string
+#  updated_at             :datetime         not null
+#  user_id                :bigint           not null, indexed
 #
 # Indexes
 #
