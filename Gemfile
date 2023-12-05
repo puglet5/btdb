@@ -54,7 +54,7 @@ end
 group :development do
   gem 'active_record_doctor', '~> 1.10'
   gem 'annotate', '~> 3.2' # db schema annotations for models and tests
-  gem 'brakeman', '~> 6.0.1'
+  gem 'brakeman', '~> 6.0'
   gem 'bullet', '~> 7.0', '>= 7.0.3' # detect ineffective db queries
   gem 'bundler-audit', '~> 0.9.1'
   gem 'foreman', '~> 0.87.2'
