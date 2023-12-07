@@ -29,6 +29,7 @@ gem 'puma', '~> 6.0'
 gem 'pundit', '~> 2.2'
 gem 'rails', '~> 7.1.2'
 gem 'ransack', '~> 4.1' # object-based searching
+gem 'rchardet', '~> 1.8'
 gem 'redis', '~> 5.0'
 gem 'rolify', '~> 6.0' # user roles
 gem 'rswag', '~> 2.6'

@@ -67,6 +67,27 @@ RSpec.describe Spectrum, type: :model do
     end
   end
 
+  describe 'acquisition method inference' do
+    let!(:ftir_dpt_spectrum) { create(:spectrum, :with_file, file: 'ftir.dpt') }
+    let!(:raman_txt_spectrum) { create(:spectrum, :with_file, file: 'raman.txt') }
+    let!(:thz_txt_spectrum) { create(:spectrum, :with_file, file: 'thz.txt') }
+
+    it 'infers .dpt ftir files' do
+      ftir_dpt_spectrum.reload
+      expect(ftir_dpt_spectrum.category).to eq('ftir')
+    end
+
+    it 'infers .txt raman files' do
+      raman_txt_spectrum.reload
+      expect(raman_txt_spectrum.category).to eq('raman')
+    end
+
+    it 'infers .txt thz files' do
+      thz_txt_spectrum.reload
+      expect(thz_txt_spectrum.category).to eq('thz')
+    end
+  end
+
   describe 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:measurement) }

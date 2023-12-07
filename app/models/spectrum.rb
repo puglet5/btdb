@@ -28,6 +28,9 @@
 #
 #  fk_rails_7788863ffe  (measurement_id => measurements.id)
 #
+
+require 'rchardet'
+
 class Spectrum < ApplicationRecord
   include Authorship
   include ParseMetadata
