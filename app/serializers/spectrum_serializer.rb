@@ -55,7 +55,7 @@ class SpectrumSerializer < ActiveModel::Serializer
     object&.processed_file&.filename
   end
 
-  class SampleSerializer < ActiveModel::Serializer
+  class MeasurementSerializer < ActiveModel::Serializer
     attributes :id, :title
   end
 
