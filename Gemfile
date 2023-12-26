@@ -62,7 +62,7 @@ group :development do
   gem 'foreman', '~> 0.87.2'
   gem 'fuubar', '~> 2.5'
   gem 'htmlbeautifier' # erb formatter
-  gem 'memory_profiler' # For memory profiling
+  gem 'memory_profiler'
   gem 'rack-mini-profiler', '~> 3.0'
   gem 'rails-erd' # generate er diagrams
   gem 'rubocop', '~> 1.35', '>= 1.35.1', require: false
@@ -73,6 +73,6 @@ end
 
 group :test do
   gem 'pundit-matchers', '~> 3.1' # policy matchers
-  gem 'shoulda-matchers', '~> 5.1' # rails matchers for common tasks
+  gem 'shoulda-matchers', '~> 6.0' # rails matchers for common tasks
   gem 'simplecov', '~> 0.22' # code coverage reports
 end
